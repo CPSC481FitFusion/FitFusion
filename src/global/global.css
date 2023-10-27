@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.purple-filled-button {
+    width:370px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #93469f;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+    color: white;
+    font-size: 50px;
+    margin-right: 20px;
+    border: #93469f 2px solid;
+}
+
+.purple-filled-button:active {
+    background: #75397E;
+    border: #75397E 2px solid;
+}
