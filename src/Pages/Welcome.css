@@ -4,7 +4,6 @@
     overflow: hidden;
     text-align: left;
 }
-
 .welcome-page-image {
     background-image: url(../Images/MainPageBodyBuilderBackground.png);
     /* Full height */
@@ -14,6 +13,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 h1 {
     color: white;
     font-size: 120;
@@ -23,7 +23,6 @@ h1 {
     word-wrap: break-word;
     padding-bottom: 20px;
 }
-
 h2 {
     color: #93469f;
     font-size: 65px;
@@ -33,7 +32,6 @@ h2 {
     word-wrap: break-word;
     padding-bottom: 20px;
 }
-
 h3 {
     color: white;
     font-size: 40;
@@ -43,13 +41,13 @@ h3 {
     word-wrap: break-word;
     font-style: italic;
 }
-
 .bottom-left-text {
     position: absolute;
     bottom: 330px;
     left: 70;
 }
-
 .welcome-buttons {
     padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
 }
