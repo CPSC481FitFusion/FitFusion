@@ -11,7 +11,7 @@ FitFusion is a web-based application created using the following technologies:
 
 ## Project Information
 
-This application was developed as a class project for **CPSC 481: Human-Computer Interaction Design I**. It is a part of the coursework to demonstrate an understanding of user-centered design principles and the implementation of a user-friendly fitness tracking application.
+This application was developed as a class project for **CPSC 481: Human-Computer Interaction Design I**. It is a part of the coursework to demonstrate an understanding of user-centered design principles and we are demonstrating this through the implementation of a user-friendly fitness tracking application.
 
 ## Table of Contents
 
