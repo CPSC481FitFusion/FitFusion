@@ -1,28 +1,67 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
 }
 
-.purple-filled-button {
-    width:370px;
+.button {
+    width: 370px;
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 20px;
     padding-bottom: 20px;
-    background: #93469f;
     border-radius: 50px;
     justify-content: center;
     align-items: center;
     gap: 10px;
     display: inline-flex;
-    color: white;
     font-size: 50px;
     margin-right: 20px;
+}
+
+.button:hover {
+    border: 2px solid;
+}
+
+.purple-button-filled {
+    color: white;
+    background: #93469f;
     border: #93469f 2px solid;
 }
 
-.purple-filled-button:active {
-    background: #75397E;
-    border: #75397E 2px solid;
+.purple-button-filled:active {
+    background: #75397e;
+    border-color: #75397e;
+}
+
+.yellow-button {
+    color: white;
+    background: #FF9500;
+    border: #FF9500 2px solid;
+}
+
+.yellow-button:active {
+    background: #DC8101;
+    border-color: #DC8101;
+}
+
+.green-button {
+    color: white;
+    background: #4CAF50;
+    border: #4CAF50 2px solid;
+}
+
+.green-button:active {
+    background: #3A953D;
+    border-color: #3A953D;
+}
+
+.purple-button-border {
+    background: white;
+    border: #93469f 2px solid;
+}
+
+.purple-button-border:active {
+    background: #E9E9E9;
+    border-color: #75397e;
 }
