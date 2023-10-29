@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <title> Welcome page for Tracking Workouts</title>
+    <link rel="stylesheet" href="../Global/global.css">
+    <link rel="stylesheet" href="TrackWorkout.css">
+</head>
+
+<body>
+    <div class="container top-action-container">
+        <button class="button yellow-button-filled">Cancel</button>
+        <h1 class="time-elapsed">100:00</h1>
+        <button class="button green-button-filled">Finish</button>
+    </div>
+    <div class="workout-container">
+        <div name="workout-details">
+            <div class="container" name="workout-title">
+                <input class="input-field workout-title" placeholder="Enter Workout Name" type="text">
+                <button class="button purple-button-border">
+                    Edit Details
+                </button>
+            </div>
+            <div class="container" name="workout-date-time">
+                <p>November 1, 2023</p>
+                <p>Started at 1:00 PM</p>
+            </div>
+            <div class="container" name="workout-notes">
+                <textarea class="input-field workout-notes" rows="4" placeholder="Enter Workout Notes"></textarea>
+            </div>
+        </div>
+        <div class="exercises-container">
+            <div class="exercise-background">
+                <div class="exercise">
+                    <div name="exercise-details" class="horizonal-center-space-between">
+                        <input class="input-field exercise-name" placeholder="Enter Exercise Name" type="text">
+                        <button class="button red-button-border">
+                            Remove
+                        </button>
+                    </div>
+                    <div name="exercise-subheaders" class="container">
+                        <h1 style="margin-left: 15px;">
+                            Set
+                        </h1>
+                        <h1 style="margin-left: -10px;">
+                            Reps
+                        </h1>
+                        <h1 style="margin-left: 30px;">
+                            Weight
+                        </h1>
+                        <h1 style="margin-left: 30px;">
+                            Unit
+                        </h1>
+                        <h1>
+                            Remove
+                        </h1>
+                    </div>
+                    <div name="exercise-subheaders" class="exercise-sets">
+                        <p class="vertical-center">
+                            1
+                        </p>
+                        <input class="input-field exercise-number" type="number" placeholder="0">
+                        <input class="input-field exercise-number" type="number" placeholder="0">
+                        <label class="toggle">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                            <span class="labels" data-on="lbs" data-off="kg"></span>
+                        </label>
+                        <button class="red-button-border circle-button">x</button>
+                    </div>
+                    <div name="add-set" style="margin-top: 20px;">
+                        <button class="grey-button-filled button full-width">Add Set</button>
+                    </div>
+                </div>
+            </div>
+            <div name="add-exercise" class="container">
+                <button class="purple-button-filled button full-width">Add Exercise</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
