@@ -1,6 +1,17 @@
-# FitFusion Fitness Tracking App
+# FitFusion (Fitness Tracking App)
 
 FitFusion is a versatile fitness tracking application that caters to a wide range of user needs. Whether you're a fitness novice just starting your journey or an experienced lifter looking to make improvements, FitFusion has you covered. This README provides an overview of the core features and functionalities of the FitFusion app.
+
+## Technologies Used
+
+FitFusion is a web-based application created using the following technologies:
+- HTML
+- CSS
+- JavaScript
+
+## Project Information
+
+This application was developed as a class project for **CPSC 481: Human-Computer Interaction Design I**. It is a part of the coursework to demonstrate an understanding of user-centered design principles and the implementation of a user-friendly fitness tracking application.
 
 ## Table of Contents
 
