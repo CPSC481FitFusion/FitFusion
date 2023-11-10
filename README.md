@@ -33,3 +33,8 @@ Effective user goal tracking is vital for fitness journeys, especially for begin
 ---
 
 FitFusion is your ultimate fitness companion, helping you track workouts, monitor body composition, stay on top of your goals, and view your progress. With our intuitive features and real-life scenarios, you can make the most of your fitness journey. Stay motivated, stay fit with FitFusion!
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
