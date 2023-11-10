@@ -8,7 +8,7 @@ FitFusion is a web-based application created using the following technologies:
 - ReactJS
 - Bootstrap
 - MaterialUI
-- SASS
+- Sass
 - HTML
 - CSS
 - JavaScript
