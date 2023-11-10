@@ -5,7 +5,7 @@ FitFusion is a versatile fitness tracking application that caters to a wide rang
 ## Technologies Used
 
 FitFusion is a web-based application created using the following technologies:
-- ReactJS
+- ReactJS (using Vite)
 - Bootstrap
 - MaterialUI
 - Sass
