@@ -11,7 +11,7 @@ function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
 
   return (
-    <Box sx={{ width: 500 }}>
+    <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, width: '100%', zIndex: 1000 }}>
       <BottomNavigation
         showLabels
         value={value}
@@ -28,6 +28,7 @@ function SimpleBottomNavigation() {
 }
 
 export default SimpleBottomNavigation;
+
 
 {/*npm install @mui/icons-material @mui/material @emotion/styled @emotion/react --force*/}
 
