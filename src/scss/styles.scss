@@ -1,0 +1,15 @@
+// Import Bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import 'components/theme.scss';
+@import 'components/buttons.scss';
+@import 'components/typography.scss';
+
+body {
+    margin: 10px;
+    padding: 0px;
+    font-family: Arial;
+}
+
+.Mui-focused{
+    color: black !important;
+}

@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { StyledEngineProvider } from '@mui/material/styles';
-import './scss/main.scss';
+import { StyledEngineProvider} from '@mui/material/styles';
+import './scss/styles.scss';
 
 import { WorkoutPage } from "./pages/LogbookWorkoutPage"
 import { GoalsPage } from "./pages/LogbookGoalsPage"
@@ -13,7 +13,7 @@ import { Route, Routes } from 'react-router-dom';
 function App() {
   return (
     <>
-      <StyledEngineProvider injectFirst>
+    <StyledEngineProvider injectFirst>
         <Routes>
           <Route path="/" element={<WorkoutPage />} />
           <Route path="/goals" element={<GoalsPage />} />
@@ -22,7 +22,7 @@ function App() {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </StyledEngineProvider>
+    </StyledEngineProvider>
     </>
   )
 }
