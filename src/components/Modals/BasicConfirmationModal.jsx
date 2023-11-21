@@ -1,10 +1,15 @@
-import { Modal, ModalClose, Button, Typography, Sheet } from '@mui/joy';
+import { Modal, ModalClose, Typography, Sheet } from '@mui/joy';
 import React from 'react';
 import ButtonFilled from '../ButtonFilled';
 import { Box, Stack } from '@mui/material';
 
-const ConfirmationCancelModal = ({buttonStyle, openModalButtonLabel, modalHeader: modalHeader, modalBody: modalBody, modalConfirmationButtonLabel }) => {
+const BasicConfirmationModal = ({ buttonStyle, openModalButtonLabel, modalHeader, modalBody, modalConfirmationButtonLabel }) => {
     const [open, setOpen] = React.useState(false);
+    const handleClose = (event, reason) => {
+        if (reason !== 'backdropClick') {
+            setOpen(false)
+        }
+    }
     return (
         <>
             <ButtonFilled text={openModalButtonLabel} style={buttonStyle} onClick={() => setOpen(true)} />
@@ -12,7 +17,7 @@ const ConfirmationCancelModal = ({buttonStyle, openModalButtonLabel, modalHeader
                 aria-labelledby="modal-title"
                 aria-describedby="modal-desc"
                 open={open}
-                onClose={() => setOpen(false)}
+                onClose={handleClose}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <Sheet
@@ -24,7 +29,7 @@ const ConfirmationCancelModal = ({buttonStyle, openModalButtonLabel, modalHeader
                         boxShadow: 'lg',
                     }}
                 >
-                    <ModalClose variant="outlined" sx={{ m: 1 }} />
+                    <ModalClose variant="outlined" />
                     <Stack direction="column" alignItems="center">
                         <Typography
                             component="h2"
@@ -43,10 +48,10 @@ const ConfirmationCancelModal = ({buttonStyle, openModalButtonLabel, modalHeader
                             {modalBody}
                         </Typography>
                         <Box className="mt-3">
-                        <ButtonFilled
-                            text={modalConfirmationButtonLabel}
-                            style={buttonStyle}
-                            onClick={() => setOpen(false)} />
+                            <ButtonFilled
+                                text={modalConfirmationButtonLabel}
+                                style={buttonStyle}
+                                onClick={() => setOpen(false)} />
                         </Box>
                     </Stack>
                 </Sheet>
@@ -54,4 +59,4 @@ const ConfirmationCancelModal = ({buttonStyle, openModalButtonLabel, modalHeader
         </>
     );
 }
-export default ConfirmationCancelModal;
+export default BasicConfirmationModal;

@@ -1,7 +1,7 @@
 import { Grid, Typography, Box, Stack } from "@mui/material";
 import ButtonFilled from "../components/ButtonFilled"
 import { Link } from "react-router-dom";
-import InputWithLabel from "../components/InputWithLabel";
+import TextInputWithLabel from "../components/TextInputWithLabel";
 
 export const LoginPage = () => {
     return (
@@ -13,8 +13,8 @@ export const LoginPage = () => {
                     <Typography className="header-35">Log In</Typography>
                     <Typography>Please proceed to log in to access FitFusion!</Typography>
                     <Box className="input-container">
-                        <InputWithLabel label={"Username"} placeholder={"Click to enter your Username"}></InputWithLabel>
-                        <InputWithLabel label={"Password"} placeholder={"Click to enter your Password"} isPassword={true}></InputWithLabel>
+                        <TextInputWithLabel label={"Username"} placeholder={"Click to enter your Username"}></TextInputWithLabel>
+                        <TextInputWithLabel label={"Password"} placeholder={"Click to enter your Password"} isPassword={true}></TextInputWithLabel>
                         <Link className="d-flex flex-row-reverse link-label" onClick={console.log("Forgot Password")}>Forgot Password!</Link>
                     </Box>
                     <ButtonFilled text={"Log In"} style={"background-green"} onClick={console.log("Log in Attempt")} />

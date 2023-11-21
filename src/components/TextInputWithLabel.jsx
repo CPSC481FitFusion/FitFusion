@@ -4,21 +4,10 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const sxStyle = {
     width: "100%",
-    marginBottom: "20px",
-    "& .MuiOutlinedInput-root": {
-        "&.Mui-focused fieldset": {
-            border: "solid 1.5px black"
-        }
-    },
-    "& .MuiInputBase-root-MuiOutlinedInput-root": {
-        "&.Mui-focused MuiOutlinedInput-notchedOutline fieldset": {
-            border: "solid 1.5px black"
-        }
-    }
-
+    marginBottom: "20px"
 }
 
-const InputWithLabel = ({ label, style, placeholder, isPassword }) => {
+const TextInputWithLabel = ({ label, placeholder, isPassword}) => {
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -28,8 +17,7 @@ const InputWithLabel = ({ label, style, placeholder, isPassword }) => {
     };
 
     let endAdornmentIcon = (<></>);
-
-    if (isPassword === true){
+    if (isPassword) {
         endAdornmentIcon = (
             <InputAdornment position="end">
                 <IconButton
@@ -49,16 +37,15 @@ const InputWithLabel = ({ label, style, placeholder, isPassword }) => {
             <h6 className='general-label'>{label}</h6>
             <OutlinedInput
                 size='small'
-                type={!isPassword ||  showPassword ? 'text' : 'password'}
+                type={!isPassword || showPassword ? 'text' : 'password'}
                 endAdornment={
                     endAdornmentIcon
                 }
                 sx={sxStyle}
-                className={style}
                 placeholder={placeholder}
             />
         </>
     );
 };
 
-export default InputWithLabel;
+export default TextInputWithLabel;

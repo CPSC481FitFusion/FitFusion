@@ -1,3 +1,4 @@
+
 // Button Filled
 .filled-button {
     width: 100%;
@@ -6,11 +7,21 @@
 
 .red-border-button {
     width: 100%;
-    border: 2px #BF0808 solid;
-    color: #BF0808;
+    border: solid 2px $red ;
+    color: $red;
 }
 
 .red-border-button:active {
+    background-color: lightgrey !important;
+}
+
+.purple-border-button {
+    width: 100%;
+    border: solid 2px $purple;
+    color: $purple;
+}
+
+.purple-border-button:active {
     background-color: lightgrey !important;
 }
 
