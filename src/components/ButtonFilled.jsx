@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 
 const sxStyle = {
   width: "100%",
-  marginY: "10px",
 }
 
 const ButtonFilled = ({ text, style, onClick }) => {

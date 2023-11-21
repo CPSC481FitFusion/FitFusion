@@ -1,7 +1,7 @@
-import BackgroundImage from '../../public/img/MainPageBodyBuilderBackground.png'
 import { Grid, Paper, Stack, Typography } from '@mui/material';
-import ButtonFilled from '../components/ButtonFilled';
 import { useNavigate } from "react-router-dom";
+import BackgroundImage from '../../public/img/MainPageBodyBuilderBackground.png'
+import ButtonFilled from '../components/ButtonFilled';
 
 const styles = {
     imageContainer: {
@@ -10,7 +10,8 @@ const styles = {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         width: '100vw',
-        height: '100vh'
+        height: '100vh',
+        margin: '-10px'
     },
     bodyContainer: {
         position: 'absolute',
