@@ -1,4 +1,4 @@
-import ButtonFilled from "../components/Button";
+import ButtonFilled from "../components/ButtonFilled";
 import FlatContainer from "../components/FlatContainer";
 import InputWithLabel from "../components/InputWithLabel";
 

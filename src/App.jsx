@@ -18,7 +18,7 @@ function App() {
       <StyledEngineProvider injectFirst>
         <Routes>
           <Route path="/" element={<WelcomePage />} />
-          <Route path="login" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/workout" element={<WorkoutPage />} />
           <Route path="/goals" element={<GoalsPage />} />

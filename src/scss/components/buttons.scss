@@ -1,25 +1,5 @@
 // Button Filled
-.purple-button{
-    background-color: $purple;
-}
-.purple-button:hover{
-    background-color: darken($purple, 10%);
-}
-.grey-button{
-    background-color: $grey;
-}
-.grey-button:hover{
-    background-color: darken($grey, 10%);
-}
-.orange-button{
-    background-color: $orange;
-}
-.orange-button:hover{
-    background-color: darken($orange, 10%);
-}
-.green-button{
-    background-color: $green;
-}
-.green-button:hover{
-    background-color: darken($green, 10%);
+.filled-button{
+    width: "100%";
+    margin: "0px 10px",
 }

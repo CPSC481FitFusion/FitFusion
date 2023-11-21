@@ -12,7 +12,7 @@ const ButtonFilled = ({ text, style, onClick }) => {
       variant="contained"
       sx={sxStyle}
       className={style}
-      onclick={onClick}>
+      onClick={onClick}>
       {text}
     </Button>
   );
