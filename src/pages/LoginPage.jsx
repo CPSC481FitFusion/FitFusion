@@ -10,7 +10,7 @@ export const LoginPage = () => {
                 <Link className="link-label" to="/">Click to go to Welcome Page</Link>
                 {/* <ButtonFilled text={"Navigate to Welcome Page"} style={"back-button"} onClick={handleBackClick} /> */}
                 <Grid className="mt-5">
-                    <Typography className="header-1">Log In</Typography>
+                    <Typography className="header-35">Log In</Typography>
                     <Typography>Please proceed to log in to access FitFusion!</Typography>
                     <Box className="input-container">
                         <InputWithLabel label={"Username"} placeholder={"Click to enter your Username"}></InputWithLabel>

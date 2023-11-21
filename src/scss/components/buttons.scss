@@ -1,7 +1,17 @@
 // Button Filled
-.filled-button{
-    width: "100%";
-    margin: "0px 10px",
+.filled-button {
+    width: 100%;
+    margin: 0px 10px,
+}
+
+.red-border-button {
+    width: 100%;
+    border: 2px #BF0808 solid;
+    color: #BF0808;
+}
+
+.red-border-button:active {
+    background-color: lightgrey !important;
 }
 
 .back-button {

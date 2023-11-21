@@ -12,7 +12,7 @@ export const RegisterPage = () => {
             <Grid>
                 <Link className="link-label" to="/">Click to go to Welcome Page</Link>
                 <Grid className="mt-5">
-                    <Typography className="header-1">Register</Typography>
+                    <Typography className="header-35">Register</Typography>
                     <Typography>Please enter your credentials to register for Fitfusion!</Typography>
                     <Box className="input-container">
                         <InputWithLabel label={"Username"} placeholder={"Click to enter your Username"}></InputWithLabel>
