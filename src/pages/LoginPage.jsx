@@ -1,7 +1,29 @@
+import { Grid, Typography, Box, Stack } from "@mui/material";
+import ButtonFilled from "../components/ButtonFilled"
+import { Link } from "react-router-dom";
+import InputWithLabel from "../components/InputWithLabel";
+
 export const LoginPage = () => {
     return (
         <>
-        <h1> Login Page</h1>
+            <Grid>
+                <Link className="link-label" to="/">Click to go to Welcome Page</Link>
+                {/* <ButtonFilled text={"Navigate to Welcome Page"} style={"back-button"} onClick={handleBackClick} /> */}
+                <Grid className="mt-5">
+                    <Typography className="header-1">Log In</Typography>
+                    <Typography>Please proceed to log in to access FitFusion!</Typography>
+                    <Box className="input-container">
+                        <InputWithLabel label={"Username"} placeholder={"Click to enter your Username"}></InputWithLabel>
+                        <InputWithLabel label={"Password"} placeholder={"Click to enter your Password"} isPassword={true}></InputWithLabel>
+                        <Link className="d-flex flex-row-reverse link-label" onClick={console.log("Forgot Password")}>Forgot Password!</Link>
+                    </Box>
+                    <ButtonFilled text={"Log In"} style={"background-green"} onClick={console.log("Log in Attempt")} />
+                    <Stack className="footer-content" direction="row" justifyContent="flex-end" alignItems="center" spacing={1}>
+                        <Typography sx={{ fontSize: "14px" }}>Don’t have an account?</Typography>
+                        <Link className="link-label" to="/register">Click here to Register!</Link>
+                    </Stack>
+                </Grid>
+            </Grid>
         </>
     );
 }
