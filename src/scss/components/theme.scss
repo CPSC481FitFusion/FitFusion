@@ -1,0 +1,25 @@
+// Theme Colours
+$white: #fff !important;
+$purple: #93469F !important;
+$purple-light:  #ecdeef!important;
+$purple-dark: #75397E!important;
+$orange: #FF9500!important;
+$green: #4CAF50!important;
+$green-light: #CEE6CF!important;
+$red: #EF0808!important;
+$grey:  #7F7F7F!important;
+
+.background-purple{
+    background-color: $purple;
+}
+.background-purple-light{
+    background-color: $purple-light;
+}
+.background--dark{
+    background-color: $purple-dark;
+}
+
+.background-green-light{
+    background-color: $green-light;
+}
+
