@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ButtonFilled from "../components/ButtonFilled";
 import EditModal from "../components/Modals/EditModal"; // Import your existing EditModal component
+import ControlledCheckbox from '../components/checkbox';
 
 export const GoalsPage = () => {
     const [isEditModalOpen, setEditModalOpen] = useState(false);
@@ -43,6 +44,7 @@ export const GoalsPage = () => {
             </div>
           </div>
         </div>
+        <ControlledCheckbox/>
       </>
     );
   };
