@@ -1,0 +1,31 @@
+// Import Bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import 'components/theme.scss';
+@import 'components/typography.scss';
+@import 'components/buttons.scss';
+
+body {
+    margin: 10px !important;
+    padding: 0px;
+    font-family: Arial !important;
+    letter-spacing: 0.24 !important;
+    overflow: scroll !important;
+}
+
+.input-container {
+    margin: 20px 0px;
+}
+
+.Mui-focused > .MuiOutlinedInput-notchedOutline {
+    border: solid 1.5px black !important;
+}
+
+.footer-content{
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    right: 0px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
