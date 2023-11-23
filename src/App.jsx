@@ -1,11 +1,11 @@
 import './scss/styles.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import { AlertsPage } from './pages/AlertsPage';
-import { LoginPage } from "./pages/LoginPage"
-import { NotFoundPage } from "./pages/NotFoundPage"
+import { LoginPage } from "./pages/LoginPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 import { Route, Routes } from 'react-router-dom';
-import { RegisterPage } from "./pages/RegisterPage"
-import { SettingsPage } from "./pages/SettingsPage"
+import { RegisterPage } from "./pages/RegisterPage";
+import { SettingsPage } from "./pages/SettingsPage";
 import { StyledEngineProvider } from '@mui/material/styles';
 import { WelcomePage } from './pages/WelcomePage';
 import { LogbookPage } from './pages/LogbookPage';
