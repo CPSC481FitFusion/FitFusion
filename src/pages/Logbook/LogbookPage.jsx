@@ -11,7 +11,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Title from "../../components/title";
 import WorkoutTab from "./WorkoutTab/WorkoutTab";
 import BodyTab from "./BodyTab";
-import GoalsTab from "./GoalsTab";
+import GoalsTab from "./GoalTab/GoalsTab";
 
 export const LogbookPage = () => {
     // Get the user default from local storage, for now set at Workout

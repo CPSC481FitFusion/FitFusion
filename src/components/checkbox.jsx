@@ -25,7 +25,7 @@ const ControlledCheckbox = () => {
           }}
         />
       }
-      label="Your Label Here"
+      label="Attend One Zumba Class"
     />
   );
 };
