@@ -13,3 +13,14 @@
 .Mui-focused > .MuiOutlinedInput-notchedOutline {
     border: solid 1.5px black !important;
 }
+span.MuiTabs-indicator {
+    background-color: $purple;
+}
+button.tab-option:not(.Mui-selected) {
+    color: $grey;
+}
+
+button.tab-option.Mui-selected {
+    color: $purple;
+    font-weight: bold;
+}
