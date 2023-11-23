@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Paper } from '@mui/material';
 
 const sxStyle = {
+  marginBottom: "20px",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",

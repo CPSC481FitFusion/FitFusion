@@ -3,12 +3,19 @@ import React from 'react';
 import ButtonFilled from '../ButtonFilled';
 import { Box, Stack } from '@mui/material';
 
-const BasicConfirmationModal = ({ buttonStyle, openModalButtonLabel, modalHeader, modalBody, modalConfirmationButtonLabel }) => {
+
+
+const BasicConfirmationModal = ({ buttonStyle, openModalButtonLabel, modalHeader, modalBody, modalConfirmationButtonLabel, actionOnClick }) => {
     const [open, setOpen] = React.useState(false);
     const handleClose = (event, reason) => {
         if (reason !== 'backdropClick') {
             setOpen(false)
         }
+    }
+
+    const onConfirmationButtonClick= () => {
+        actionOnClick()
+        setOpen(false)
     }
     return (
         <>
@@ -51,7 +58,7 @@ const BasicConfirmationModal = ({ buttonStyle, openModalButtonLabel, modalHeader
                             <ButtonFilled
                                 text={modalConfirmationButtonLabel}
                                 style={buttonStyle}
-                                onClick={() => setOpen(false)} />
+                                onClick={onConfirmationButtonClick} />
                         </Box>
                     </Stack>
                 </Sheet>

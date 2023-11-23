@@ -1,10 +1,11 @@
 import { Modal, ModalClose, Typography, Sheet } from '@mui/joy';
 import React from 'react';
 import ButtonFilled from '../ButtonFilled';
-import { Box, Button, IconButton, Stack } from '@mui/material';
+import { Button, IconButton, Stack } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 
-const EditModal = ({ isIcon, editButtonLabel, modalHeader, modalBody, onClickRemove, onClickSave }) => {
+const EditModal = ({ 
+    isIcon, editButtonLabel, modalHeader, modalBody, onClickRemove, onClickSave }) => {
     const [open, setOpen] = React.useState(false);
 
     let button = (<></>);
@@ -80,7 +81,8 @@ const EditModal = ({ isIcon, editButtonLabel, modalHeader, modalBody, onClickRem
                             <ButtonFilled
                                 text="Save"
                                 style="background-green"
-                                onClick={() => setOpen(false)} />
+                                onClick={() => 
+                                setOpen(false)} />
                         </Stack>
                     </Stack>
                 </Sheet>
