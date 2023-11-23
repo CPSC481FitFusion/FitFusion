@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
 
-const TrackTitle = ({ title }) => {
+const Title = ({ title }) => {
   return (
     <Typography variant="h4" gutterBottom>
       {title}
@@ -9,4 +9,4 @@ const TrackTitle = ({ title }) => {
   );
 };
 
-export default TrackTitle;
+export default Title;
