@@ -2,8 +2,14 @@ import { Grid, Typography, Box, Stack } from "@mui/material";
 import ButtonFilled from "../components/ButtonFilled"
 import { Link } from "react-router-dom";
 import TextInputWithLabel from "../components/TextInputWithLabel";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+    const navigate = useNavigate();
+
+    function handleLoginClick() {
+        navigate("/logbook");
+    }
     return (
         <>
             <Grid>
@@ -17,7 +23,7 @@ export const LoginPage = () => {
                         <TextInputWithLabel label={"Password"} placeholder={"Click to enter your Password"} isPassword={true}></TextInputWithLabel>
                         <Link className="d-flex flex-row-reverse link-label" onClick={console.log("Forgot Password")}>Forgot Password!</Link>
                     </Box>
-                    <ButtonFilled text={"Log In"} style={"background-green"} onClick={console.log("Log in Attempt")} />
+                    <ButtonFilled text={"Log In"} style={"background-green"} onClick={handleLoginClick} />
                     <Stack className="footer-content" direction="row" justifyContent="flex-end" alignItems="center" spacing={1}>
                         <Typography sx={{ fontSize: "14px" }}>Don’t have an account?</Typography>
                         <Link className="link-label" to="/register">Click here to Register!</Link>

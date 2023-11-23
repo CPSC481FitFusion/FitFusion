@@ -16,7 +16,7 @@ const styles = {
     bodyContainer: {
         position: 'absolute',
         top: '60%',
-        padding: '10px',
+        padding: '20px',
         width: "100%"
     },
     subheading: {
@@ -59,7 +59,7 @@ export const WelcomePage = () => {
                     <Typography style={styles.subheading}>Welcome to</Typography>
                     <Typography style={styles.title}>FitFusion</Typography>
                     <Typography style={styles.motto}>The fitness tracking app for everyone</Typography>
-                    <Stack spacing={2} direction="row" justifyContent="space-between" paddingTop={'10px'} marginRight={"25px"}>
+                    <Stack spacing={6} direction="row" justifyContent="space-between" paddingTop={'10px'} marginRight={"25px"}>
                         <ButtonFilled text={"Register"} style={"background-purple"} onClick={handleRegisterClick} />
                         <ButtonFilled text={"Log In"} style={"background-purple"} onClick={handleLoginClick}/>
                     </Stack>
