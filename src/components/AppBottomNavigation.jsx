@@ -44,6 +44,3 @@ export const AppBottomNavigation = ({ state }) => {
 
 export default AppBottomNavigation;
 
-
-{/*npm install @mui/icons-material @mui/material @emotion/styled @emotion/react --force*/ }
-
