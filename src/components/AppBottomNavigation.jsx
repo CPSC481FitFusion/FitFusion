@@ -1,13 +1,11 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import {Box, BottomNavigation, BottomNavigationAction} from '@mui/material';
 
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import PersonIcon from '@mui/icons-material/Person';
 
-function SimpleBottomNavigation() {
+function AppBottomNavigation() {
   const [value, setValue] = React.useState(0);
 
   return (
@@ -27,7 +25,7 @@ function SimpleBottomNavigation() {
   );
 }
 
-export default SimpleBottomNavigation;
+export default AppBottomNavigation;
 
 
 {/*npm install @mui/icons-material @mui/material @emotion/styled @emotion/react --force*/}
