@@ -5,8 +5,9 @@ import TextInputWithLabel from "../components/TextInputWithLabel";
 import BasicConfirmationModal from "../components/Modals/BasicConfirmationModal";
 import EditModal from "../components/Modals/EditModal";
 import TextareaInputWithLabel from "../components/TextareaInputWithLabel";
+import AppBottomNavigation from "../components/AppBottomNavigation";
 
-export const WorkoutPage = () => {
+export const LogbookPage = () => {
     return (
         <>
             <h1> Workout Page</h1>
@@ -66,6 +67,7 @@ export const WorkoutPage = () => {
                 modalHeader="Edit Exercise Details"
                 modalBody={(<></>)}
             />
+            <AppBottomNavigation state={"logbook"}/>
         </>
     );
 }
