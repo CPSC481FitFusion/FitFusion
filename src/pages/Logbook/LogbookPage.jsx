@@ -1,16 +1,39 @@
-import { Stack } from "@mui/material";
-import ButtonFilled from "../components/ButtonFilled";
-import FlatContainer from "../components/FlatContainer";
-import TextInputWithLabel from "../components/TextInputWithLabel";
-import BasicConfirmationModal from "../components/Modals/BasicConfirmationModal";
-import EditModal from "../components/Modals/EditModal";
-import TextareaInputWithLabel from "../components/TextareaInputWithLabel";
-import AppBottomNavigation from "../components/AppBottomNavigation";
+import { Box, Stack, Tab } from "@mui/material";
+import AppBottomNavigation from "../../components/AppBottomNavigation";
+import BasicConfirmationModal from "../../components/Modals/BasicConfirmationModal";
+import ButtonFilled from "../../components/ButtonFilled";
+import EditModal from "../../components/Modals/EditModal";
+import FlatContainer from "../../components/FlatContainer";
+import React from "react";
+import TextareaInputWithLabel from "../../components/TextareaInputWithLabel";
+import TextInputWithLabel from "../../components/TextInputWithLabel";
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 export const LogbookPage = () => {
+    // Get the user default from local storage, for now set at Workout
+    const [value, setValue] = React.useState("1");
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     return (
         <>
             <h1> Workout Page</h1>
+            <Box sx={{ width: '100%' }}>
+                <TabContext value={value}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        <TabList onChange={handleChange} aria-label="Logbook Tab" variant="fullWidth">
+                            <Tab label="Workout" value="1" />
+                            <Tab label="Body" value="2" />
+                            <Tab label="Goals" value="3" />
+                        </TabList>
+                    </Box>
+                    <TabPanel value="1" >Workout</TabPanel>
+                    <TabPanel value="2">Body</TabPanel>
+                    <TabPanel value="3">Goals</TabPanel>
+                </TabContext>
+            </Box>
             <ButtonFilled
                 style={"background-purple"}
                 text={"This is a button"}
@@ -67,7 +90,7 @@ export const LogbookPage = () => {
                 modalHeader="Edit Exercise Details"
                 modalBody={(<></>)}
             />
-            <AppBottomNavigation state={"logbook"}/>
+            <AppBottomNavigation state={"logbook"} />
         </>
     );
 }

@@ -3,6 +3,7 @@
 @import 'components/theme.scss';
 @import 'components/typography.scss';
 @import 'components/buttons.scss';
+@import 'components/mui.scss';
 
 body {
     margin: 10px !important;
@@ -14,10 +15,6 @@ body {
 
 .input-container {
     margin: 20px 0px;
-}
-
-.Mui-focused > .MuiOutlinedInput-notchedOutline {
-    border: solid 1.5px black !important;
 }
 
 .footer-content{

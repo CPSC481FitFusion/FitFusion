@@ -8,7 +8,7 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { StyledEngineProvider } from '@mui/material/styles';
 import { WelcomePage } from './pages/WelcomePage';
-import { LogbookPage } from './pages/LogbookPage';
+import { LogbookPage } from './pages/Logbook/LogbookPage';
 
 function App() {
   return (
