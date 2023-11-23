@@ -1,0 +1,26 @@
+
+
+.MuiBottomNavigationAction-label.Mui-selected,
+.MuiButtonBase-root.MuiBottomNavigationAction-root.Mui-selected {
+    font-weight: bold;
+    color: black;
+}
+
+.MuiButtonBase-root.MuiBottomNavigationAction-root:not(.Mui-selected) {
+    color: #AFAFAF;
+}
+
+.Mui-focused > .MuiOutlinedInput-notchedOutline {
+    border: solid 1.5px black !important;
+}
+span.MuiTabs-indicator {
+    background-color: $purple;
+}
+button.tab-option:not(.Mui-selected) {
+    color: $grey;
+}
+
+button.tab-option.Mui-selected {
+    color: $purple;
+    font-weight: bold;
+}
