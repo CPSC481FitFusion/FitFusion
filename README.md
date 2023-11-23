@@ -2,6 +2,43 @@
 
 FitFusion is a versatile fitness tracking application that caters to a wide range of user needs. Whether you're a fitness novice just starting your journey or an experienced lifter looking to make improvements, FitFusion has you covered. This README provides an overview of the core features and functionalities of the FitFusion app.
 
+## Table of Contents
+- [Installation](#installation)
+- [Technologies Used](#technologies-used)
+- [Project Information](#project-information)
+
+- [Task 1: Track Workout](#task-1-track-workout)
+- [Task 2: Track Body Composition](#task-2-track-body-composition)
+- [Task 3: Notifications/Reminders](#task-3-notificationsreminders)
+- [Task 4: View and Manage History](#task-4-view-and-manage-history)
+- [Task 5: User Goal Tracking](#task-5-user-goal-tracking)
+
+## Installation
+
+To get started with this project, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/CPSC481FitFusion/FitFusion.git
+```
+Navigate to the project directory:
+
+```bash
+cd FitFusion
+```
+Install the necessary dependencies:
+```bash
+npm install
+```
+In the project directory, you can run:
+```bash
+npm start
+```
+Runs the app in the development mode.
+Open http://localhost:3000 to view it in your browser.
+
+The page will reload when you make changes.
+You may also see any lint errors in the console.
+
 ## Technologies Used
 
 FitFusion is a web-based application created using the following technologies:
@@ -16,14 +53,6 @@ FitFusion is a web-based application created using the following technologies:
 ## Project Information
 
 This application was developed as a class project for **CPSC 481: Human-Computer Interaction Design I**. It is a part of the coursework to demonstrate an understanding of user-centered design principles and we are demonstrating this through the implementation of a user-friendly fitness tracking application.
-
-## Table of Contents
-
-- [Task 1: Track Workout](#task-1-track-workout)
-- [Task 2: Track Body Composition](#task-2-track-body-composition)
-- [Task 3: Notifications/Reminders](#task-3-notificationsreminders)
-- [Task 4: View and Manage History](#task-4-view-and-manage-history)
-- [Task 5: User Goal Tracking](#task-5-user-goal-tracking)
 
 ## Task 1: Track Workout
 
@@ -48,8 +77,3 @@ Effective user goal tracking is vital for fitness journeys, especially for begin
 ---
 
 FitFusion is your ultimate fitness companion, helping you track workouts, monitor body composition, stay on top of your goals, and view your progress. With our intuitive features and real-life scenarios, you can make the most of your fitness journey. Stay motivated, stay fit with FitFusion!
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
