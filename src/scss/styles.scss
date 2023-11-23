@@ -5,21 +5,17 @@
 @import 'components/buttons.scss';
 @import 'components/mui.scss';
 
-
 * {
     font-family: Arial !important;
 }
-
 body {
     margin: 10px !important;
     padding: 0px;
     overflow: scroll !important;
 }
-
 .input-container {
     margin: 20px 0px;
 }
-
 .footer-content {
     position: absolute;
     bottom: 10px;
@@ -29,7 +25,6 @@ body {
     flex-direction: row;
     justify-content: center;
 }
-
 .bottom-nav-container {
     position: fixed;
     bottom: 0;
@@ -40,14 +35,12 @@ body {
     z-index: 1000;
     border-top: 1px;
 }
-
 .full-page-modal-container {
     width: 90%;
     height: 95%;
     border-radius: 5px;
     padding: 20px;
 }
-
 .horizontal-stack {
     display: flex;
     justify-content: space-between;
