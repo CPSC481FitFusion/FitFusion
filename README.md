@@ -15,26 +15,26 @@ FitFusion is a versatile fitness tracking application that caters to a wide rang
 
 ## Installation
 
-To get started with this project, clone the repository to your local machine:
-
+**To get started with this project, clone the repository to your local machine:
+**
 ```bash
 git clone https://github.com/CPSC481FitFusion/FitFusion.git
 ```
-Navigate to the project directory:
-
+**Navigate to the project directory:
+**
 ```bash
 cd FitFusion
 ```
-Install the necessary dependencies:
-```bash
+**Install the necessary dependencies:
+**```bash
 npm install
 ```
 or if you have yarn
 ```bash
 yarn
 ```
-In the project directory, you can run:
-```bash
+**In the project directory, you can run:
+**```bash
 npm start
 ```
 or if you have yarn
