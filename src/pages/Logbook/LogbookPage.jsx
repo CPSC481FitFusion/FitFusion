@@ -10,7 +10,7 @@ import TextInputWithLabel from "../../components/TextInputWithLabel";
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Title from "../../components/title";
 import WorkoutTab from "./WorkoutTab/WorkoutTab";
-import BodyTab from "./BodyTab";
+import BodyTab from "./BodyTab/BodyTab";
 import GoalsTab from "./GoalTab/GoalsTab";
 
 export const LogbookPage = () => {

@@ -29,7 +29,6 @@ const WorkoutTab = () => {
                     variant="outlined"
                     className="full-page-modal-container"
                 >
-
                     <WorkoutDetails />
                     <Container
                         style={"background-purple-light"}
