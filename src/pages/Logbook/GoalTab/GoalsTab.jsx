@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import ButtonFilled from '../../../components/ButtonFilled';
 import EditModal from '../../../components/Modals/EditModal';
 import ControlledCheckbox from '../../../components/checkbox';
-import { Modal, ModalClose, Typography, Sheet, Stack } from '@mui/joy';
+import { Modal, Sheet, Stack } from '@mui/joy';
 import BasicConfirmationModal from '../../../components/Modals/BasicConfirmationModal';
-import FlatContainer from '../../../components/FlatContainer';
-import GoalDetails from './Goalsdetails';
+import Container from '../../../components/Container';
+import GoalDetails from './GoalsDetails';
 
 const GoalsTab = () => {
     const [isEditModalOpen, setEditModalOpen] = useState(false);
@@ -50,6 +50,15 @@ const GoalsTab = () => {
                     variant="outlined"
                     className="full-page-modal-container"
                 >
+                    {/* Additional content can be added here */}
+                    <Container
+                        style={"background-blue-light m-0"}
+                        children={
+                            <>
+                                <GoalDetails />
+                            </>
+                        }
+                    />
                     <Stack spacing={20} direction="row" className="horizontal-stack">
                         <BasicConfirmationModal
                             buttonStyle={"background-orange"}
@@ -68,15 +77,6 @@ const GoalsTab = () => {
                             actionOnClick={() => handleCloseStartModal()}
                         />
                     </Stack>
-                    {/* Additional content can be added here */}
-                    <FlatContainer
-                        style={"background-blue-light"}
-                        children={
-                            <>
-                                <GoalDetails/>
-                            </>
-                        }
-                    />
                 </Sheet>
             </Modal>
 
@@ -93,8 +93,8 @@ const GoalsTab = () => {
                             editButtonLabel="Edit Details"
                             modalHeader="Edit Goal Details"
                             modalBody="Attend Zumba Class"
-                            onClickRemove={() => {/* Implement your remove logic */}}
-                            onClickSave={() => {/* Implement your save logic */}}
+                            onClickRemove={() => {/* Implement your remove logic */ }}
+                            onClickSave={() => {/* Implement your save logic */ }}
                         />
                     </div>
                 </div>

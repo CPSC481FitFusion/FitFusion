@@ -3,14 +3,14 @@ import AppBottomNavigation from "../../components/AppBottomNavigation";
 import BasicConfirmationModal from "../../components/Modals/BasicConfirmationModal";
 import ButtonFilled from "../../components/ButtonFilled";
 import EditModal from "../../components/Modals/EditModal";
-import FlatContainer from "../../components/FlatContainer";
+import Container from "../../components/Container";
 import React from "react";
 import TextareaInputWithLabel from "../../components/TextareaInputWithLabel";
 import TextInputWithLabel from "../../components/TextInputWithLabel";
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Title from "../../components/title";
 import WorkoutTab from "./WorkoutTab/WorkoutTab";
-import BodyTab from "./BodyTab";
+import BodyTab from "./BodyTab/BodyTab";
 import GoalsTab from "./GoalTab/GoalsTab";
 
 export const LogbookPage = () => {
