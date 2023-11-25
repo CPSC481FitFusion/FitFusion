@@ -8,16 +8,17 @@ const sxStyle = {
   alignItems: "center",
   justifyContent: "center",
   padding: "10px",
-  minHeight: "150px"
+  minHeight: "150px",
+  width: '100%'
 }
-const FlatContainer = ({ children, style }) => {
+const Container = ({ children, style, elevation }) => {
   return (
     <Paper sx={sxStyle}
-      elevation={0}
+      elevation={elevation ?? 0}
       className={style}>
       {children}
     </Paper>
   );
 };
 
-export default FlatContainer;
+export default Container;

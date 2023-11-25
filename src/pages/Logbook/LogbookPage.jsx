@@ -3,7 +3,7 @@ import AppBottomNavigation from "../../components/AppBottomNavigation";
 import BasicConfirmationModal from "../../components/Modals/BasicConfirmationModal";
 import ButtonFilled from "../../components/ButtonFilled";
 import EditModal from "../../components/Modals/EditModal";
-import FlatContainer from "../../components/FlatContainer";
+import Container from "../../components/Container";
 import React from "react";
 import TextareaInputWithLabel from "../../components/TextareaInputWithLabel";
 import TextInputWithLabel from "../../components/TextInputWithLabel";

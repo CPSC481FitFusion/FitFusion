@@ -1,10 +1,11 @@
 import ButtonFilled from "../../../components/ButtonFilled";
 import { Modal, ModalClose, Typography, Sheet } from '@mui/joy';
 import React from 'react';
-import { Stack} from '@mui/material';
+import { Stack } from '@mui/material';
 import BasicConfirmationModal from "../../../components/Modals/BasicConfirmationModal";
 import WorkoutDetails from "./WorkoutDetails";
 import WorkoutExerciseCard from "./WorkoutExerciseCard";
+import Container from "../../../components/Container";
 
 const WorkoutTab = () => {
     const [open, setOpen] = React.useState(false);
@@ -28,6 +29,20 @@ const WorkoutTab = () => {
                     variant="outlined"
                     className="full-page-modal-container"
                 >
+
+                    <WorkoutDetails />
+                    <Container
+                        style={"background-purple-light"}
+                        children={
+                            <>
+                                <WorkoutExerciseCard />
+                                <ButtonFilled
+                                    style={"background-purple"}
+                                    text={"Add Exercise"}
+                                />
+                            </>
+                        }
+                    />
                     <Stack spacing={20} direction="row" className="horizontal-stack" >
                         <BasicConfirmationModal
                             buttonStyle={"background-orange"}
@@ -39,19 +54,13 @@ const WorkoutTab = () => {
                         />
                         <BasicConfirmationModal
                             buttonStyle={"background-green"}
-                            openModalButtonLabel={"Save"}
+                            openModalButtonLabel={"Finish"}
                             modalHeader={"Finish Workout"}
                             modalBody={"Are you sure you want to finish your workout?"}
                             modalConfirmationButtonLabel={"Finish Workout"}
                             actionOnClick={() => setOpen(false)}
                         />
                     </Stack>
-                    <WorkoutDetails />
-                    <WorkoutExerciseCard/>
-                    <ButtonFilled
-                        style={"background-purple"}
-                        text={"Add Exercise"}
-                    />
                 </Sheet>
             </Modal>
         </>

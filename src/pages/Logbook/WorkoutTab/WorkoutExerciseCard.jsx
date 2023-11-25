@@ -1,17 +1,16 @@
 import EditModal from "../../../components/Modals/EditModal";
 import TextInputWithLabel from "../../../components/TextInputWithLabel";
 import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
-import FlatContainer from "../../../components/FlatContainer";
-import { Stack} from '@mui/material';
+import Container from "../../../components/Container";
+import { Stack } from '@mui/material';
 
 const WorkoutExerciseCard = () => {
     return (
         <>
-            <FlatContainer
-                style={"background-purple-light"}
+            <Container
+                elevation={3}
                 children={
                     <>
-                        This is a container
                         {/* Edit Workout Details */}
                         <EditModal
                             isIcon={true}
@@ -39,7 +38,8 @@ const WorkoutExerciseCard = () => {
                         />
                     </>
                 }
-            /></>
+            />
+        </>
     )
 }
 

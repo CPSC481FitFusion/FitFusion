@@ -4,7 +4,7 @@ import EditModal from '../../../components/Modals/EditModal';
 import ControlledCheckbox from '../../../components/checkbox';
 import { Modal, ModalClose, Typography, Sheet, Stack } from '@mui/joy';
 import BasicConfirmationModal from '../../../components/Modals/BasicConfirmationModal';
-import FlatContainer from '../../../components/FlatContainer';
+import Container from '../../../components/Container';
 import GoalDetails from './Goalsdetails';
 
 const GoalsTab = () => {
@@ -69,7 +69,7 @@ const GoalsTab = () => {
                         />
                     </Stack>
                     {/* Additional content can be added here */}
-                    <FlatContainer
+                    <Container
                         style={"background-blue-light"}
                         children={
                             <>
