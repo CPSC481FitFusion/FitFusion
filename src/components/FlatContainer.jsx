@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 
 const sxStyle = {
   marginBottom: "20px",

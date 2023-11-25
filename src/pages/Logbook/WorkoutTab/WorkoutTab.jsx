@@ -1,14 +1,10 @@
 import ButtonFilled from "../../../components/ButtonFilled";
 import { Modal, ModalClose, Typography, Sheet } from '@mui/joy';
 import React from 'react';
-import { Stack, Box, Button } from '@mui/material';
-import EditModal from "../../../components/Modals/EditModal";
-import TextInputWithLabel from "../../../components/TextInputWithLabel";
-import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
-import FlatContainer from "../../../components/FlatContainer";
+import { Stack} from '@mui/material';
 import BasicConfirmationModal from "../../../components/Modals/BasicConfirmationModal";
-import { Edit } from "@mui/icons-material";
 import WorkoutDetails from "./WorkoutDetails";
+import WorkoutExerciseCard from "./WorkoutExerciseCard";
 
 const WorkoutTab = () => {
     const [open, setOpen] = React.useState(false);
@@ -51,39 +47,7 @@ const WorkoutTab = () => {
                         />
                     </Stack>
                     <WorkoutDetails />
-                    <FlatContainer
-                        style={"background-purple-light"}
-                        children={
-                            <>
-                                This is a container
-                                {/* Edit Workout Details */}
-                                <EditModal
-                                    isIcon={true}
-                                    modalHeader="Edit Workout Details"
-                                    modalBody={(
-                                        <Stack className="input-container text-start w-100">
-                                            <TextInputWithLabel
-                                                label={"Workout Name"}
-                                                placeholder={"Click to enter Workout Name"}
-                                            />
-                                            <TextInputWithLabel
-                                                label={"Date (MMMM DD, YYYY)"}
-                                                placeholder={"Click to enter Date"}
-                                            />
-                                            <TextInputWithLabel
-                                                label={"Start Time (##:## AM or ##:## PM)"}
-                                                placeholder={"Click to enter Start Time"}
-                                            />
-                                            <TextareaInputWithLabel
-                                                label={"Notes"}
-                                                placeholder={"Click to enter Notes"}
-                                            />
-                                        </Stack>
-                                    )}
-                                />
-                            </>
-                        }
-                    />
+                    <WorkoutExerciseCard/>
                     <ButtonFilled
                         style={"background-purple"}
                         text={"Add Exercise"}
