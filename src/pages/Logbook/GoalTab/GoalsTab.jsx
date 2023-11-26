@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ButtonFilled from '../../../components/ButtonFilled';
 import EditModal from '../../../components/Modals/EditModal';
-import ControlledCheckbox from '../../../components/checkbox';
+import ControlledCheckbox from '../../../components/ControlledCheckbox';
 import { Modal, Sheet, Stack } from '@mui/joy';
 import BasicConfirmationModal from '../../../components/Modals/BasicConfirmationModal';
 import Container from '../../../components/Container';

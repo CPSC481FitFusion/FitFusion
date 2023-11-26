@@ -10,6 +10,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import { WelcomePage } from './pages/WelcomePage';
 import { LogbookPage } from './pages/Logbook/LogbookPage';
 import SeededData from './SeedData';
+import { UnderConstructionPage } from './pages/UnderConstructionPage';
 
 function App() {
   // localStorage.clear();
@@ -27,7 +28,8 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/alerts" element={<AlertsPage />} />
           <Route path="/settings" element={<SettingsPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/underConstruction/:backTo" element={<UnderConstructionPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </StyledEngineProvider>
     </>

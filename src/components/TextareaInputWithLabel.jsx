@@ -6,7 +6,7 @@ const sxStyle = {
     marginBottom: "20px",
 }
 
-const TextareaInputWithLabel = ({ label, placeholder }) => {
+const TextareaInputWithLabel = ({ label, placeholder, bindValue }) => {
     return (
         <>
             <h6 className='general-label'>{label}</h6>
@@ -16,6 +16,7 @@ const TextareaInputWithLabel = ({ label, placeholder }) => {
                 maxRows={4}
                 sx={sxStyle}
                 placeholder={placeholder}
+                value={bindValue}
             />
         </>
     );
