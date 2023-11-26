@@ -11,7 +11,7 @@ const PopulateUsers = () => {
                 password: "johndoepassword",
                 workouts: [{
                     name: "Quick Upper Body",
-                    date: "November 1, 2023",
+                    date: "11/01/2023",
                     startTime: "3:15 PM",
                     endTime: "4:15 PM",
                     notes: "Today is such a great day for a workout! Feeling great and strong!",
@@ -48,7 +48,7 @@ const PopulateUsers = () => {
                     ]
                 }, {
                     name: "Leg Day",
-                    date: "November 4, 2023",
+                    date: "11/04/2023",
                     startTime: "6:15 AM",
                     endTime: "7:45 AM",
                     notes: "Feeling a little sick.",
@@ -101,7 +101,7 @@ const PopulateUsers = () => {
                 password: "JaneDoePassword",
                 workouts: [{
                     name: "Pull Day",
-                    date: "November 22, 2023",
+                    date: "11/22/2023",
                     startTime: "1:00 PM",
                     endTime: "2:00 PM",
                     notes: "",
@@ -158,7 +158,7 @@ const PopulateUsers = () => {
                     ]
                 }, {
                     name: "Push Day",
-                    date: "November 22, 2023",
+                    date: "11/22/2023",
                     startTime: "8:15 PM",
                     endTime: "9:45 PM",
                     notes: "",
