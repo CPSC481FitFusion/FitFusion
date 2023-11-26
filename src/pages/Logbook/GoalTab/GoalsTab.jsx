@@ -90,6 +90,7 @@ const GoalsTab = () => {
                         {/* Pass relevant props to the EditModal */}
                         <EditModal
                             isIcon={true}
+                            isOpen={false}
                             editButtonLabel="Edit Details"
                             modalHeader="Edit Goal Details"
                             modalBody="Attend Zumba Class"

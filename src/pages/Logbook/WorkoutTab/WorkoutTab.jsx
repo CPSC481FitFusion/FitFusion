@@ -1,6 +1,6 @@
 import ButtonFilled from "../../../components/ButtonFilled";
-import { Modal, ModalClose, Typography, Sheet } from '@mui/joy';
-import React from 'react';
+import { Modal, Sheet } from '@mui/joy';
+import React, { useState } from 'react';
 import { Stack } from '@mui/material';
 import BasicConfirmationModal from "../../../components/Modals/BasicConfirmationModal";
 import WorkoutDetails from "./WorkoutDetails";
@@ -8,12 +8,31 @@ import WorkoutExerciseCard from "./WorkoutExerciseCard";
 import Container from "../../../components/Container";
 
 const WorkoutTab = () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+
+    // User workouts
+    let userWorkouts = []
     const handleClose = (event, reason) => {
         if (reason !== 'backdropClick') {
             setOpen(false);
         }
     }
+
+    const finishWorkoutOnClick = () => {
+        setOpen(false);
+    }
+
+    // Get logged in user's workouts from local storage
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const loggedInUser = localStorage.getItem("userLoggedIn");
+
+    // Check through each user object to find match
+    users.forEach(user => {
+        if (user.username === loggedInUser) {
+            userWorkouts = user.workouts;
+        }
+    });
+
     return (
         <>
             <ButtonFilled style={"background-green"} text={"Start a New Workout"} onClick={() => setOpen(true)} />
@@ -28,7 +47,8 @@ const WorkoutTab = () => {
                     variant="outlined"
                     className="full-page-modal-container"
                 >
-                    <WorkoutDetails />
+                    <WorkoutDetails
+                        onRemove={() => setOpen(false)} />
                     <Container
                         style={"background-purple-light"}
                         children={
@@ -50,7 +70,8 @@ const WorkoutTab = () => {
                             modalHeader={"Cancel Workout"}
                             modalBody={"Are you sure you want to cancel your workout?"}
                             modalConfirmationButtonLabel={"Cancel Workout"}
-                            actionOnClick={() => setOpen(false)}
+                            actionOnClick={() =>
+                                setOpen(false)}
                         />
                         <BasicConfirmationModal
                             buttonStyle={"background-green"}
@@ -58,7 +79,7 @@ const WorkoutTab = () => {
                             modalHeader={"Finish Workout"}
                             modalBody={"Are you sure you want to finish your workout?"}
                             modalConfirmationButtonLabel={"Finish Workout"}
-                            actionOnClick={() => setOpen(false)}
+                            actionOnClick={finishWorkoutOnClick}
                         />
                     </Stack>
                 </Sheet>
