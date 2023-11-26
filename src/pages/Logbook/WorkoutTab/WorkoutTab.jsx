@@ -6,6 +6,12 @@ import BasicConfirmationModal from "../../../components/Modals/BasicConfirmation
 import WorkoutDetails from "./WorkoutDetails";
 import WorkoutExerciseCard from "./WorkoutExerciseCard";
 import Container from "../../../components/Container";
+import { Value } from "sass";
+
+// Temp Hardcoded Values
+// Key                      Value
+// uniqueUser_Workouts       ["uniqueUser_WorkoutName1", "uniqueUser_WorkoutName2"]
+// uniqueUser_WorkoutName1       ["WorkoutName1", "WorkoutName2"]
 
 const WorkoutTab = () => {
     const [open, setOpen] = React.useState(false);
@@ -33,7 +39,9 @@ const WorkoutTab = () => {
                         style={"background-purple-light"}
                         children={
                             <>
-                                <WorkoutExerciseCard />
+                                <WorkoutExerciseCard
+                                    exerciseName={"Hammer"}
+                                />
                                 <ButtonFilled
                                     style={"background-purple"}
                                     text={"Add Exercise"}
