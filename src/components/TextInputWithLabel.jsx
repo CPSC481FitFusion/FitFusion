@@ -7,7 +7,7 @@ const sxStyle = {
     marginBottom: "20px"
 }
 
-const TextInputWithLabel = ({ label, placeholder, isPassword}) => {
+const TextInputWithLabel = ({ label, placeholder, isPassword, bindValue, onInputChange}) => {
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -43,6 +43,8 @@ const TextInputWithLabel = ({ label, placeholder, isPassword}) => {
                 }
                 sx={sxStyle}
                 placeholder={placeholder}
+                value={bindValue}
+                onChange={onInputChange}
             />
         </>
     );
