@@ -4,14 +4,14 @@ import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
 import Container from "../../../components/Container";
 import { Stack } from '@mui/material';
 
-const WorkoutExerciseCard = () => {
+const WorkoutExerciseCard = ({exerciseName, sets}) => {
     return (
         <>
             <Container
                 elevation={3}
                 children={
                     <>
-                        {/* Edit Workout Details */}
+                        {/* Edit Set Modal */}
                         <EditModal
                             isIcon={true}
                             modalHeader="Edit Workout Details"
