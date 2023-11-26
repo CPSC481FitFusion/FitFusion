@@ -16,8 +16,7 @@ const WorkoutTab = () => {
     }
     return (
         <>
-            <h6 className='general-label'>Start a New Workout</h6>
-            <ButtonFilled style={"background-green"} text={"Start"} onClick={() => setOpen(true)} />
+            <ButtonFilled style={"background-green"} text={"Start a New Workout"} onClick={() => setOpen(true)} />
             <Modal
                 aria-labelledby="modal-title"
                 aria-describedby="modal-desc"
