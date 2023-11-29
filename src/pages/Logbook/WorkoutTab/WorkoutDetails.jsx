@@ -1,14 +1,19 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, TextField, Typography } from "@mui/material";
 import TextInputWithLabel from "../../../components/TextInputWithLabel";
 import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
 import EditModal from "../../../components/Modals/EditModal";
 import { useState } from "react";
+import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { format } from 'date-fns';
+import { DatePicker } from "@mui/x-date-pickers";
 
 const WorkoutDetails = (onRemove) => {
     const [workoutName, setWorkoutName] = useState("");
-    const [date, setDate] = useState("");
-    const [startTime, setStartTime] = useState("");
-    const [endTime, setEndTime] = useState("");
+    const [date, setDate] = useState(new Date());
+    const [startTime, setStartTime] = useState(new Date());
+    const [endTime, setEndTime] = useState(new Date());
     const [notes, setNotes] = useState("");
 
     return (
@@ -35,30 +40,38 @@ const WorkoutDetails = (onRemove) => {
                                     setWorkoutName(e.target.value
                                     )}
                             />
-                            <TextInputWithLabel
-                                bindValue={date}
-                                label={"Date (mm/dd/yyyy) *"}
-                                placeholder={"Click to enter Date"}
-                                onInputChange={(e) =>
-                                    setDate(e.target.value
-                                    )}
-                            />
-                            <TextInputWithLabel
-                                bindValue={startTime}
-                                label={"Start Time (##:## AM/PM) *"}
-                                placeholder={"Click to enter Start Time"}
-                                onInputChange={(e) =>
-                                    setStartTime(e.target.value
-                                    )}
-                            />
-                            <TextInputWithLabel
-                                bindValue={endTime}
-                                label={"End Time (##:## AM/PM)"}
-                                placeholder={"Click to enter End Time"}
-                                onInputChange={(e) =>
-                                    setEndTime(e.target.value
-                                    )}
-                            />
+
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <Stack direction='column' spacing={2}>
+                                    <div>
+                                        <h6 className='general-label'>Date</h6>
+                                        <DatePicker
+                                            className="time-picker"
+                                            value={date}
+                                            onChange={(newDate) =>
+                                                setDate(newDate)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <h6 className='general-label'>Start Time</h6>
+                                        <MobileTimePicker
+                                            className="time-picker"
+                                            value={startTime}
+                                            onChange={(newStartTime) =>
+                                                setStartTime(newStartTime)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <h6 className='general-label'>End Time</h6>
+                                        <MobileTimePicker
+                                            className="time-picker mb-3"
+                                            value={endTime}
+                                            onChange={(newEndTime) =>
+                                                setEndTime(newEndTime)}
+                                        />
+                                    </div>
+                                </Stack>
+                            </LocalizationProvider>
                             <TextareaInputWithLabel
                                 bindValue={notes}
                                 label={"Notes"}
@@ -71,18 +84,29 @@ const WorkoutDetails = (onRemove) => {
                     )}>
                 </EditModal>
             </Stack>
-            <Stack direction="row" className="horizontal-stack pb-1">
-                <Typography>
-                    {date}
-                </Typography>
-                <Typography>
-                    {startTime}
-                </Typography>
-            </Stack>
-            <Stack direction="row" className="horizontal-stack">
-                <Typography fontStyle={"italic"}>
-                    {notes}
-                </Typography>
+            <Stack spacing={2} direction="row" className="pb-2">
+                <Stack direction="column">
+                    <Typography fontWeight={"bold"}>
+                        Date:
+                    </Typography>
+                    <Typography fontWeight={"bold"}>
+                        Time:
+                    </Typography>
+                    <Typography fontWeight={"bold"}>
+                        Notes:
+                    </Typography>
+                </Stack>
+                <Stack direction="column">
+                    <Typography>
+                        {date ? date.toLocaleDateString() : ''}
+                    </Typography>
+                    <Typography>
+                        {startTime ? format(startTime, 'hh:mm a') : ''} to {endTime ? format(endTime, 'hh:mm a') : ''}
+                    </Typography>
+                    <Typography fontStyle={"italic"}>
+                        {notes}
+                    </Typography>
+                </Stack>
             </Stack>
         </>
     );

@@ -9,15 +9,15 @@ import { SettingsPage } from "./pages/SettingsPage";
 import { StyledEngineProvider } from '@mui/material/styles';
 import { WelcomePage } from './pages/WelcomePage';
 import { LogbookPage } from './pages/Logbook/LogbookPage';
-import SeededData from './SeedData';
 import { UnderConstructionPage } from './pages/UnderConstructionPage';
+import SeededData from './utils/SeedData';
 
 function App() {
-  // localStorage.clear();
   // If localStorage is empty, populate with seeded data
   if (localStorage.length === 0) {
     SeededData();
   }
+
   return (
     <>
       <StyledEngineProvider injectFirst>

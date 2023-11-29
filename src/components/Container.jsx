@@ -8,7 +8,6 @@ const sxStyle = {
   alignItems: "center",
   justifyContent: "center",
   padding: "10px",
-  minHeight: "150px",
   width: '100%'
 }
 const Container = ({ children, style, elevation }) => {
