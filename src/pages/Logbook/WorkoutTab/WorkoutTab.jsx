@@ -1,5 +1,5 @@
 import ButtonFilled from "../../../components/ButtonFilled";
-import { Modal, Sheet } from '@mui/joy';
+import { Modal, Sheet, Typography } from '@mui/joy';
 import React, { useState } from 'react';
 import { Stack } from '@mui/material';
 import BasicConfirmationModal from "../../../components/Modals/BasicConfirmationModal";
@@ -7,8 +7,20 @@ import WorkoutDetails from "./WorkoutDetails";
 import WorkoutExerciseCard from "./WorkoutExerciseCard";
 import Container from "../../../components/Container";
 
+let newWorkoutExercises = JSON.parse(localStorage.getItem("newWorkoutExercises") || "[]")
+
+// const addExercise = () => {
+//     newWorkoutExercises = JSON.parse(localStorage.getItem("newWorkoutExercises") || "[]");
+//     // Add blank exercise to end of list
+//     newWorkoutExercises.push(Exercise);
+//     localStorage.setItem("newWorkoutExercises", JSON.stringify(newWorkoutExercises));
+//     console.log("try to add ex");
+// }
+
 const WorkoutTab = () => {
     const [open, setOpen] = useState(false);
+    const [workout, setWorkout] = useState();
+    const [exercises, setExercises] = useState();
 
     // User workouts
     let userWorkouts = []
@@ -33,6 +45,17 @@ const WorkoutTab = () => {
         }
     });
 
+    const showExercises =
+        newWorkoutExercises.length === 0 ?
+            <></> :
+            newWorkoutExercises.map((exercise) =>
+                <>
+                    <WorkoutExerciseCard
+                        exerciseName={exercise.name}
+                    />
+                </>
+            );
+
     return (
         <>
             <ButtonFilled style={"background-green"} text={"Start a New Workout"} onClick={() => setOpen(true)} />
@@ -50,15 +73,15 @@ const WorkoutTab = () => {
                     <WorkoutDetails
                         onRemove={() => setOpen(false)} />
                     <Container
-                        style={"background-purple-light"}
+                        style={"background-purple-light d-flex align-items-start"}
                         children={
                             <>
-                                <WorkoutExerciseCard
-                                    exerciseName={"Hammer"}
-                                />
+                                <Typography className="header-20 pb-2">Exercises</Typography>
+                                {showExercises}
                                 <ButtonFilled
                                     style={"background-purple"}
                                     text={"Add Exercise"}
+                                    // onClick={addExercise}
                                 />
                             </>
                         }

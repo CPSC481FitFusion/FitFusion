@@ -1,5 +1,3 @@
-
-
 .MuiBottomNavigationAction-label.Mui-selected,
 .MuiButtonBase-root.MuiBottomNavigationAction-root.Mui-selected {
     font-weight: bold;
@@ -10,12 +8,14 @@
     color: #AFAFAF;
 }
 
-.Mui-focused > .MuiOutlinedInput-notchedOutline {
+.Mui-focused>.MuiOutlinedInput-notchedOutline {
     border: solid 1.5px black !important;
 }
+
 span.MuiTabs-indicator {
     background-color: $purple;
 }
+
 button.tab-option:not(.Mui-selected) {
     color: $grey;
 }
@@ -24,6 +24,11 @@ button.tab-option.Mui-selected {
     color: $purple;
     font-weight: bold;
 }
+
 .MuiTabPanel-root {
     padding: 15px 0px;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.Mui-readOnly.MuiInputBase-readOnly > input {
+    padding: 8.5px 14px;
 }

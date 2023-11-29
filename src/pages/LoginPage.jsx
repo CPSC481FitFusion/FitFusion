@@ -4,34 +4,35 @@ import { Link } from "react-router-dom";
 import TextInputWithLabel from "../components/TextInputWithLabel";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { getUserData, isRealUser } from "../utils/userUtils";
 
 export const LoginPage = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     // State for showing the invalid login info snackbar
-    const [open, setOpen] = useState(false);
+    const [openNoMatchPopup, setOpenNoMatchPopup] = useState(false);
 
     // Handles the attempt for user login
     const handleLogin = (e) => {
         e.preventDefault();
-        const users = JSON.parse(localStorage.getItem("users") || "[]");
-        // Check through each user object to find match
-        users.forEach(user => {
-            if (user.username === username &&
-                user.password === password) {
-                // Saves the currently logged in user into localstorage
-                localStorage.setItem("userLoggedIn", username);
-                // Directs user to logbook page
-                navigate("/logbook");
-            }
-        });
-        setOpen(true);
+
+        // Checks if input matches a user in localstorage
+        if (isRealUser(username, password) === true) {
+            // Saves the currently logged in user into localstorage
+            localStorage.setItem("userLoggedIn", username);
+            // Directs user to logbook page
+            navigate("/logbook");
+        }
+        else {
+            // Open the invalid snackbar (no match found).
+            setOpenNoMatchPopup(true);
+        }
     }
 
     // Handle Close for inalid login error snackbar
     const handleClose = (reason) => {
-        setOpen(false);
+        setOpenNoMatchPopup(false);
     };
 
     return (
@@ -99,7 +100,7 @@ export const LoginPage = () => {
             </Grid>
             {/* On invalid attempt */}
             <Snackbar
-                open={open}
+                open={openNoMatchPopup}
                 autoHideDuration={6000}
                 onClose={handleClose}>
                 <Alert
