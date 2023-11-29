@@ -1,111 +1,119 @@
-import { Stack, TextField, Typography } from "@mui/material";
+import React, { useState } from 'react';
+import { Stack, Typography, TextField } from '@mui/material';
 import TextInputWithLabel from "../../../components/TextInputWithLabel";
 import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
 import EditModal from "../../../components/Modals/EditModal";
-import { useState } from "react";
-import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { MobileTimePicker, DatePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { format } from 'date-fns';
-import { DatePicker } from "@mui/x-date-pickers";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'; import { format } from 'date-fns';
 
-const WorkoutDetails = (onRemove) => {
-    const [workoutName, setWorkoutName] = useState("");
-    const [date, setDate] = useState(new Date());
-    const [startTime, setStartTime] = useState(new Date());
-    const [endTime, setEndTime] = useState(new Date());
-    const [notes, setNotes] = useState("");
+const WorkoutDetails = ({ workout, onUpdate, onClose }) => {
+    // State for handling edit mode
+    const [editMode, setEditMode] = useState(true);
+
+    // Temporary state for workout details, used while editing
+    const [tempDetails, setTempDetails] = useState({
+        name: workout?.name || "New Workout",
+        date: workout?.date || new Date(),
+        startTime: workout?.startTime || new Date(),
+        endTime: workout?.endTime || new Date(),
+        notes: workout?.notes || ""
+    });
+
+    // Handler for saving edited details
+    const handleSave = () => {
+        onUpdate({ ...workout, ...tempDetails });
+        setEditMode(false);
+    };
 
     return (
         <>
-            <Stack
-                direction="row"
-                className="horizontal-stack pb-1">
-                <Typography
-                    className="header-20 align-bottom">
-                    {workoutName}
+            <Stack direction="row" className="horizontal-stack pb-1">
+                {/* Displaying workout name */}
+                <Typography className="header-20 align-bottom">
+                    {tempDetails.name}
                 </Typography>
+
+                {/* Modal for editing workout details */}
                 <EditModal
                     editButtonLabel={"Edit"}
                     modalHeader="Workout Details"
-                    isOpen={true}
-                    onClickRemove={onRemove}
+                    isOpen={editMode}
+                    onOpen={() => setEditMode(true)}
+                    onClose={() => setEditMode(false)}
+                    onClickRemove={onClose}
+                    onSave={handleSave}
                     modalBody={(
                         <Stack className="input-container my-1 text-start w-100">
+                            {/* Input fields for editing workout details */}
                             <TextInputWithLabel
-                                bindValue={workoutName}
+                                value={tempDetails.name}
                                 label={"Workout Name *"}
                                 placeholder={"Click to enter Workout Name"}
                                 onInputChange={(e) =>
-                                    setWorkoutName(e.target.value
-                                    )}
+                                    setTempDetails({ ...tempDetails, name: e.target.value })}
                             />
 
+                            {/* Date and time pickers */}
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                 <Stack direction='column' spacing={2}>
                                     <div>
                                         <h6 className='general-label'>Date</h6>
                                         <DatePicker
+                                            value={tempDetails.date}
                                             className="time-picker"
-                                            value={date}
                                             onChange={(newDate) =>
-                                                setDate(newDate)}
+                                                setTempDetails({ ...tempDetails, date: newDate })}
                                         />
                                     </div>
                                     <div>
                                         <h6 className='general-label'>Start Time</h6>
                                         <MobileTimePicker
+                                            value={tempDetails.startTime}
                                             className="time-picker"
-                                            value={startTime}
                                             onChange={(newStartTime) =>
-                                                setStartTime(newStartTime)}
+                                                setTempDetails({ ...tempDetails, startTime: newStartTime })}
                                         />
                                     </div>
                                     <div>
                                         <h6 className='general-label'>End Time</h6>
                                         <MobileTimePicker
-                                            className="time-picker mb-3"
-                                            value={endTime}
+                                            value={tempDetails.endTime}
+                                            className="time-picker"
                                             onChange={(newEndTime) =>
-                                                setEndTime(newEndTime)}
+                                                setTempDetails({ ...tempDetails, endTime: newEndTime })}
                                         />
                                     </div>
                                 </Stack>
                             </LocalizationProvider>
+
+                            {/* Textarea for workout notes */}
                             <TextareaInputWithLabel
-                                bindValue={notes}
+                                value={tempDetails.notes}
                                 label={"Notes"}
                                 placeholder={"Click to enter Notes"}
                                 onInputChange={(e) =>
-                                    setNotes(e.target.value
-                                    )}
+                                    setTempDetails({ ...tempDetails, notes: e.target.value })}
                             />
                         </Stack>
-                    )}>
-                </EditModal>
+                    )}
+                />
             </Stack>
+
+            {/* Displaying workout details */}
             <Stack spacing={2} direction="row" className="pb-2">
                 <Stack direction="column">
-                    <Typography fontWeight={"bold"}>
-                        Date:
-                    </Typography>
-                    <Typography fontWeight={"bold"}>
-                        Time:
-                    </Typography>
-                    <Typography fontWeight={"bold"}>
-                        Notes:
-                    </Typography>
+                    <Typography fontWeight={"bold"}>Date:</Typography>
+                    <Typography fontWeight={"bold"}>Time:</Typography>
+                    <Typography fontWeight={"bold"}>Notes:</Typography>
                 </Stack>
                 <Stack direction="column">
+                    <Typography>{tempDetails.date ? format(tempDetails.date, 'PP') : ''}</Typography>
                     <Typography>
-                        {date ? date.toLocaleDateString() : ''}
+                        {(tempDetails.startTime ? format(tempDetails.startTime, 'p') : '') + " "} to
+                        {" " + (tempDetails.endTime ? format(tempDetails.endTime, 'p') : '')}
                     </Typography>
-                    <Typography>
-                        {startTime ? format(startTime, 'hh:mm a') : ''} to {endTime ? format(endTime, 'hh:mm a') : ''}
-                    </Typography>
-                    <Typography fontStyle={"italic"}>
-                        {notes}
-                    </Typography>
+                    <Typography fontStyle={"italic"}>{tempDetails.notes}</Typography>
                 </Stack>
             </Stack>
         </>

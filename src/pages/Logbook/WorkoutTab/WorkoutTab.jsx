@@ -1,76 +1,66 @@
-import ButtonFilled from "../../../components/ButtonFilled";
-import { Modal, Sheet, Typography } from '@mui/joy';
 import React, { useState } from 'react';
-import { Stack } from '@mui/material';
-import BasicConfirmationModal from "../../../components/Modals/BasicConfirmationModal";
+import ButtonFilled from "../../../components/ButtonFilled";
+import { Modal, Sheet } from '@mui/joy';
 import WorkoutDetails from "./WorkoutDetails";
 import WorkoutExerciseCard from "./WorkoutExerciseCard";
 import Container from "../../../components/Container";
-
-let newWorkoutExercises = JSON.parse(localStorage.getItem("newWorkoutExercises") || "[]")
-
-// const addExercise = () => {
-//     newWorkoutExercises = JSON.parse(localStorage.getItem("newWorkoutExercises") || "[]");
-//     // Add blank exercise to end of list
-//     newWorkoutExercises.push(Exercise);
-//     localStorage.setItem("newWorkoutExercises", JSON.stringify(newWorkoutExercises));
-//     console.log("try to add ex");
-// }
+import { Stack, Typography } from '@mui/material';
+import BasicConfirmationModal from '../../../components/Modals/BasicConfirmationModal';
 
 const WorkoutTab = () => {
     const [open, setOpen] = useState(false);
-    const [workout, setWorkout] = useState();
-    const [exercises, setExercises] = useState();
+    const [tempWorkout, setTempWorkout] = useState(null);
 
-    // User workouts
-    let userWorkouts = []
+    const startNewWorkout = () => {
+        setTempWorkout({
+            id: Date.now(),
+            date: new Date(),
+            exercises: []
+        });
+        setOpen(true);
+    };
+
+    const finishWorkoutOnClick = () => {
+        const userLoggedIn = localStorage.getItem("userLoggedIn");
+        const workoutData = JSON.parse(localStorage.getItem("workoutData") || "{}");
+
+        const userWorkouts = workoutData[userLoggedIn] || [];
+        userWorkouts.push(tempWorkout);
+
+        workoutData[userLoggedIn] = userWorkouts;
+        localStorage.setItem("workoutData", JSON.stringify(workoutData));
+
+        setTempWorkout(null);
+        setOpen(false);
+    };
+
     const handleClose = (event, reason) => {
         if (reason !== 'backdropClick') {
             setOpen(false);
         }
     }
 
-    const finishWorkoutOnClick = () => {
-        setOpen(false);
-    }
-
-    // Get logged in user's workouts from local storage
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const loggedInUser = localStorage.getItem("userLoggedIn");
-
-    // Check through each user object to find match
-    users.forEach(user => {
-        if (user.username === loggedInUser) {
-            userWorkouts = user.workouts;
-        }
-    });
-
-    const showExercises =
-        newWorkoutExercises.length === 0 ?
-            <></> :
-            newWorkoutExercises.map((exercise) =>
-                <>
-                    <WorkoutExerciseCard
-                        exerciseName={exercise.name}
-                    />
-                </>
-            );
+    // Render exercises cards
+    const showExercises = tempWorkout?.exercises.map(exercise => (
+        <WorkoutExerciseCard key={exercise.id} exercise={exercise} />
+    ));
 
     return (
         <>
-            <ButtonFilled style={"background-green"} text={"Start a New Workout"} onClick={() => setOpen(true)} />
+            <ButtonFilled
+                style={"background-green"}
+                text={"Start a New Workout"}
+                onClick={startNewWorkout} />
             <Modal
-                aria-labelledby="modal-title"
-                aria-describedby="modal-desc"
                 open={open}
                 onClose={handleClose}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
-                <Sheet
-                    variant="outlined"
-                    className="full-page-modal-container"
-                >
+                <Sheet variant="outlined" className="full-page-modal-container">
                     <WorkoutDetails
+                        workout={tempWorkout}
+                        onUpdate={setTempWorkout}
+                        onClose={handleClose}
                         onRemove={() => setOpen(false)} />
                     <Container
                         style={"background-purple-light d-flex align-items-start"}
@@ -81,7 +71,7 @@ const WorkoutTab = () => {
                                 <ButtonFilled
                                     style={"background-purple"}
                                     text={"Add Exercise"}
-                                    // onClick={addExercise}
+                                // onClick={addExercise}
                                 />
                             </>
                         }
