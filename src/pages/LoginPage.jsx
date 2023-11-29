@@ -5,12 +5,14 @@ import TextInputWithLabel from "../components/TextInputWithLabel";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { getUserData, isRealUser } from "../utils/userUtils";
+import { getUserData, isRealUser } from "../utils/userUtils";
 
 export const LoginPage = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     // State for showing the invalid login info snackbar
+    const [openNoMatchPopup, setOpenNoMatchPopup] = useState(false);
     const [openNoMatchPopup, setOpenNoMatchPopup] = useState(false);
 
     // Handles the attempt for user login
@@ -34,6 +36,7 @@ export const LoginPage = () => {
 
     // Handle Close for inalid login error snackbar
     const handleClose = (reason) => {
+        setOpenNoMatchPopup(false);
         setOpenNoMatchPopup(false);
     };
 
@@ -102,6 +105,7 @@ export const LoginPage = () => {
             </Grid>
             {/* On invalid attempt */}
             <Snackbar
+                open={openNoMatchPopup}
                 open={openNoMatchPopup}
                 autoHideDuration={6000}
                 onClose={handleClose}>

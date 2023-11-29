@@ -9,8 +9,9 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { StyledEngineProvider } from '@mui/material/styles';
 import { WelcomePage } from './pages/WelcomePage';
-import { LogbookPage } from './pages/Logbook/logbookPage';
+import { LogbookPage } from './pages/Logbook/LogbookPage';
 import { UnderConstructionPage } from './pages/UnderConstructionPage';
+import SeededData from './utils/SeedData';
 import SeededData from './utils/SeedData';
 
 function App() {
