@@ -13,7 +13,7 @@ const WorkoutDetails = ({ workout, onUpdate, onClose }) => {
 
     // Temporary state for workout details, used while editing
     const [tempDetails, setTempDetails] = useState({
-        name: workout?.name || "New Workout",
+        name: workout?.name || "",
         date: workout?.date || new Date(),
         startTime: workout?.startTime || new Date(),
         endTime: workout?.endTime || new Date(),
@@ -31,7 +31,7 @@ const WorkoutDetails = ({ workout, onUpdate, onClose }) => {
             <Stack direction="row" className="horizontal-stack pb-1">
                 {/* Displaying workout name */}
                 <Typography className="header-20 align-bottom">
-                    {tempDetails.name}
+                    {tempDetails.name || "New Workout"}
                 </Typography>
 
                 {/* Modal for editing workout details */}
@@ -47,7 +47,7 @@ const WorkoutDetails = ({ workout, onUpdate, onClose }) => {
                         <Stack className="input-container my-1 text-start w-100">
                             {/* Input fields for editing workout details */}
                             <TextInputWithLabel
-                                value={tempDetails.name}
+                                bindValue={tempDetails.name}
                                 label={"Workout Name *"}
                                 placeholder={"Click to enter Workout Name"}
                                 onInputChange={(e) =>
@@ -89,7 +89,7 @@ const WorkoutDetails = ({ workout, onUpdate, onClose }) => {
 
                             {/* Textarea for workout notes */}
                             <TextareaInputWithLabel
-                                value={tempDetails.notes}
+                                bindValue={tempDetails.notes}
                                 label={"Notes"}
                                 placeholder={"Click to enter Notes"}
                                 onInputChange={(e) =>
