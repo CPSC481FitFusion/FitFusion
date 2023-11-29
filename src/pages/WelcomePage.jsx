@@ -1,6 +1,6 @@
 import { Grid, Paper, Stack, Typography } from '@mui/material';
 import { useNavigate } from "react-router-dom";
-import BackgroundImage from '../../public/img/MainPageBodyBuilderBackground.png'
+import BackgroundImage from '../assets/images/MainPageBodyBuilderBackground.png';
 import ButtonFilled from '../components/ButtonFilled';
 
 const styles = {
