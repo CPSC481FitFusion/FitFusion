@@ -6,10 +6,12 @@ import WorkoutExerciseCard from "./WorkoutExerciseCard";
 import Container from "../../../components/Container";
 import { Stack, Typography } from '@mui/material';
 import BasicConfirmationModal from '../../../components/Modals/BasicConfirmationModal';
+import AddExerciseModal from './AddExerciseModal';
 
 const WorkoutTab = () => {
     const [open, setOpen] = useState(false);
     const [tempWorkout, setTempWorkout] = useState(null);
+    const [addExerciseMode, setAddExerciseMode] = useState(false);
 
     const startNewWorkout = () => {
         setTempWorkout({
@@ -38,7 +40,15 @@ const WorkoutTab = () => {
         if (reason !== 'backdropClick') {
             setOpen(false);
         }
-    }
+    };
+
+    const handleAddExercise = (newExercise) => {
+        setTempWorkout({
+            ...tempWorkout,
+            exercises: [...tempWorkout.exercises, newExercise]
+        });
+        setAddExerciseMode(false);
+    };
 
     // Render exercises cards
     const showExercises = tempWorkout?.exercises.map(exercise => (
@@ -71,7 +81,7 @@ const WorkoutTab = () => {
                                 <ButtonFilled
                                     style={"background-purple"}
                                     text={"Add Exercise"}
-                                // onClick={addExercise}
+                                    onClick={() => setAddExerciseMode(true)}
                                 />
                             </>
                         }
@@ -97,6 +107,14 @@ const WorkoutTab = () => {
                     </Stack>
                 </Sheet>
             </Modal>
+
+            {/* Modal for adding a new exercise */}
+            <AddExerciseModal
+                isOpen={addExerciseMode}
+                onClose={() => setAddExerciseMode(false)}
+                onAddExercise={handleAddExercise}
+            // Include fields for adding a new exercise
+            />
         </>
     );
 };

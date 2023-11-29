@@ -56,7 +56,7 @@ const WorkoutDetails = ({ workout, onUpdate, onClose }) => {
 
                             {/* Date and time pickers */}
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                <Stack direction='column' spacing={2}>
+                                <Stack direction='column' spacing={2} className='pb-2'>
                                     <div>
                                         <h6 className='general-label'>Date</h6>
                                         <DatePicker

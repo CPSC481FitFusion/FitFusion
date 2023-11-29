@@ -10,13 +10,13 @@ const EditModal = ({
     modalHeader,
     modalBody,
     isOpen,
-    onClickRemove,
-    onClickSave }) => {
+    onRemove,
+    onSave }) => {
     const [open, setOpen] = React.useState(isOpen);
 
     const onClickRedBorderButton = () => {
         setOpen(false);
-        onClickRemove(false);
+        onRemove(false);
     }
 
     let button = (<></>);

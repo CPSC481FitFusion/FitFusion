@@ -35,7 +35,6 @@ export const LoginPage = () => {
     // Handle Close for inalid login error snackbar
     const handleClose = (reason) => {
         setOpenNoMatchPopup(false);
-        setOpenNoMatchPopup(false);
     };
 
     return (
