@@ -21,6 +21,8 @@ export const LoginPage = () => {
         if (isRealUser(username, password) === true) {
             // Saves the currently logged in user into localstorage
             localStorage.setItem("userLoggedIn", username);
+            // Dispatch an event to notify the app of the login status change
+            window.dispatchEvent(new Event('loginChange'));
             // Directs user to logbook page
             navigate("/logbook");
         }
@@ -32,6 +34,7 @@ export const LoginPage = () => {
 
     // Handle Close for inalid login error snackbar
     const handleClose = (reason) => {
+        setOpenNoMatchPopup(false);
         setOpenNoMatchPopup(false);
     };
 
