@@ -6,10 +6,10 @@ import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
 const GoalDetails = () => {
     return (
         <>
-            <Stack direction="row" className="horizontal-stack pb-1">
+            <Stack direction="row" className="horizontal-stack">
                 <Typography className="header-20 align-bottom">Goal Name</Typography>
             </Stack>
-            <Stack className="input-container text-start w-100">
+            <Stack className="input-container text-start w-100 m-0">
                 <TextInputWithLabel
                     label={"Goal Name"}
                     placeholder={"Click to enter Goal Name"}

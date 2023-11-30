@@ -1,12 +1,23 @@
 import { Modal, ModalClose, Typography, Sheet } from '@mui/joy';
 import React from 'react';
 import ButtonFilled from '../ButtonFilled';
-import { Button, IconButton, Stack } from '@mui/material';
+import { Button, Grid, IconButton, Stack } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 
-const EditModal = ({ 
-    isIcon, editButtonLabel, modalHeader, modalBody, onClickRemove, onClickSave }) => {
-    const [open, setOpen] = React.useState(false);
+const EditModal = ({
+    isIcon,
+    editButtonLabel,
+    modalHeader,
+    modalBody,
+    isOpen,
+    onClickRemove,
+    onClickSave }) => {
+    const [open, setOpen] = React.useState(isOpen);
+
+    const onClickRedBorderButton = () => {
+        setOpen(false);
+        onClickRemove(false);
+    }
 
     let button = (<></>);
     if (isIcon) {
@@ -41,7 +52,7 @@ const EditModal = ({
                 aria-describedby="modal-desc"
                 open={open}
                 onClose={handleClose}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <Sheet
                     variant="outlined"
@@ -53,7 +64,7 @@ const EditModal = ({
                     }}
                 >
                     <ModalClose variant="outlined" sx={{ m: 1 }} />
-                    <Stack direction="column" alignItems="center">
+                    <Stack className='w-100' direction="column" alignItems="center">
                         <Typography
                             component="h2"
                             id="modal-title"
@@ -63,26 +74,24 @@ const EditModal = ({
                         >
                             {modalHeader}
                         </Typography>
-                        <Typography
+                        <Grid
                             id="modal-desc"
-                            textColor="text.tertiary"
-                            className="text-center"
+                            className="text-center w-100"
                         >
                             {modalBody}
-                        </Typography>
-                        <Stack direction="row" spacing={1} className='w-100 mt-3'>
+                        </Grid>
+                        <Stack direction="row" spacing={1} className='w-100'>
                             <Button
                                 variant='outlined'
                                 className='red-border-button'
-                                onClick={() => setOpen(true)}
-                            >
+                                onClick={onClickRedBorderButton}>
                                 Remove
                             </Button>
                             <ButtonFilled
                                 text="Save"
                                 style="background-green"
-                                onClick={() => 
-                                setOpen(false)} />
+                                onClick={() =>
+                                    setOpen(false)} />
                         </Stack>
                     </Stack>
                 </Sheet>

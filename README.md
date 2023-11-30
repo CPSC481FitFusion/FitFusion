@@ -27,17 +27,9 @@ cd FitFusion
 ```bash
 npm install
 ```
-or if you have yarn
-```bash
-yarn
-```
 **In the project directory, you can run:**
 ```bash
-npm start
-```
-or if you have yarn
-```bash
-yarn dev
+npm run dev
 ```
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in your browser.
