@@ -44,6 +44,12 @@ const EditModal = ({
             setOpen(false)
         }
     }
+
+    const handleSave = () => {
+        if (onSave()){
+            setOpen(false);
+        }
+    }
     return (
         <>
             {button}
@@ -90,8 +96,7 @@ const EditModal = ({
                             <ButtonFilled
                                 text="Save"
                                 style="background-green"
-                                onClick={() =>
-                                    setOpen(false)} />
+                                onClick={handleSave} />
                         </Stack>
                     </Stack>
                 </Sheet>
