@@ -3,7 +3,12 @@ import { Stack, Typography } from "@mui/material";
 import TextInputWithLabel from "../../../components/TextInputWithLabel";
 import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
 
-const GoalDetails = () => {
+const GoalDetails = ({ onGoalNameChange }) => {
+    const handleGoalNameChange = (event) => {
+      const newName = event.target.value;
+      onGoalNameChange(newName);
+    };
+
     return (
         <>
             <Stack direction="row" className="horizontal-stack">
@@ -13,6 +18,7 @@ const GoalDetails = () => {
                 <TextInputWithLabel
                     label={"Goal Name"}
                     placeholder={"Click to enter Goal Name"}
+                    onInputChange={handleGoalNameChange}
                 />
                 <TextInputWithLabel
                     label={"Date (MMMM DD, YYYY)"}
