@@ -8,11 +8,27 @@ import AddSetModal from "./AddSetModal";
 
 const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
     const [exerciseName, setExerciseName] = useState(exercise.name);
+    const [editMode, setEditMode] = useState(false);
     const [addSetMode, setAddSetMode] = useState(false);
 
+
     const handleAddSet = (newSet) => {
-        onAddSet(exercise.id, newSet);
+        const updatedExercise = {
+            ...exercise,
+            sets: [...exercise.sets, newSet]
+        };
+        onUpdateExercise(updatedExercise);
     };
+
+    const handleExerciseEdit = () => {
+        const updatedExercise = {
+            ...exercise,
+            name: exerciseName
+        };
+        onUpdateExercise(updatedExercise);
+        setEditMode(false);
+    };
+
     return (
         <>
             <Container elevation={3} children={
@@ -21,8 +37,7 @@ const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
                         spacing={1}
                         direction="row"
                         className="horizontal-stack"
-                        style={{ justifyContent: 'space-between', width: '100%' }}
-                    >
+                        style={{ justifyContent: 'space-between', width: '100%' }} >
                         <Typography className="purple-text">
                             {exerciseName}
                         </Typography>
@@ -30,16 +45,14 @@ const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
                             isOpen={false}
                             editButtonLabel={"Edit"}
                             modalHeader="Edit Workout Details"
+                            onSave={handleExerciseEdit}
                             modalBody={(
                                 <Stack className="input-container my-1 text-start w-100">
                                     <TextInputWithLabel
                                         bindValue={exerciseName}
                                         label={"Exercise Name"}
                                         placeholder={"Click to enter Exercise Name"}
-                                        onInputChange={(e) =>
-                                            setExerciseName(e.target.value
-                                            )}
-                                    />
+                                        onInputChange={(e) => setExerciseName(e.target.value)} />
                                 </Stack>
                             )}
                         />

@@ -10,6 +10,7 @@ import AddExerciseModal from './AddExerciseModal';
 
 const WorkoutTab = () => {
     const [open, setOpen] = useState(false);
+    const [detailsModalOpen, setDetailsModalOpen] = useState(false);
     const [tempWorkout, setTempWorkout] = useState(null);
     const [addExerciseMode, setAddExerciseMode] = useState(false);
 
@@ -17,26 +18,25 @@ const WorkoutTab = () => {
         setTempWorkout({
             id: Date.now(),
             date: new Date(),
-            exercises: []
+            exercises: [
+            ]
         });
-        setOpen(true);
+        setDetailsModalOpen(true); // Open the WorkoutDetails modal
+        setOpen(true); // Open the WorkoutTab modal
     };
 
     const finishWorkoutOnClick = () => {
         const userLoggedIn = localStorage.getItem("userLoggedIn");
         const workoutData = JSON.parse(localStorage.getItem("workoutData") || "{}");
-
         const userWorkouts = workoutData[userLoggedIn] || [];
         userWorkouts.push(tempWorkout);
-
         workoutData[userLoggedIn] = userWorkouts;
         localStorage.setItem("workoutData", JSON.stringify(workoutData));
-
         setTempWorkout(null);
         setOpen(false);
     };
 
-    const handleClose = (event, reason) => {
+    const handleClose = (reason) => {
         if (reason !== 'backdropClick') {
             setOpen(false);
         }
@@ -50,9 +50,33 @@ const WorkoutTab = () => {
         setAddExerciseMode(false);
     };
 
+    // Update exercise
+    const onUpdateExercise = (updatedExercise) => {
+        const updatedExercises = tempWorkout.exercises.map(exercise =>
+            exercise.id === updatedExercise.id ? updatedExercise : exercise
+        );
+        setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
+    };
+
+    // Add new set to exercise
+    const onAddSet = (exerciseId, newSet) => {
+        const updatedExercises = tempWorkout.exercises.map(exercise => {
+            if (exercise.id === exerciseId) {
+                return { ...exercise, sets: [...exercise.sets, newSet] };
+            }
+            return exercise;
+        });
+        setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
+    };
+
     // Render exercises cards
     const showExercises = tempWorkout?.exercises.map(exercise => (
-        <WorkoutExerciseCard key={exercise.id} exercise={exercise} />
+        <WorkoutExerciseCard
+            key={exercise.id}
+            exercise={exercise}
+            onUpdateExercise={onUpdateExercise}
+            onAddSet={onAddSet}
+        />
     ));
 
     return (
@@ -64,14 +88,13 @@ const WorkoutTab = () => {
             <Modal
                 open={open}
                 onClose={handleClose}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            >
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Sheet variant="outlined" className="full-page-modal-container">
                     <WorkoutDetails
                         workout={tempWorkout}
                         onUpdate={setTempWorkout}
-                        onClose={handleClose}
-                        onRemove={() => setOpen(false)} />
+                        onClose={() => setDetailsModalOpen(false)}
+                        isOpen={detailsModalOpen} />
                     <Container
                         style={"background-purple-light d-flex align-items-start"}
                         children={
@@ -81,8 +104,7 @@ const WorkoutTab = () => {
                                 <ButtonFilled
                                     style={"background-purple"}
                                     text={"Add Exercise"}
-                                    onClick={() => setAddExerciseMode(true)}
-                                />
+                                    onClick={() => setAddExerciseMode(true)} />
                             </>
                         }
                     />
@@ -94,27 +116,22 @@ const WorkoutTab = () => {
                             modalBody={"Are you sure you want to cancel your workout?"}
                             modalConfirmationButtonLabel={"Cancel Workout"}
                             actionOnClick={() =>
-                                setOpen(false)}
-                        />
+                                setOpen(false)} />
                         <BasicConfirmationModal
                             buttonStyle={"background-green"}
                             openModalButtonLabel={"Finish"}
                             modalHeader={"Finish Workout"}
                             modalBody={"Are you sure you want to finish your workout?"}
                             modalConfirmationButtonLabel={"Finish Workout"}
-                            actionOnClick={finishWorkoutOnClick}
-                        />
+                            actionOnClick={finishWorkoutOnClick} />
                     </Stack>
                 </Sheet>
             </Modal>
-
             {/* Modal for adding a new exercise */}
             <AddExerciseModal
                 isOpen={addExerciseMode}
                 onClose={() => setAddExerciseMode(false)}
-                onAddExercise={handleAddExercise}
-            // Include fields for adding a new exercise
-            />
+                onAddExercise={handleAddExercise} />
         </>
     );
 };

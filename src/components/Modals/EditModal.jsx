@@ -39,7 +39,7 @@ const EditModal = ({
         );
     }
 
-    const handleClose = (event, reason) => {
+    const handleClose = (reason) => {
         if (reason !== 'backdropClick') {
             setOpen(false)
         }
@@ -86,7 +86,7 @@ const EditModal = ({
                         >
                             {modalBody}
                         </Grid>
-                        <Stack direction="row" spacing={1} className='w-100'>
+                        <Stack direction="row" spacing={3} className='w-100'>
                             <Button
                                 variant='outlined'
                                 className='red-border-button'
