@@ -46,7 +46,6 @@ export const LoginPage = () => {
       );
     }
   };
-
   return (
     <>
       <Grid>
