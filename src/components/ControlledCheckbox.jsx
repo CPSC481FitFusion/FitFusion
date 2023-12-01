@@ -3,8 +3,8 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { green } from '@mui/material/colors';
 
-const ControlledCheckbox = () => {
-  const [checked, setChecked] = React.useState(false); // Set the initial state to false
+const ControlledCheckbox = ({ goalName }) => {
+  const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -20,15 +20,16 @@ const ControlledCheckbox = () => {
           sx={{
             color: green[600],
             '&.Mui-checked': {
-              color: green[900], // Change color when checked
+              color: green[900],
             },
           }}
         />
       }
-      label="Attend One Zumba Class"
+      label={goalName} 
     />
   );
 };
 
 export default ControlledCheckbox;
+
 

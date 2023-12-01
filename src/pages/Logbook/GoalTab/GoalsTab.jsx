@@ -5,11 +5,12 @@ import ControlledCheckbox from '../../../components/ControlledCheckbox';
 import { Modal, Sheet, Stack } from '@mui/joy';
 import BasicConfirmationModal from '../../../components/Modals/BasicConfirmationModal';
 import Container from '../../../components/Container';
-import GoalDetails from './GoalsDetails';
+import GoalDetails from './Goalsdetails';
 
 const GoalsTab = () => {
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isStartModalOpen, setStartModalOpen] = useState(false);
+    const [goalName, setGoalName] = useState(""); // State to store the goal name
 
     const handleOpenEditModal = () => {
         setEditModalOpen(true);
@@ -26,6 +27,10 @@ const GoalsTab = () => {
     const handleCloseStartModal = () => {
         setStartModalOpen(false);
     };
+    
+    const handleGoalNameChange = (newName) => {
+        setGoalName(newName);
+      };
 
     return (
         <>
@@ -34,7 +39,7 @@ const GoalsTab = () => {
             {/* Start button */}
             <ButtonFilled
                 style="background-green"
-                text="Add"
+                text="Start"
                 onClick={handleOpenStartModal}
             />
 
@@ -55,7 +60,7 @@ const GoalsTab = () => {
                         style={"background-blue-light m-0"}
                         children={
                             <>
-                                <GoalDetails />
+                                <GoalDetails onGoalNameChange={handleGoalNameChange} />
                             </>
                         }
                     />
@@ -84,6 +89,7 @@ const GoalsTab = () => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px' }}>
                 <p className="general-label">Goal History</p>
 
+
                 {/* Right side: Square Edit Details button */}
                 <div className="see-all">
                     <div className="overlap-5">
@@ -100,7 +106,7 @@ const GoalsTab = () => {
                     </div>
                 </div>
             </div>
-            <ControlledCheckbox />
+            <ControlledCheckbox goalName={goalName} />
         </>
     );
 };
