@@ -34,7 +34,7 @@ const GoalsTab = () => {
             {/* Start button */}
             <ButtonFilled
                 style="background-green"
-                text="Start"
+                text="Add"
                 onClick={handleOpenStartModal}
             />
 
