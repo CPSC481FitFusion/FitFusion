@@ -16,9 +16,10 @@ import SeededData from './utils/SeedData';
 function App() {
   // State to track if user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("userLoggedIn") !== null);
+  const userDataLocalStorage = JSON.parse(localStorage.getItem("userData") || "[]");
 
-  // If localStorage is empty, populate with seeded data
-  if (localStorage.length === 0) {
+  // If userData in localStorage is empty, populate with seeded data
+  if (userDataLocalStorage.length === 0 ) {
     SeededData();
   }
 

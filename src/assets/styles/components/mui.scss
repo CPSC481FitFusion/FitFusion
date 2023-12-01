@@ -29,6 +29,10 @@ button.tab-option.Mui-selected {
     padding: 15px 0px;
 }
 
-.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.Mui-readOnly.MuiInputBase-readOnly > input {
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.Mui-readOnly.MuiInputBase-readOnly>input {
     padding: 8.5px 14px;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-sizeSmall.MuiInputBase-adornedEnd {
+    margin-bottom: 10px;
 }

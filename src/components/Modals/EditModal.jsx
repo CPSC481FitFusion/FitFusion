@@ -10,13 +10,13 @@ const EditModal = ({
     modalHeader,
     modalBody,
     isOpen,
-    onClickRemove,
-    onClickSave }) => {
+    onRemove,
+    onSave }) => {
     const [open, setOpen] = React.useState(isOpen);
 
     const onClickRedBorderButton = () => {
         setOpen(false);
-        onClickRemove(false);
+        onRemove(false);
     }
 
     let button = (<></>);
@@ -42,6 +42,12 @@ const EditModal = ({
     const handleClose = (event, reason) => {
         if (reason !== 'backdropClick') {
             setOpen(false)
+        }
+    }
+
+    const handleSave = () => {
+        if (onSave()){
+            setOpen(false);
         }
     }
     return (
@@ -90,8 +96,7 @@ const EditModal = ({
                             <ButtonFilled
                                 text="Save"
                                 style="background-green"
-                                onClick={() =>
-                                    setOpen(false)} />
+                                onClick={handleSave} />
                         </Stack>
                     </Stack>
                 </Sheet>
