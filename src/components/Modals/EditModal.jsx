@@ -40,8 +40,14 @@ const EditModal = ({
     }
 
     const handleClose = (event, reason) => {
-        if (reason !== 'backdropClick') {
-            setOpen(false)
+        if (reason && reason == "backdropClick")
+            return;
+        setOpen(false)
+    }
+
+    const handleSave = () => {
+        if (onSave()) {
+            setOpen(false);
         }
     }
 
@@ -69,7 +75,7 @@ const EditModal = ({
                         boxShadow: 'lg',
                     }}
                 >
-                    <ModalClose variant="outlined" sx={{ m: 1 }} />
+                    <ModalClose onClick={handleClose} variant="outlined" sx={{ m: 1 }} />
                     <Stack className='w-100' direction="column" alignItems="center">
                         <Typography
                             component="h2"
@@ -86,7 +92,7 @@ const EditModal = ({
                         >
                             {modalBody}
                         </Grid>
-                        <Stack direction="row" spacing={1} className='w-100'>
+                        <Stack direction="row" spacing={3} className='w-100'>
                             <Button
                                 variant='outlined'
                                 className='red-border-button'

@@ -1,12 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
-  TextField,
-  Button,
-  Box,
   Stack,
-  Snackbar,
-  Alert,
   Typography,
   Grid,
 } from "@mui/material";
@@ -17,22 +12,22 @@ import ErrorSnackbar from "../../../components/ErrorSnackbar";
 
 const AddExerciseModal = ({ isOpen, onClose, onAddExercise }) => {
   const [exerciseName, setExerciseName] = useState("");
-  // State for showing the invalid login info snackbar
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(isOpen);    // State for modal
+  const [snackbarOpen, setSnackbarOpen] = useState(false);  // State for showing the invalid login info snackbar
   const [snackbarMessage, setSnackbarMessage] = useState(false);
 
-  // Handle Close for inalid login error snackbar
-  const handleSnackbarClose = () => {
+  useEffect(() => {    // Use effect for handing modal state. Allows for modal to open when Starting New Workout.
+    setModalOpen(isOpen);
+  }, [isOpen]);
+
+  const handleSnackbarClose = () => {  // Handle Close for inalid login error snackbar
     setSnackbarOpen(false);
   };
 
-  // Handler for adding the new exercise
-  const handleAddExercise = () => {
+  const handleAddExercise = () => {  // Handler for adding the new exercise
     if (!exerciseName) {
-      // Open the invalid snackbar (no match found).
-      setSnackbarOpen(true);
+      setSnackbarOpen(true);      // Open the invalid snackbar (no match found).
       setSnackbarMessage("Exercise Name is required. Cannot be empty.");
-      setOpenInvalidInputPopup(true);
       return;
     }
 
@@ -44,8 +39,16 @@ const AddExerciseModal = ({ isOpen, onClose, onAddExercise }) => {
     console.log("exercise name is: " + exerciseName);
     onAddExercise(newExercise);
     setExerciseName(""); // Reset the exercise name field
+    setModalOpen(false);
     onClose(); // Close the modal
   };
+
+  const handleModalClose = (event, reason) => { // Handler for closing modal
+    if (reason && reason == "backdropClick")
+      return;
+    onClose();
+    setModalOpen(false);
+  }
 
   return (
     <>
@@ -53,63 +56,33 @@ const AddExerciseModal = ({ isOpen, onClose, onAddExercise }) => {
       <ErrorSnackbar
         isOpen={snackbarOpen}
         snackbarMessage={snackbarMessage}
-        onClose={handleSnackbarClose}
-      />
+        onClose={handleSnackbarClose} />
       <Modal
-        open={isOpen}
-        onClose={onClose}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+        open={modalOpen}
+        onClose={handleModalClose}
+        className="d-flex justify-content-center align-items-center">
         <Sheet
           variant="outlined"
-          sx={{
-            width: "90%",
-            borderRadius: "md",
-            p: 3,
-            boxShadow: "lg",
-          }}
-        >
-          <ModalClose variant="outlined" sx={{ m: 1 }} />
+          className="wid"
+          sx={{ width: "90%", borderRadius: "md", p: 3, boxShadow: "lg" }} >
+          <ModalClose onClick={handleModalClose} variant="outlined" sx={{ m: 1 }} />
           <Stack className="w-100" direction="column" alignItems="center">
-            <Typography
-              component="h2"
-              id="modal-title"
-              level="h4"
-              className="header-25"
-              mb={1}
-            >
+            <Typography component="h2" id="modal-title" level="h4" className="header-25" mb={1} >
               New Exercise
             </Typography>
-            <Grid id="modal-desc" className="text-center w-100">
+            <Grid id="modal-desc" className="text-center w-100 mb-4">
               <TextInputWithLabel
                 bindValue={exerciseName}
                 label={"Exercise Name"}
                 placeholder={"Click to enter Exercise Name"}
-                onInputChange={(e) => setExerciseName(e.target.value)}
-              />
+                onInputChange={(e) => setExerciseName(e.target.value)} />
             </Grid>
-            <Stack direction="row" spacing={1} className="w-100">
-              <Button
-                variant="outlined"
-                className="red-border-button"
-                onClick={onClose}
-              >
-                Remove
-              </Button>
-              <ButtonFilled
-                text="Save"
-                style="background-green"
-                onClick={handleAddExercise}
-              />
+            <Stack direction="row" spacing={3} className="w-100">
+              <ButtonFilled text="Save" style="background-green" onClick={handleAddExercise} />
             </Stack>
           </Stack>
         </Sheet>
       </Modal>
-      {/* On invalid attempt */}
     </>
   );
 };
