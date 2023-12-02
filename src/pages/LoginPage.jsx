@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import TextInputWithLabel from "../components/TextInputWithLabel";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { isRealUser } from "../utils/userUtils";
+import { getDefaultLogbookTab, isRealUser } from "../utils/userUtils";
 import ErrorSnackbar from "../components/ErrorSnackbar";
 
 export const LoginPage = () => {
@@ -36,8 +36,10 @@ export const LoginPage = () => {
       localStorage.setItem("userLoggedIn", username);
       // Dispatch an event to notify the app of the login status change
       window.dispatchEvent(new Event("loginChange"));
-      // Directs user to logbook page
-      navigate("/logbook");
+
+      const currentUserLogbookTabData = getDefaultLogbookTab();
+      // Directs user to logbook page with user setting default value
+      navigate("/logbook/" + currentUserLogbookTabData);
     } else {
       // Open the invalid snackbar (no match found).
       setSnackbarOpen(true);
