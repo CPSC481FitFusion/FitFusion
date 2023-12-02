@@ -6,9 +6,13 @@ import { Box, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { getDefaultLogbookTab } from "../utils/userUtils";
 
 export const AppBottomNavigation = ({ state }) => {
   const [value, setValue] = React.useState(state);
+  const currentUserLogbookTabData = getDefaultLogbookTab();
+  // Directs user to logbook page with user setting default value
+  const logbookNavigation = "/logbook/" + currentUserLogbookTabData ?? "1";
 
   return (
     <Box className="bottom-nav-container">
@@ -22,7 +26,7 @@ export const AppBottomNavigation = ({ state }) => {
         >
           <BottomNavigationAction
             component={Link}
-            to="/logbook"
+            to={logbookNavigation}
             value="logbook"
             label="Logbook"
             icon={<FitnessCenterIcon />}

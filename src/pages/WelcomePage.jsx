@@ -11,7 +11,7 @@ const styles = {
     backgroundRepeat: "no-repeat",
     width: "100vw",
     height: "100vh",
-    margin: "-10px",
+    margin: "-20px",
   },
   bodyContainer: {
     position: "absolute",

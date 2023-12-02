@@ -3,6 +3,11 @@ export const getUserData = () => {
   return JSON.parse(localStorage.getItem("userData")) || [];
 };
 
+// Get currently logged-in user's username
+export const getCurrentUsername = () => {
+  return localStorage.getItem("userLoggedIn");
+};
+
 // Returns true if user data provided matches a user
 export const isRealUser = (username, password) => {
   const userData = getUserData();
@@ -37,7 +42,7 @@ export const addUserOrUpdate = (newUserData) => {
 // Get data for the currently logged-in user
 export const getLoggedInUserData = () => {
   const userData = getUserData();
-  const loggedInUsername = localStorage.getItem("userLoggedIn");
+  const loggedInUsername = getCurrentUsername();
 
   // Find the user data for the logged-in user
   const loggedInUser = userData.find(

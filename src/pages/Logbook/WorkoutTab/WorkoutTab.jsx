@@ -7,6 +7,7 @@ import Container from "../../../components/Container";
 import { Stack, Typography } from "@mui/material";
 import AddExerciseModal from "./AddExerciseModal";
 import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
+import { getCurrentUsername } from "../../../utils/userUtils";
 
 const WorkoutTab = () => {
   const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ const WorkoutTab = () => {
   };
 
   const finishWorkoutOnClick = () => {
-    const userLoggedIn = localStorage.getItem("userLoggedIn");
+    const userLoggedIn = getCurrentUsername();
     const workoutData = JSON.parse(localStorage.getItem("workoutData") || "{}");
     const userWorkouts = workoutData[userLoggedIn] || [];
     userWorkouts.push(tempWorkout);

@@ -57,26 +57,30 @@ export const LoginPage = () => {
         <Grid className="mt-5">
           <Typography className="header-35">Log In</Typography>
           <Typography>Please proceed to log in to access FitFusion!</Typography>
-          <Box className="input-container">
-            <TextInputWithLabel
-              bindValue={username}
-              label={"Username"}
-              placeholder={"Click to enter your Username"}
-              onInputChange={(event) => setUsername(event.target.value)}
-            />
-            <TextInputWithLabel
-              bindValue={password}
-              label={"Password"}
-              placeholder={"Click to enter your Password"}
-              isPassword={true}
-              onInputChange={(event) => setPassword(event.target.value)}
-            />
-            <Link
-              className="d-flex flex-row-reverse link-label"
-              to="/underConstruction/login"
-            >
-              Forgot Password!
-            </Link>
+          <Box className="input-container mb-4">
+            <Stack spacing={3}>
+              <TextInputWithLabel
+                bindValue={username}
+                label={"Username"}
+                placeholder={"Click to enter your Username"}
+                onInputChange={(event) => setUsername(event.target.value)}
+              />
+              <Stack spacing={1}>
+                <TextInputWithLabel
+                  bindValue={password}
+                  label={"Password"}
+                  placeholder={"Click to enter your Password"}
+                  isPassword={true}
+                  onInputChange={(event) => setPassword(event.target.value)}
+                />
+                <Link
+                  className="d-flex flex-row-reverse link-label"
+                  to="/underConstruction/login"
+                >
+                  Forgot Password!
+                </Link>
+              </Stack>
+            </Stack>
           </Box>
           <ButtonFilled
             text={"Log In"}
