@@ -55,7 +55,7 @@ const WorkoutTab = () => {
     );
     setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
   };
-
+  
   // Add new set to exercise
   const onAddSet = (exerciseId, newSet) => {
     const updatedExercises = tempWorkout.exercises.map((exercise) => {
