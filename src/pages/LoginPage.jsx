@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import TextInputWithLabel from "../components/TextInputWithLabel";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { getUserData, isRealUser } from "../utils/userUtils";
+import { isRealUser } from "../utils/userUtils";
 import ErrorSnackbar from "../components/ErrorSnackbar";
 
 export const LoginPage = () => {

@@ -26,7 +26,10 @@ const GoalDetails = ({ onGoalNameChange }) => {
         <Typography variant="body1" gutterBottom fontWeight="bold">
           Click to Enter Goal Deadline Date
         </Typography>
-        <GoalDatePicker selectedDate={selectedDate} onChange={setSelectedDate} />
+        <GoalDatePicker
+          selectedDate={selectedDate}
+          onChange={setSelectedDate}
+        />
         <TextareaInputWithLabel
           label={"Goal Details and Notes"}
           placeholder={"Click to enter Notes"}
@@ -37,4 +40,3 @@ const GoalDetails = ({ onGoalNameChange }) => {
 };
 
 export default GoalDetails;
-

@@ -1,9 +1,9 @@
-import React from 'react';
-import Button from '@mui/material/Button';
+import React from "react";
+import Button from "@mui/material/Button";
 
 const sxStyle = {
   width: "100%",
-}
+};
 
 const ButtonFilled = ({ text, style, onClick }) => {
   return (
@@ -11,7 +11,8 @@ const ButtonFilled = ({ text, style, onClick }) => {
       variant="contained"
       sx={sxStyle}
       className={style}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       {text}
     </Button>
   );
