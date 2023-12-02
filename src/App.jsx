@@ -12,6 +12,7 @@ import { WelcomePage } from './pages/WelcomePage';
 import { LogbookPage } from './pages/Logbook/LogbookPage';
 import { UnderConstructionPage } from './pages/UnderConstructionPage';
 import SeededData from './utils/SeedData';
+import { getDefaultLogbookTab } from './utils/userUtils';
 
 function App() {
   // State to track if user is logged in
@@ -47,7 +48,7 @@ function App() {
           {/* Protected Routes */}
           {isLoggedIn ? (
             <>
-              <Route path="/logbook" element={<LogbookPage />} />
+              <Route path="/logbook/:logbookDefaultTab" element={<LogbookPage />} />
               <Route path="/alerts" element={<AlertsPage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/underConstruction/:backTo" element={<UnderConstructionPage />} />
