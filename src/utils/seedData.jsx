@@ -51,6 +51,7 @@ const populateWorkouts = () => {
                 notes: "Today is such a great day for a workout! Feeling great and strong!",
                 exercises: [
                     {
+                        id: 1,
                         name: "Hammer Curl (Dumbbell)",
                         sets: [
                             {
@@ -67,6 +68,7 @@ const populateWorkouts = () => {
                                 weight: "10 lb(s)",
                             }]
                     }, {
+                        id: 2,
                         name: "Lateral Pulldown (Cable)",
                         sets: [
                             {
@@ -89,6 +91,7 @@ const populateWorkouts = () => {
                 notes: "Feeling a little sick.",
                 exercises: [
                     {
+                        id: 1,
                         name: "Squat (Barbell)",
                         sets: [
                             {
@@ -105,6 +108,7 @@ const populateWorkouts = () => {
                                 weight: "155 lb(s)",
                             }]
                     }, {
+                        id: 2,
                         name: "Sumo Squat (Dumbbell)",
                         sets: [
                             {
@@ -133,6 +137,7 @@ const populateWorkouts = () => {
                 notes: "",
                 exercises: [
                     {
+                        id: 1,
                         name: "Bicep Curl",
                         sets: [
                             {
@@ -149,6 +154,7 @@ const populateWorkouts = () => {
                                 weight: "5 kg(s)",
                             }]
                     }, {
+                        id: 2,
                         name: "Pull Ups",
                         sets: [
                             {
@@ -165,6 +171,7 @@ const populateWorkouts = () => {
                                 weight: "0 kg(s)",
                             }]
                     }, {
+                        id: 3,
                         name: "Hammer Curls",
                         sets: [
                             {
@@ -191,6 +198,7 @@ const populateWorkouts = () => {
                 notes: "",
                 exercises: [
                     {
+                        id: 1,
                         name: "Bench Press (Barbell)",
                         sets: [
                             {
@@ -207,6 +215,7 @@ const populateWorkouts = () => {
                                 weight: "55 kg(s)",
                             }]
                     }, {
+                        id: 2,
                         name: "Face Pull (Cable)",
                         sets: [
                             {
