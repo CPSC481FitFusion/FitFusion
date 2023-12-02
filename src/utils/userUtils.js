@@ -64,3 +64,21 @@ export const getDefaultLogbookTab = () => {
   }
   return null; // Return null if the value is not found
 };
+
+// Adds or updates a user's settings in localStorage
+export const updateUserSettings = (username, updatedSettings) => {
+  const users = JSON.parse(localStorage.getItem("userData")) || [];
+
+  // Find the user by username
+  const userIndex = users.findIndex((user) => user.username === username);
+  if (userIndex !== -1) {
+    // Update the user's settings
+    users[userIndex] = {
+      ...users[userIndex],
+      ...updatedSettings,
+    };
+
+    // Save the updated users array back to localStorage
+    localStorage.setItem("userData", JSON.stringify(users));
+  }
+};

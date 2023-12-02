@@ -7,6 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 const EditModal = ({
   isIcon,
   editButtonLabel,
+  editButtonClass,
   modalHeader,
   modalBody,
   isOpen,
@@ -33,7 +34,7 @@ const EditModal = ({
     buttonType = (
       <Button
         variant="outlined"
-        className="purple-border-button"
+        className={editButtonClass ?? "purple-border-button"}
         onClick={() => setOpen(true)}
       >
         {editButtonLabel}
