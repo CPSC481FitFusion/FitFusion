@@ -118,7 +118,7 @@ const WorkoutTab = () => {
     <>
       <ButtonFilled
         style={"background-green"}
-        text={"Start a New Workout"}
+        text={"Start a Workout"}
         onClick={startNewWorkout}
       />
       <Modal

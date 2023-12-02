@@ -16,10 +16,9 @@ const BodyTab = () => {
   };
   return (
     <>
-      <h6 className="general-label">Start a Body Composition</h6>
       <ButtonFilled
         style={"background-green"}
-        text={"Start"}
+        text={"Track a Body Composition"}
         onClick={() => setOpen(true)}
       />
       <Modal
