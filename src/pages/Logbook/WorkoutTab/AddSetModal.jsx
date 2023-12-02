@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 
 import { ModalClose, Sheet } from "@mui/joy";
-import TextInputWithLabel from "../../../components/TextInputWithLabel";
 import ButtonFilled from "../../../components/ButtonFilled";
 import ErrorSnackbar from "../../../components/ErrorSnackbar";
 import TextNumberInputWithLabel from "../../../components/TextNumberInputWithLabel";

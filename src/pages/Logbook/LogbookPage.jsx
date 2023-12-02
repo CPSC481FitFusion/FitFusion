@@ -5,11 +5,12 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import WorkoutTab from "./WorkoutTab/WorkoutTab";
 import BodyTab from "./BodyTab/BodyTab";
 import GoalsTab from "./GoalTab/GoalsTab";
+import { useParams } from "react-router-dom";
 
 export const LogbookPage = () => {
+  const defaultTabVal = useParams().logbookDefaultTab;
   // Get the user default from local storage, for now set at Workout
-  const [value, setValue] = React.useState("1");
-
+  const [value, setValue] = React.useState(defaultTabVal);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
