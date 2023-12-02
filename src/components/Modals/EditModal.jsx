@@ -51,11 +51,6 @@ const EditModal = ({
         }
     }
 
-    const handleSave = () => {
-        if (onSave()){
-            setOpen(false);
-        }
-    }
     return (
         <>
             {button}
