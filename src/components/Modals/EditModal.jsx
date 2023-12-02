@@ -13,7 +13,7 @@ const EditModal = ({
     showRemove,
     onRemove,
     onSave }) => {
-    const [open, setOpen] = React.useState(isOpen);
+    const [open, setOpen] = React.useState(isOpen || false);
     let buttonType = (<></>);
     let removeButton = (<></>);
 
@@ -24,7 +24,7 @@ const EditModal = ({
 
     if (isIcon) {
         buttonType = (
-            <IconButton onClick={() => setOpen(true)}>
+            <IconButton className="p-0" onClick={() => setOpen(true)}>
                 <EditIcon />
             </IconButton>
         );

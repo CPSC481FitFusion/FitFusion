@@ -1,13 +1,16 @@
 import EditModal from "../../../components/Modals/EditModal";
 import TextInputWithLabel from "../../../components/TextInputWithLabel";
 import Container from "../../../components/Container";
-import { Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 import { useState } from "react";
 import ButtonFilled from "../../../components/ButtonFilled";
 import AddSetModal from "./AddSetModal";
 import ErrorSnackbar from "../../../components/ErrorSnackbar";
 
-const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
+const WorkoutExerciseCard = ({
+    exercise,
+    onUpdateExercise,
+    onRemoveExercise }) => {
     const [exerciseName, setExerciseName] = useState(exercise.name);
     const [addSetMode, setAddSetMode] = useState(false);
     const [snackbarOpen, setSnackbarOpen] = useState(false);  // State for showing the invalid login info snackbar
@@ -36,6 +39,10 @@ const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
         onUpdateExercise(updatedExercise);
     };
 
+    const handleExerciseRemove = () => {
+        onRemoveExercise(exercise.id);
+    };
+
     return (
         <>
             <Container elevation={3} children={
@@ -53,6 +60,8 @@ const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
                             editButtonLabel={"Rename"}
                             modalHeader="Rename Exercise"
                             onSave={handleExerciseEdit}
+                            showRemove
+                            onRemove={handleExerciseRemove} // Handles removal of exercise
                             modalBody={(
                                 <>
                                     {/* On invalid empty attempt */}
@@ -71,11 +80,38 @@ const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
                             )}
                         />
                     </Stack>
-                    {exercise.sets.map((set, index) => (
-                        <Typography key={index}>
-                            {`Set ${index + 1}: ${set.reps} reps, ${set.weight}`}
-                        </Typography>
-                    ))}
+                    <Stack spacing={1} direction={"column"} className="mb-3 w-100 d-flex justify-content-between">
+                        <Stack direction={"row"} className="w-100 d-flex justify-content-between">
+                            <Typography className="general-label">
+                                Set
+                            </Typography>
+                            <Typography className="general-label">
+                                Rep
+                            </Typography>
+                            <Typography className="general-label">
+                                Weight
+                            </Typography>
+                            <Typography className="general-label">
+                                Edit
+                            </Typography>
+                        </Stack>
+                        {exercise.sets.map((set, index) => (
+                            <>
+                                <Stack direction={"row"} className="w-100 d-flex justify-content-between">
+                                    <Typography >
+                                        {index + 1}
+                                    </Typography>
+                                    <Typography>
+                                        {set.reps}
+                                    </Typography>
+                                    <Typography>
+                                        {set.weight + " lbs"}
+                                    </Typography>
+                                    <EditModal isIcon></EditModal>
+                                </Stack>
+                            </>
+                        ))}
+                    </Stack>
                     <ButtonFilled
                         style={"background-grey"}
                         text={"Add Set"}

@@ -69,6 +69,12 @@ const WorkoutTab = () => {
         setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
     };
 
+    // Handling removal of exercise
+    const handleRemoveExercise = (exerciseId) => {
+        const updatedExercises = tempWorkout.exercises.filter(exercise => exercise.id !== exerciseId);
+        setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
+    };
+
     // Render exercises cards
     const showExercises = tempWorkout?.exercises.map(exercise => (
         <WorkoutExerciseCard
@@ -76,6 +82,7 @@ const WorkoutTab = () => {
             exercise={exercise}
             onUpdateExercise={onUpdateExercise}
             onAddSet={onAddSet}
+            onRemoveExercise={handleRemoveExercise}
         />
     ));
 
@@ -113,7 +120,7 @@ const WorkoutTab = () => {
                             buttonStyle={"background-orange"}
                             openModalButtonLabel={"Cancel"}
                             modalHeader={"Cancel Workout"}
-                            modalBody={"Are you sure you want to cancel your workout?"}
+                            modalBody={"Are you sure you want to cancel your workout? All current progress will be lost."}
                             modalConfirmationButtonLabel={"Cancel Workout"}
                             actionOnClick={() =>
                                 setOpen(false)} />
