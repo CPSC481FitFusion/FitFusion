@@ -1,7 +1,7 @@
-import * as React from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { green } from '@mui/material/colors';
+import * as React from "react";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { green } from "@mui/material/colors";
 
 const ControlledCheckbox = ({ goalName }) => {
   const [checked, setChecked] = React.useState(false);
@@ -21,10 +21,10 @@ const ControlledCheckbox = ({ goalName }) => {
         <Checkbox
           checked={checked}
           onChange={handleChange}
-          inputProps={{ 'aria-label': 'controlled' }}
+          inputProps={{ "aria-label": "controlled" }}
           sx={{
             color: green[600],
-            '&.Mui-checked': {
+            "&.Mui-checked": {
               color: green[900],
             },
           }}
@@ -36,6 +36,3 @@ const ControlledCheckbox = ({ goalName }) => {
 };
 
 export default ControlledCheckbox;
-
-
-
