@@ -121,6 +121,9 @@ const GoalsTab = () => {
     <Typography variant="body2" color="textSecondary" sx={{ marginLeft: 2, fontSize: '0.8rem', fontStyle: 'italic' }}>
     Attend 3 zumba class this month
     </Typography>
+    <Typography variant="body2" color="textSecondary" sx={{ marginLeft: 2, fontSize: '0.8rem', fontStyle: 'italic' }}>
+    Deadline 12/06/2023
+    </Typography>
     {/* Second Controlled Checkbox */}
     <Typography variant="body2" color="textSecondary" sx={{ marginLeft: 2, fontSize: '0.8rem', fontStyle: 'italic' }}>
     </Typography>
