@@ -1,10 +1,10 @@
 import { Modal, ModalClose, Typography, Sheet } from '@mui/joy';
 import React from 'react';
-import ButtonFilled from '../ButtonFilled';
+import ButtonFilled from '../../../components/ButtonFilled';
 import { Button, Grid, IconButton, Stack } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 
-const EditModal = ({
+const GoalsHistoryModal = ({
     isIcon,
     editButtonLabel,
     modalHeader,
@@ -40,17 +40,16 @@ const EditModal = ({
     }
 
     const handleClose = (event, reason) => {
-        if (reason && reason == "backdropClick")
-            return;
-        setOpen(false)
-    }
-
-    const handleSave = () => {
-        if (onSave()) {
-            setOpen(false);
+        if (reason !== 'backdropClick') {
+            setOpen(false)
         }
     }
 
+    const handleSave = () => {
+        if (onSave()){
+            setOpen(false);
+        }
+    }
     return (
         <>
             {button}
@@ -70,7 +69,7 @@ const EditModal = ({
                         boxShadow: 'lg',
                     }}
                 >
-                    <ModalClose onClick={handleClose} variant="outlined" sx={{ m: 1 }} />
+                    <ModalClose variant="outlined" sx={{ m: 1 }} />
                     <Stack className='w-100' direction="column" alignItems="center">
                         <Typography
                             component="h2"
@@ -87,13 +86,7 @@ const EditModal = ({
                         >
                             {modalBody}
                         </Grid>
-                        <Stack direction="row" spacing={3} className='w-100'>
-                            <Button
-                                variant='outlined'
-                                className='red-border-button'
-                                onClick={onClickRedBorderButton}>
-                                Remove
-                            </Button>
+                        <Stack direction="row" spacing={1} className='w-100'>
                             <ButtonFilled
                                 text="Save"
                                 style="background-green"
@@ -105,4 +98,4 @@ const EditModal = ({
         </>
     );
 }
-export default EditModal;
+export default GoalsHistoryModal;

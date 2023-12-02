@@ -10,6 +10,11 @@ const ControlledCheckbox = ({ goalName }) => {
     setChecked(event.target.checked);
   };
 
+  // Render the checkbox only if goalName is provided
+  if (!goalName) {
+    return null; // Return null if goalName is not provided
+  }
+
   return (
     <FormControlLabel
       control={
@@ -25,11 +30,12 @@ const ControlledCheckbox = ({ goalName }) => {
           }}
         />
       }
-      label={goalName} 
+      label={goalName}
     />
   );
 };
 
 export default ControlledCheckbox;
+
 
 
