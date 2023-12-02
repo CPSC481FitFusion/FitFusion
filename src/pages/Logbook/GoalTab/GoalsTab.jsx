@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import ButtonFilled from '../../../components/ButtonFilled';
 import EditModal from '../../../components/Modals/EditModal';
 import ControlledCheckbox from '../../../components/ControlledCheckbox';
-import { Modal, Sheet, Stack } from '@mui/joy';
+import { Modal, Sheet, Stack, Typography } from '@mui/joy';
 import BasicConfirmationModal from '../../../components/Modals/BasicConfirmationModal';
 import Container from '../../../components/Container';
 import GoalDetails from './Goalsdetails';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import DeleteButtonWithConfirmation from '../../../components/DeleteButtonWithConfirmation';
+import GoalsHistoryModal from './goalshistorymodal';
 
 const GoalsTab = () => {
     const [isEditModalOpen, setEditModalOpen] = useState(false);
@@ -39,7 +42,7 @@ const GoalsTab = () => {
             {/* Start button */}
             <ButtonFilled
                 style="background-green"
-                text="Start"
+                text="Add"
                 onClick={handleOpenStartModal}
             />
 
@@ -68,17 +71,17 @@ const GoalsTab = () => {
                         <BasicConfirmationModal
                             buttonStyle={"background-orange"}
                             openModalButtonLabel={"Cancel"}
-                            modalHeader={"Cancel Start"}
-                            modalBody={"Are you sure you want to cancel starting a new goal?"}
-                            modalConfirmationButtonLabel={"Cancel Start"}
+                            modalHeader={"Cancel Add"}
+                            modalBody={"Are you sure you want to cancel adding a new goal?"}
+                            modalConfirmationButtonLabel={"Cancel"}
                             actionOnClick={() => handleCloseStartModal()}
                         />
                         <BasicConfirmationModal
                             buttonStyle={"background-green"}
                             openModalButtonLabel={"Confirm"}
-                            modalHeader={"Confirm Start"}
-                            modalBody={"Are you sure you want to start a new goal?"}
-                            modalConfirmationButtonLabel={"Confirm Start"}
+                            modalHeader={"Confirm Add"}
+                            modalBody={"Are you sure you want to add a new goal?"}
+                            modalConfirmationButtonLabel={"Confirm Add"}
                             actionOnClick={() => handleCloseStartModal()}
                         />
                     </Stack>
@@ -94,19 +97,37 @@ const GoalsTab = () => {
                 <div className="see-all">
                     <div className="overlap-5">
                         {/* Pass relevant props to the EditModal */}
-                        <EditModal
+                        <GoalsHistoryModal
                             isIcon={true}
                             isOpen={false}
                             editButtonLabel="Edit Details"
-                            modalHeader="Edit Goal Details"
-                            modalBody="Attend Zumba Class"
+                            modalHeader="Edit Goal History"
+                            modalBody={
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <DeleteButtonWithConfirmation style={{ marginRight: '8px' }} />
+                                    Attend Zumba Classes
+                                </div>
+                            }
                             onClickRemove={() => {/* Implement your remove logic */ }}
                             onClickSave={() => {/* Implement your save logic */ }}
                         />
                     </div>
                 </div>
             </div>
-            <ControlledCheckbox goalName={goalName} />
+        {/* Container for Controlled Checkboxes */}
+    <div style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
+    {/* First Controlled Checkbox */}
+    <ControlledCheckbox goalName="Zumba Classes" />
+    <Typography variant="body2" color="textSecondary" sx={{ marginLeft: 2, fontSize: '0.8rem', fontStyle: 'italic' }}>
+    Attend 3 zumba class this month
+    </Typography>
+    {/* Second Controlled Checkbox */}
+    <Typography variant="body2" color="textSecondary" sx={{ marginLeft: 2, fontSize: '0.8rem', fontStyle: 'italic' }}>
+    </Typography>
+    <ControlledCheckbox goalName={goalName} />
+                        
+    {/* Add more ControlledCheckbox components as needed */}
+    </div>
         </>
     );
 };
