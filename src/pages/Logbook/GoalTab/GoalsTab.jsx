@@ -35,12 +35,10 @@ const GoalsTab = () => {
 
   return (
     <>
-      <h6 className="general-label">Start New Goal</h6>
-
       {/* Start button */}
       <ButtonFilled
         style="background-green"
-        text="Add"
+        text="Set A Goal"
         onClick={handleOpenStartModal}
       />
 
