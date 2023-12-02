@@ -63,11 +63,6 @@ const AddSetModal = ({
         onClose();
     };
 
-    const onClickRedBorderButton = () => {
-        setOpen(false);
-        onRemove(false);
-    }
-
     const handleClose = (event, reason) => {
         if (reason && reason == "backdropClick")
             return;
@@ -124,7 +119,10 @@ const AddSetModal = ({
                                 <Button
                                     variant='outlined'
                                     className='red-border-button'
-                                    onClick={onClickRedBorderButton}>
+                                    onClick={() => {
+                                        onRemove();
+                                        onClose();
+                                    }}>
                                     Delete
                                 </Button>
                             )}

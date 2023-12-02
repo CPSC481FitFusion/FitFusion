@@ -139,7 +139,9 @@ const WorkoutExerciseCard = ({
                         }}
                         onAddSet={handleAddOrEditSet}
                         showRemove
-                        onRemove={() => onRemoveSet(exercise.id, editingSet.id)}
+                        onRemove={() => {
+                            onRemoveSet(exercise.id, editingSet.id);
+                        }}
                     />
                 </>
             }

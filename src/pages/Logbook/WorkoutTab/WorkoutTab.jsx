@@ -75,8 +75,8 @@ const WorkoutTab = () => {
         setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
     };
 
-    // Handle removal of sets
-    const handleRemoveSet = (exerciseId, setId) => {
+     // Handle removal of sets
+     const handleRemoveSet = (exerciseId, setId) => {
         const updatedExercises = tempWorkout.exercises.map(exercise => {
             if (exercise.id === exerciseId) {
                 const updatedSets = exercise.sets.filter(set => set.id !== setId);
