@@ -47,7 +47,7 @@ const EditModal = ({
                 variant='outlined'
                 className='red-border-button'
                 onClick={onClickRedBorderButton}>
-                Remove
+                Delete
             </Button>
         );
     }

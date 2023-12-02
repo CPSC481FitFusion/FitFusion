@@ -5,12 +5,29 @@ import TextInputWithLabel from '../../../components/TextInputWithLabel';
 import ButtonFilled from '../../../components/ButtonFilled';
 import ErrorSnackbar from '../../../components/ErrorSnackbar';
 import TextNumberInputWithLabel from '../../../components/TextNumberInputWithLabel';
+import { useEffect } from 'react';
 
-const AddSetModal = ({ isOpen, onClose, onAddSet }) => {
-    const [reps, setReps] = useState('');
-    const [weight, setWeight] = useState('');
+const AddSetModal = ({
+    isOpen,
+    onClose,
+    onAddSet,
+    set,
+    showRemove,
+    onRemove }) => {
+    const [reps, setReps] = useState(set?.reps || '');
+    const [weight, setWeight] = useState(set?.weight || '');
     const [snackbarOpen, setSnackbarOpen] = useState(false);    // State for showing the invalid login info snackbar
     const [snackbarMessage, setSnackbarMessage] = useState(false);
+
+    useEffect(() => {
+        if (set && showRemove) {
+            setReps(set.reps);
+            setWeight(set.weight);
+        } else {
+            setReps('');
+            setWeight('');
+        }
+    }, [set, showRemove]);
 
     const handleSnackbarClose = () => {    // Handle Close for inalid login error snackbar
         setSnackbarOpen(false);
@@ -34,17 +51,22 @@ const AddSetModal = ({ isOpen, onClose, onAddSet }) => {
             return;
         }
 
-        // On successful Input
-        const newSet = {
-            id: Date.now(), // Unique identifier for the set
+        const setDetails = {
+            id: set?.id || Date.now(), // Use existing id for edits, or create new for adds
             reps,
             weight
         };
-        onAddSet(newSet);
+
+        onAddSet(setDetails);
         setReps('');
         setWeight('');
         onClose();
     };
+
+    const onClickRedBorderButton = () => {
+        setOpen(false);
+        onRemove(false);
+    }
 
     const handleClose = (event, reason) => {
         if (reason && reason == "backdropClick")
@@ -74,7 +96,7 @@ const AddSetModal = ({ isOpen, onClose, onAddSet }) => {
                             level="h4"
                             className='header-25'
                             mb={1} >
-                            New Set
+                            {showRemove ? "Edit Set" : "New Set"}
                         </Typography>
                         <Grid
                             id="modal-desc"
@@ -98,6 +120,14 @@ const AddSetModal = ({ isOpen, onClose, onAddSet }) => {
                             </Stack>
                         </Grid>
                         <Stack direction="row" spacing={3} className='w-100'>
+                            {showRemove && (
+                                <Button
+                                    variant='outlined'
+                                    className='red-border-button'
+                                    onClick={onClickRedBorderButton}>
+                                    Delete
+                                </Button>
+                            )}
                             <ButtonFilled
                                 text="Save Set"
                                 style="background-green"

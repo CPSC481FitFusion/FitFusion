@@ -36,10 +36,10 @@ const WorkoutTab = () => {
         setOpen(false);
     };
 
-    const handleClose = (reason) => {
-        if (reason !== 'backdropClick') {
-            setOpen(false);
-        }
+    const handleClose = (event, reason) => {
+        if (reason && reason == "backdropClick")
+            return;
+        setOpen(false);
     };
 
     const handleAddExercise = (newExercise) => {
@@ -75,6 +75,32 @@ const WorkoutTab = () => {
         setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
     };
 
+    // Handle removal of sets
+    const handleRemoveSet = (exerciseId, setId) => {
+        const updatedExercises = tempWorkout.exercises.map(exercise => {
+            if (exercise.id === exerciseId) {
+                const updatedSets = exercise.sets.filter(set => set.id !== setId);
+                return { ...exercise, sets: updatedSets };
+            }
+            return exercise;
+        });
+        setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
+    };
+
+    // Handle Set Edit
+    const handleEditSet = (exerciseId, editedSet) => {
+        const updatedExercises = tempWorkout.exercises.map(exercise => {
+            if (exercise.id === exerciseId) {
+                const updatedSets = exercise.sets.map(set =>
+                    set.id === editedSet.id ? editedSet : set
+                );
+                return { ...exercise, sets: updatedSets };
+            }
+            return exercise;
+        });
+        setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
+    };
+
     // Render exercises cards
     const showExercises = tempWorkout?.exercises.map(exercise => (
         <WorkoutExerciseCard
@@ -83,7 +109,8 @@ const WorkoutTab = () => {
             onUpdateExercise={onUpdateExercise}
             onAddSet={onAddSet}
             onRemoveExercise={handleRemoveExercise}
-        />
+            onRemoveSet={handleRemoveSet} 
+            onEditSet={handleEditSet} />
     ));
 
     return (
@@ -93,6 +120,7 @@ const WorkoutTab = () => {
                 text={"Start a New Workout"}
                 onClick={startNewWorkout} />
             <Modal
+                className={"overflow-auto"}
                 open={open}
                 onClose={handleClose}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
