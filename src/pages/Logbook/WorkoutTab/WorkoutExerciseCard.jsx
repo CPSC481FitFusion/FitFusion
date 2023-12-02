@@ -5,12 +5,16 @@ import { Stack, Typography } from '@mui/material';
 import { useState } from "react";
 import ButtonFilled from "../../../components/ButtonFilled";
 import AddSetModal from "./AddSetModal";
+import ErrorSnackbar from "../../../components/ErrorSnackbar";
 
 const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
     const [exerciseName, setExerciseName] = useState(exercise.name);
-    const [editMode, setEditMode] = useState(false);
     const [addSetMode, setAddSetMode] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);  // State for showing the invalid login info snackbar
 
+    const handleSnackbarClose = () => {  // Handle Close for inalid login error snackbar
+        setSnackbarOpen(false);
+    };
 
     const handleAddSet = (newSet) => {
         const updatedExercise = {
@@ -21,12 +25,15 @@ const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
     };
 
     const handleExerciseEdit = () => {
+        if (!exerciseName) {
+            setSnackbarOpen(true);      // Open the invalid snackbar (no match found).
+            return;
+        }
         const updatedExercise = {
             ...exercise,
             name: exerciseName
         };
         onUpdateExercise(updatedExercise);
-        setEditMode(false);
     };
 
     return (
@@ -43,17 +50,24 @@ const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
                         </Typography>
                         <EditModal
                             isOpen={false}
-                            editButtonLabel={"Edit"}
-                            modalHeader="Edit Workout Details"
+                            editButtonLabel={"Rename"}
+                            modalHeader="Rename Exercise"
                             onSave={handleExerciseEdit}
                             modalBody={(
-                                <Stack className="input-container my-1 text-start w-100">
-                                    <TextInputWithLabel
-                                        bindValue={exerciseName}
-                                        label={"Exercise Name"}
-                                        placeholder={"Click to enter Exercise Name"}
-                                        onInputChange={(e) => setExerciseName(e.target.value)} />
-                                </Stack>
+                                <>
+                                    {/* On invalid empty attempt */}
+                                    <ErrorSnackbar
+                                        isOpen={snackbarOpen}
+                                        snackbarMessage={"Exercise Name is required. Cannot be empty."}
+                                        onClose={handleSnackbarClose} />
+                                    <Stack className="input-container my-1 text-start w-100 mb-4">
+                                        <TextInputWithLabel
+                                            bindValue={exerciseName}
+                                            label={"Exercise Name"}
+                                            placeholder={"Click to enter Exercise Name"}
+                                            onInputChange={(e) => setExerciseName(e.target.value)} />
+                                    </Stack>
+                                </>
                             )}
                         />
                     </Stack>
@@ -72,7 +86,6 @@ const WorkoutExerciseCard = ({ exercise, onUpdateExercise, onAddSet }) => {
                         onClose={() => setAddSetMode(false)}
                         onAddSet={handleAddSet} />
                     {/* Edit Set Modal */}
-
                 </>
             }
             />

@@ -5,8 +5,8 @@ import WorkoutDetails from "./WorkoutDetails";
 import WorkoutExerciseCard from "./WorkoutExerciseCard";
 import Container from "../../../components/Container";
 import { Stack, Typography } from '@mui/material';
-import BasicConfirmationModal from '../../../components/Modals/BasicConfirmationModal';
 import AddExerciseModal from './AddExerciseModal';
+import BasicConfirmationModal from '../../../components/modals/basicConfirmationModal';
 
 const WorkoutTab = () => {
     const [open, setOpen] = useState(false);

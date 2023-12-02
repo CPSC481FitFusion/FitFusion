@@ -3,12 +3,11 @@ import ButtonFilled from '../../../components/ButtonFilled';
 import EditModal from '../../../components/Modals/EditModal';
 import ControlledCheckbox from '../../../components/ControlledCheckbox';
 import { Modal, Sheet, Stack, Typography } from '@mui/joy';
-import BasicConfirmationModal from '../../../components/Modals/BasicConfirmationModal';
 import Container from '../../../components/Container';
 import GoalDetails from './Goalsdetails';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import DeleteButtonWithConfirmation from '../../../components/DeleteButtonWithConfirmation';
 import GoalsHistoryModal from './goalshistorymodal';
+import BasicConfirmationModal from '../../../components/modals/basicConfirmationModal';
 
 const GoalsTab = () => {
     const [isEditModalOpen, setEditModalOpen] = useState(false);

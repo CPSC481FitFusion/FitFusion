@@ -3,10 +3,6 @@ import { OutlinedInput, InputAdornment, IconButton, Stack } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { RequiredPopper } from './RequiredPopper';
 
-const sxStyle = {
-    width: "100%",
-}
-
 const TextInputWithLabel = ({ label, placeholder, isPassword, bindValue, onInputChange, isRequired }) => {
     const [showPassword, setShowPassword] = React.useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
