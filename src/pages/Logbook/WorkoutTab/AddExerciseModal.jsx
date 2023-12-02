@@ -42,8 +42,8 @@ const AddExerciseModal = ({ isOpen, onClose, onAddExercise }) => {
     setModalOpen(false);
     onClose(); // Close the modal
   };
-  // Handler for closing modal
-  const handleModalClose = (event, reason) => {
+
+  const handleModalClose = (event, reason) => { // Handler for closing modal
     if (reason && reason == "backdropClick")
       return;
     onClose();

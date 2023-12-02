@@ -39,14 +39,14 @@ const EditModal = ({
         );
     }
 
-    const handleClose = (reason) => {
-        if (reason !== 'backdropClick') {
-            setOpen(false)
-        }
+    const handleClose = (event, reason) => {
+        if (reason && reason == "backdropClick")
+            return;
+        setOpen(false)
     }
 
     const handleSave = () => {
-        if (onSave()){
+        if (onSave()) {
             setOpen(false);
         }
     }
@@ -69,7 +69,7 @@ const EditModal = ({
                         boxShadow: 'lg',
                     }}
                 >
-                    <ModalClose variant="outlined" sx={{ m: 1 }} />
+                    <ModalClose onClick={handleClose} variant="outlined" sx={{ m: 1 }} />
                     <Stack className='w-100' direction="column" alignItems="center">
                         <Typography
                             component="h2"

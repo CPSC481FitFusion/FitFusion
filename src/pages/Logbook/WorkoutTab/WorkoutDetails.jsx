@@ -31,12 +31,12 @@ const WorkoutDetails = ({ workout, onUpdate, onClose, isOpen }) => {
     const handleSnackbarClose = () => {    // Handle Close for inalid login error snackbar
         setSnackbarOpen(false);
     };
-
-    const handleModalClose = (reason) => {    // Handler for closing modal
-        if (reason !== 'backdropClick') {
-            onClose();
-            setModalOpen(false);
-        }
+    // Handler for closing modal
+    const handleModalClose = (event, reason) => {
+        if (reason && reason == "backdropClick")
+            return;
+        onClose();
+        setModalOpen(false);
     }
 
     const handleModalSave = () => {    // Handler for saving modal edited details
@@ -69,7 +69,7 @@ const WorkoutDetails = ({ workout, onUpdate, onClose, isOpen }) => {
                 <Modal
                     open={modalOpen} onClose={handleModalClose} sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Sheet variant="outlined" sx={{ width: '90%', borderRadius: 'md', p: 3, boxShadow: 'lg' }} >
-                        <ModalClose variant="outlined" sx={{ m: 1 }} />
+                        <ModalClose onClick={handleModalClose} variant="outlined" sx={{ m: 1 }} />
                         <Stack className='w-100' direction="column" alignItems="center">
                             <Typography component="h2" id="modal-title" level="h4" className='header-25' mb={1} >
                                 Workout Details

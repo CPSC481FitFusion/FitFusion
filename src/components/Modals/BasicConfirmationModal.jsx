@@ -3,17 +3,16 @@ import React from 'react';
 import ButtonFilled from '../ButtonFilled';
 import { Box, Stack } from '@mui/material';
 
-
-
 const BasicConfirmationModal = ({ buttonStyle, openModalButtonLabel, modalHeader, modalBody, modalConfirmationButtonLabel, actionOnClick }) => {
     const [open, setOpen] = React.useState(false);
-    const handleClose = (event, reason) => {
-        if (reason !== 'backdropClick') {
-            setOpen(false)
-        }
+
+    const handleModalClose = (event, reason) => { // Handler for closing modal
+        if (reason && reason == "backdropClick")
+            return;
+        setOpen(false)
     }
 
-    const onConfirmationButtonClick= () => {
+    const onConfirmationButtonClick = () => {
         actionOnClick()
         setOpen(false)
     }
@@ -24,9 +23,8 @@ const BasicConfirmationModal = ({ buttonStyle, openModalButtonLabel, modalHeader
                 aria-labelledby="modal-title"
                 aria-describedby="modal-desc"
                 open={open}
-                onClose={handleClose}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            >
+                onClose={handleModalClose}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Sheet
                     variant="outlined"
                     sx={{
@@ -34,9 +32,8 @@ const BasicConfirmationModal = ({ buttonStyle, openModalButtonLabel, modalHeader
                         borderRadius: 'md',
                         p: 3,
                         boxShadow: 'lg',
-                    }}
-                >
-                    <ModalClose variant="outlined" />
+                    }}>
+                    <ModalClose onClick={handleModalClose} variant="outlined" />
                     <Stack direction="column" alignItems="center">
                         <Typography
                             component="h2"
