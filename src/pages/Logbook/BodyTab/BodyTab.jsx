@@ -1,23 +1,52 @@
 import ButtonFilled from "../../../components/ButtonFilled";
-import { Modal, ModalClose, Typography, Sheet } from '@mui/joy';
-import React from 'react';
+import { Modal, Sheet, Typography } from '@mui/joy';
+import React, { useState } from 'react';
 import { Stack } from '@mui/material';
 import BasicConfirmationModal from "../../../components/Modals/BasicConfirmationModal";
-import Container from "../../../components/Container";
 import BodyDetails from "./BodyDetails";
-import BodyExerciseCard from "./BodyExerciseCard";
+import Container from "../../../components/Container";
 
 const BodyTab = () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [bodyComposition, setBodyComposition] = useState();
+
+    // User body composition
+    let userBodyComposition = []
     const handleClose = (event, reason) => {
         if (reason !== 'backdropClick') {
             setOpen(false);
         }
     }
+
+    const finishBodyCompositionOnClick = () => {
+        setOpen(false);
+    }
+
+    // Get logged in user's workouts from local storage
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const loggedInUser = localStorage.getItem("userLoggedIn");
+
+    // Check through each user object to find match
+    users.forEach(user => {
+        if (user.username === loggedInUser) {
+            userWorkouts = user.workouts;
+        }
+    });
+
+    /* const showBodyComposition =
+        newBodyComposition.length === 0 ?
+            <></> :
+            newBodyComposition.map((exercise) =>
+                <>
+                    <BodyCompositionCard
+                        exerciseName={exercise.name}
+                    />
+                </>
+            );*/
+
     return (
         <>
-            <h6 className='general-label'>Start a Body Composition</h6>
-            <ButtonFilled style={"background-green"} text={"Start"} onClick={() => setOpen(true)} />
+            <ButtonFilled style={"background-green"} text={"Start a Body Composition"} onClick={() => setOpen(true)} />
             <Modal
                 aria-labelledby="modal-title"
                 aria-describedby="modal-desc"
@@ -29,35 +58,25 @@ const BodyTab = () => {
                     variant="outlined"
                     className="full-page-modal-container"
                 >
-                    <BodyDetails />
-                    <Container
-                        style={"background-purple-light"}
-                        children={
-                            <>
-                                <BodyExerciseCard />
-                                <ButtonFilled
-                                    style={"background-purple"}
-                                    text={"Add Body Composition"}
-                                />
-                            </>
-                        }
-                    />
+                    <BodyDetails
+                        onRemove={() => setOpen(false)} />
                     <Stack spacing={20} direction="row" className="horizontal-stack" >
                         <BasicConfirmationModal
                             buttonStyle={"background-orange"}
                             openModalButtonLabel={"Cancel"}
                             modalHeader={"Cancel Body Composition"}
-                            modalBody={"Are you sure you want to cancel your Body Composition entry?"}
+                            modalBody={"Are you sure you want to cancel your body composition log?"}
                             modalConfirmationButtonLabel={"Cancel Body Composition"}
-                            actionOnClick={() => setOpen(false)}
+                            actionOnClick={() =>
+                                setOpen(false)}
                         />
                         <BasicConfirmationModal
                             buttonStyle={"background-green"}
                             openModalButtonLabel={"Finish"}
                             modalHeader={"Finish Body Composition"}
-                            modalBody={"Are you sure you want to finish your Body Composition entry?"}
+                            modalBody={"Are you sure you want to finish your body composiiton log?"}
                             modalConfirmationButtonLabel={"Finish Body Composition"}
-                            actionOnClick={() => setOpen(false)}
+                            actionOnClick={finishBodyCompositionOnClick}
                         />
                     </Stack>
                 </Sheet>
