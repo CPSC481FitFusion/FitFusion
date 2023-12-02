@@ -105,7 +105,7 @@ const GoalsTab = () => {
                             modalBody={
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <DeleteButtonWithConfirmation style={{ marginRight: '8px' }} />
-                                    Attend Zumba Classes
+                                    Zumba Classes
                                 </div>
                             }
                             onClickRemove={() => {/* Implement your remove logic */ }}
