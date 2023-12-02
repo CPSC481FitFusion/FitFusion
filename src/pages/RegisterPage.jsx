@@ -22,21 +22,23 @@ export const RegisterPage = () => {
           <Typography>
             Please enter your credentials to register for Fitfusion!
           </Typography>
-          <Box className="input-container">
-            <TextInputWithLabel
-              label={"Username"}
-              placeholder={"Click to enter your Username"}
-            ></TextInputWithLabel>
-            <TextInputWithLabel
-              label={"Password"}
-              placeholder={"Click to enter your Password"}
-              isPassword={true}
-            ></TextInputWithLabel>
-            <TextInputWithLabel
-              label={"Confirm Password"}
-              placeholder={"Click to enter your Password"}
-              isPassword={true}
-            ></TextInputWithLabel>
+          <Box className="input-container mb-4">
+            <Stack spacing={3}>
+              <TextInputWithLabel
+                label={"Username"}
+                placeholder={"Click to enter your Username"}
+              ></TextInputWithLabel>
+              <TextInputWithLabel
+                label={"Password"}
+                placeholder={"Click to enter your Password"}
+                isPassword={true}
+              ></TextInputWithLabel>
+              <TextInputWithLabel
+                label={"Confirm Password"}
+                placeholder={"Click to enter your Password"}
+                isPassword={true}
+              ></TextInputWithLabel>
+            </Stack>
           </Box>
           <ButtonFilled
             text={"Register"}
@@ -51,7 +53,7 @@ export const RegisterPage = () => {
             spacing={1}
           >
             <Typography sx={{ fontSize: "14px" }}>
-              Alreacy have an account?
+              Already have an account?
             </Typography>
             <Link className="link-label" to="/login">
               Click here to Log In!
