@@ -5,8 +5,8 @@ import WorkoutDetails from "./WorkoutDetails";
 import WorkoutExerciseCard from "./WorkoutExerciseCard";
 import Container from "../../../components/Container";
 import { Stack, Typography } from '@mui/material';
-import BasicConfirmationModal from '../../../components/Modals/BasicConfirmationModal';
 import AddExerciseModal from './AddExerciseModal';
+import BasicConfirmationModal from '../../../components/modals/basicConfirmationModal';
 
 const WorkoutTab = () => {
     const [open, setOpen] = useState(false);
@@ -36,10 +36,10 @@ const WorkoutTab = () => {
         setOpen(false);
     };
 
-    const handleClose = (reason) => {
-        if (reason !== 'backdropClick') {
-            setOpen(false);
-        }
+    const handleClose = (event, reason) => {
+        if (reason && reason == "backdropClick")
+            return;
+        setOpen(false);
     };
 
     const handleAddExercise = (newExercise) => {
@@ -69,6 +69,38 @@ const WorkoutTab = () => {
         setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
     };
 
+    // Handling removal of exercise
+    const handleRemoveExercise = (exerciseId) => {
+        const updatedExercises = tempWorkout.exercises.filter(exercise => exercise.id !== exerciseId);
+        setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
+    };
+
+    // Handle removal of sets
+    const handleRemoveSet = (exerciseId, setId) => {
+        const updatedExercises = tempWorkout.exercises.map(exercise => {
+            if (exercise.id === exerciseId) {
+                const updatedSets = exercise.sets.filter(set => set.id !== setId);
+                return { ...exercise, sets: updatedSets };
+            }
+            return exercise;
+        });
+        setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
+    };
+
+    // Handle Set Edit
+    const handleEditSet = (exerciseId, editedSet) => {
+        const updatedExercises = tempWorkout.exercises.map(exercise => {
+            if (exercise.id === exerciseId) {
+                const updatedSets = exercise.sets.map(set =>
+                    set.id === editedSet.id ? editedSet : set
+                );
+                return { ...exercise, sets: updatedSets };
+            }
+            return exercise;
+        });
+        setTempWorkout({ ...tempWorkout, exercises: updatedExercises });
+    };
+
     // Render exercises cards
     const showExercises = tempWorkout?.exercises.map(exercise => (
         <WorkoutExerciseCard
@@ -76,7 +108,9 @@ const WorkoutTab = () => {
             exercise={exercise}
             onUpdateExercise={onUpdateExercise}
             onAddSet={onAddSet}
-        />
+            onRemoveExercise={handleRemoveExercise}
+            onRemoveSet={handleRemoveSet} 
+            onEditSet={handleEditSet} />
     ));
 
     return (
@@ -86,6 +120,7 @@ const WorkoutTab = () => {
                 text={"Start a New Workout"}
                 onClick={startNewWorkout} />
             <Modal
+                className={"overflow-auto"}
                 open={open}
                 onClose={handleClose}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -113,7 +148,7 @@ const WorkoutTab = () => {
                             buttonStyle={"background-orange"}
                             openModalButtonLabel={"Cancel"}
                             modalHeader={"Cancel Workout"}
-                            modalBody={"Are you sure you want to cancel your workout?"}
+                            modalBody={"Are you sure you want to cancel your workout? All current progress will be lost."}
                             modalConfirmationButtonLabel={"Cancel Workout"}
                             actionOnClick={() =>
                                 setOpen(false)} />

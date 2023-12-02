@@ -36,7 +36,6 @@ const AddExerciseModal = ({ isOpen, onClose, onAddExercise }) => {
       name: exerciseName,
       sets: [], // Initialize with no sets
     };
-    console.log("exercise name is: " + exerciseName);
     onAddExercise(newExercise);
     setExerciseName(""); // Reset the exercise name field
     setModalOpen(false);

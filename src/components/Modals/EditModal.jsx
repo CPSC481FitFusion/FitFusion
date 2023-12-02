@@ -10,31 +10,44 @@ const EditModal = ({
     modalHeader,
     modalBody,
     isOpen,
+    showRemove,
     onRemove,
     onSave }) => {
-    const [open, setOpen] = React.useState(isOpen);
+    const [open, setOpen] = React.useState(isOpen || false);
+    let buttonType = (<></>);
+    let removeButton = (<></>);
 
     const onClickRedBorderButton = () => {
         setOpen(false);
         onRemove(false);
     }
 
-    let button = (<></>);
     if (isIcon) {
-        button = (
-            <IconButton onClick={() => setOpen(true)}>
+        buttonType = (
+            <IconButton className="p-0" onClick={() => setOpen(true)}>
                 <EditIcon />
             </IconButton>
         );
     }
     else {
-        button = (
+        buttonType = (
             <Button
                 variant='outlined'
                 className='purple-border-button'
                 onClick={() => setOpen(true)}
             >
                 {editButtonLabel}
+            </Button>
+        );
+    }
+
+    if (showRemove) {
+        removeButton = (
+            <Button
+                variant='outlined'
+                className='red-border-button'
+                onClick={onClickRedBorderButton}>
+                Delete
             </Button>
         );
     }
@@ -46,14 +59,13 @@ const EditModal = ({
     }
 
     const handleSave = () => {
-        if (onSave()) {
-            setOpen(false);
-        }
+        onSave();
+        setOpen(false);
     }
 
     return (
         <>
-            {button}
+            {buttonType}
             <Modal
                 aria-labelledby="modal-title"
                 aria-describedby="modal-desc"
@@ -88,12 +100,7 @@ const EditModal = ({
                             {modalBody}
                         </Grid>
                         <Stack direction="row" spacing={3} className='w-100'>
-                            <Button
-                                variant='outlined'
-                                className='red-border-button'
-                                onClick={onClickRedBorderButton}>
-                                Remove
-                            </Button>
+                            {removeButton}
                             <ButtonFilled
                                 text="Save"
                                 style="background-green"

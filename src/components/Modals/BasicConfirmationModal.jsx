@@ -3,7 +3,13 @@ import React from 'react';
 import ButtonFilled from '../ButtonFilled';
 import { Box, Stack } from '@mui/material';
 
-const BasicConfirmationModal = ({ buttonStyle, openModalButtonLabel, modalHeader, modalBody, modalConfirmationButtonLabel, actionOnClick }) => {
+const BasicConfirmationModal = ({
+    buttonStyle,
+    openModalButtonLabel,
+    modalHeader,
+    modalBody,
+    modalConfirmationButtonLabel,
+    actionOnClick }) => {
     const [open, setOpen] = React.useState(false);
 
     const handleModalClose = (event, reason) => { // Handler for closing modal
