@@ -8,6 +8,12 @@ import { Stack, Typography } from "@mui/material";
 import AddExerciseModal from "./AddExerciseModal";
 import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
 import { getCurrentUsername } from "../../../utils/userUtils";
+import { Card } from '@mui/material';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton'
+
 
 const WorkoutTab = () => {
   const [open, setOpen] = useState(false);
@@ -177,6 +183,35 @@ const WorkoutTab = () => {
         onClose={() => setAddExerciseMode(false)}
         onAddExercise={handleAddExercise}
       />
+        <Card sx={{ maxWidth: 600 }}>
+          <CardContent>
+              {/* <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}> */}
+              {/* <Typography variant='h3' gutterBottom>
+                  Arm Day
+              </Typography>
+              <IconButton > <CloseIcon /> </IconButton>
+              </div>
+              <Typography variant="h4" component="div">
+              Oct 24, 2023
+              </Typography>
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              Hammer Curls (Dumbbell)
+              </Typography>
+              <Typography variant="body1">
+              3 Sets  5 reps 10lbs 
+              <br />
+              </Typography>
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              Lateral Pulldown Cable
+              </Typography>
+              <Typography variant="body1">
+              2 Sets  8 reps 55-70lbs 
+              <br />
+              </Typography> */}
+          </CardContent>
+      </Card>
+
+        
     </>
   );
 };
