@@ -20,6 +20,16 @@ const WorkoutTab = () => {
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [tempWorkout, setTempWorkout] = useState(null);
   const [addExerciseMode, setAddExerciseMode] = useState(false);
+  const [isArmDayCardVisible, setIsArmDayCardVisible] = useState(true);
+  const [isLegDayCardVisible, setIsLegDayCardVisible] = useState(true);
+
+  const handleCloseArmDayCard = () => {
+    setIsArmDayCardVisible(false);
+  };
+
+  const handleCloseLegDayCard = () => {
+    setIsLegDayCardVisible(false);
+  };
 
   const startNewWorkout = () => {
     setTempWorkout({
@@ -183,35 +193,68 @@ const WorkoutTab = () => {
         onClose={() => setAddExerciseMode(false)}
         onAddExercise={handleAddExercise}
       />
-        <Card sx={{ maxWidth: 600 }}>
+      <div style={{ background: "#ECDEEF", width: 400, height: 710}}>
+      {isArmDayCardVisible && (<Card sx={{ marginTop: 5, maxWidth: 600, marginLeft: 10}}>
           <CardContent>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography variant='h3' gutterBottom>
-                  Arm Day
+                <em>Arm Day</em>
               </Typography>
-              <IconButton > <CloseIcon /> </IconButton>
+              <IconButton onClick={handleCloseArmDayCard}> <CloseIcon /> </IconButton>
               </div>
-              <Typography variant="h4" component="div">
+              <Typography variant="h6" component="div">
               Oct 24, 2023
               </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              Hammer Curls (Dumbbell)
+              <Typography variant="h6" sx={{ mb: 1.5 }} color="#A05DAB">
+              <em>Hammer Curls (Dumbbell)</em>
               </Typography>
-              <Typography variant="body1">
-              3 Sets  5 reps 10lbs 
-              <br />
+              <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                <Typography variant="body1" component="span">• 3 Sets </Typography>
+                <Typography variant="body1" component="span" sx={{ ml: 5 }}>• 8-10 reps</Typography>
+                <Typography variant="body1" component="span" sx={{ ml: 5 }}>•  10 lbs</Typography>
+              </div>
+              <Typography variant="h6" sx={{ mb: 1.5 }} color="#A05DAB">
+              <em>Lateral Pulldown (Cable)</em>
               </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              Lateral Pulldown Cable
+              <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                <Typography variant="body1" component="span">• 2 Sets </Typography>
+                <Typography variant="body1" component="span" sx={{ ml: 5 }}>• 8 reps</Typography>
+                <Typography variant="body1" component="span" sx={{ ml: 5 }}>•  55-70 lbs</Typography>
+              </div>
+          </CardContent>
+      </Card>)}
+        {isLegDayCardVisible && (
+          <Card sx={{ marginTop: 5, maxWidth: 600, marginLeft: 10}}>
+          <CardContent>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Typography variant='h3' gutterBottom>
+                <em>Leg Day</em>
               </Typography>
-              <Typography variant="body1">
-              2 Sets  8 reps 55-70lbs 
-              <br />
+              <IconButton onClick={handleCloseLegDayCard}> <CloseIcon /> </IconButton>
+              </div>
+              <Typography variant="h6" component="div">
+              Oct 25, 2023
               </Typography>
+              <Typography variant="h6" sx={{ mb: 1.5 }} color="#A05DAB">
+              <em>Leg Curls</em>
+              </Typography>
+              <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                <Typography variant="body1" component="span">• 3 Sets </Typography>
+                <Typography variant="body1" component="span" sx={{ ml: 5 }}>• 8-10 reps</Typography>
+                <Typography variant="body1" component="span" sx={{ ml: 5 }}>•  100 lbs</Typography>
+              </div>
+              <Typography variant="h6" sx={{ mb: 1.5 }} color="#A05DAB">
+              <em>Leg Press</em>
+              </Typography>
+              <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                <Typography variant="body1" component="span">• 2 Sets </Typography>
+                <Typography variant="body1" component="span" sx={{ ml: 5 }}>• 8 reps</Typography>
+                <Typography variant="body1" component="span" sx={{ ml: 5 }}>•  200 lbs</Typography>
+              </div>
           </CardContent>
       </Card>
-
-        
+        )}
+        </div>
     </>
   );
 };
