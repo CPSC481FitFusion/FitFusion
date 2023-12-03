@@ -185,8 +185,8 @@ const WorkoutTab = () => {
       />
         <Card sx={{ maxWidth: 600 }}>
           <CardContent>
-              {/* <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}> */}
-              {/* <Typography variant='h3' gutterBottom>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Typography variant='h3' gutterBottom>
                   Arm Day
               </Typography>
               <IconButton > <CloseIcon /> </IconButton>
@@ -207,7 +207,7 @@ const WorkoutTab = () => {
               <Typography variant="body1">
               2 Sets  8 reps 55-70lbs 
               <br />
-              </Typography> */}
+              </Typography>
           </CardContent>
       </Card>
 
