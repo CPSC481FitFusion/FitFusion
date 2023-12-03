@@ -193,8 +193,8 @@ const WorkoutTab = () => {
         onClose={() => setAddExerciseMode(false)}
         onAddExercise={handleAddExercise}
       />
-      <div style={{ background: "#ECDEEF", width: 400, height: 710}}>
-      {isArmDayCardVisible && (<Card sx={{ marginTop: 5, maxWidth: 600, marginLeft: 10}}>
+      <div style={{ background: "#ECDEEF", width: 400, height: 700}}>
+      {isArmDayCardVisible && (<Card sx={{ marginTop: 5, maxWidth: 350, marginLeft: 3}}>
           <CardContent>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography variant='h3' gutterBottom>
@@ -224,7 +224,7 @@ const WorkoutTab = () => {
           </CardContent>
       </Card>)}
         {isLegDayCardVisible && (
-          <Card sx={{ marginTop: 5, maxWidth: 600, marginLeft: 10}}>
+          <Card sx={{ marginTop: 5, maxWidth: 350, marginLeft: 3}}>
           <CardContent>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography variant='h3' gutterBottom>
