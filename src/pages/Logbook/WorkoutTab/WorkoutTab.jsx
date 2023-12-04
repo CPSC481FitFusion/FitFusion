@@ -12,8 +12,7 @@ import { Card } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton'
-
+import IconButton from '@mui/material/IconButton;
 
 const WorkoutTab = () => {
   const [open, setOpen] = useState(false);
