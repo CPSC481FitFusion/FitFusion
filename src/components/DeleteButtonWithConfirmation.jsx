@@ -17,7 +17,6 @@ export default function DeleteGoalButton() {
   };
 
   const handleDeleteConfirmation = () => {
-    console.log("Goal deleted");
     handleConfirmationModalClose();
   };
 
