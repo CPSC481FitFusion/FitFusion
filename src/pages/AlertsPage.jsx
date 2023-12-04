@@ -7,9 +7,39 @@ import AlertDetails from '../Pages/Logbook/AlertTab/Alertdetails';
 import BasicConfirmationModal from "../components/modals/basicConfirmationModal";
 import AppBottomNavigation from "../components/AppBottomNavigation";
 
+const ReminderForm = ({ onAddReminder }) => {
+  const [time, setTime] = useState('');
+  const [frequency, setFrequency] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleAddReminder = () => {
+    if (time && frequency && message) {
+      onAddReminder({ time, frequency, message, completed: false });
+      // Clear form fields
+      setTime('');
+      setFrequency('');
+      setMessage('');
+    }
+  };
+
+  return (
+    <div>
+      <label>Time: <input type="text" value={time} onChange={(e) => setTime(e.target.value)} /></label>
+      <label>Frequency: <input type="text" value={frequency} onChange={(e) => setFrequency(e.target.value)} /></label>
+      <label>Message: <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} /></label>
+      <button onClick={handleAddReminder}>Add Reminder</button>
+    </div>
+  );
+};
+
 export const AlertsPage = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isStartModalOpen, setStartModalOpen] = useState(false);
+  const [reminders, setReminders] = useState([
+    { time: '8:00 AM', message: 'Drink water', frequency: 'Every Monday', completed: false },
+    { time: '6:00 PM', message: 'Yoga class', frequency: 'Every Tuesday, Thursday', completed: false },
+    // Add more reminders as needed
+  ]);
 
   const handleOpenEditModal = () => {
     setEditModalOpen(true);
@@ -27,24 +57,9 @@ export const AlertsPage = () => {
     setStartModalOpen(false);
   };
 
-  const randomNotifications = [
-    "Don't forget to drink water!",
-    "Time to water your plants!",
-    "Take a break and stretch!",
-    "Reminder: Complete your daily tasks!",
-    // Add more random notifications as needed
-  ];
-
-  // Function to generate a random notification
-  const getRandomNotification = () => {
-    const randomIndex = Math.floor(Math.random() * randomNotifications.length);
-    return randomNotifications[randomIndex];
+  const handleAddReminder = (newReminder) => {
+    setReminders([...reminders, newReminder]);
   };
-
-  // Get current date
-  const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-  const dayAndDate = currentDate.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
   return (
     <>
@@ -53,7 +68,7 @@ export const AlertsPage = () => {
         <div>
           <h1>Alerts</h1>
         </div>
-        <p><strong>{formattedDate}</strong></p>
+        <p><strong>{new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</strong></p>
       </div>
 
       {/* Create a New Reminder */}
@@ -109,35 +124,43 @@ export const AlertsPage = () => {
       </Modal>
 
       {/* Reminder History */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px' }}>
+      <div style={{ marginTop: '20px' }}>
         <p className="general-label"> Reminders </p>
         {/* Check off the reminder to mark it as complete! */}
         <p className="general-label" style={{ marginTop: '10px' }}> Check off the reminder to mark it as complete! </p>
-        {/* Right side: Square Edit Details button */}
-        <div className="see-all">
-          <div className="overlap-5">
-            {/* Pass relevant props to the EditModal */}
-            <EditModal
-              isIcon={true}
-              isOpen={false}
-              editButtonLabel="Edit Reminders"
-              modalHeader="Edit Reminder Details"
-              // modalBody="Attending Zumba Class"
-              onClickRemove={() => {/* Implement your remove logic */ }}
-              onClickSave={() => {/* Implement your save logic */ }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Display random notifications as toast notifications */}
-      <div style={{ marginTop: '20px' }}>
-        {randomNotifications.map((notification, index) => (
+        {reminders.map((reminder, index) => (
           <div key={index} className="toast-notification">
-            {notification}
+            <div
+              style={{
+                backgroundColor: '#4CAF50', // Updated to the green color of the start button
+                border: '1px solid #45A049',
+                borderRadius: '8px',
+                padding: '15px',
+                boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+              }}
+            >
+              <label>
+                <input
+                  type="checkbox"
+                  checked={reminder.completed}
+                  onChange={() => {
+                    const updatedReminders = [...reminders];
+                    updatedReminders[index].completed = !updatedReminders[index].completed;
+                    setReminders(updatedReminders);
+                  }}
+                />
+                <span style={{ marginLeft: '10px' }}>
+                  <strong>{reminder.time}</strong> - {reminder.message}
+                </span>
+              </label>
+              <p style={{ fontSize: '14px', color: '#555' }}>{reminder.frequency}</p>
+            </div>
           </div>
         ))}
       </div>
+
+      {/* Reminder Form */}
+      <ReminderForm onAddReminder={handleAddReminder} />
 
       <AppBottomNavigation state={"alerts"} />
     </>
