@@ -8,6 +8,10 @@ import { Stack, Typography } from "@mui/material";
 import AddExerciseModal from "./AddExerciseModal";
 import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
 import { getCurrentUsername } from "../../../utils/userUtils";
+import { Card } from '@mui/material';
+import CardContent from '@mui/material/CardContent';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 
 import { WorkoutHistory } from "./WorkoutHistory";
 
@@ -182,7 +186,7 @@ const WorkoutTab = () => {
                     onAddExercise={handleAddExercise}
                 />
             </>
-            <> {/* Workout History - COMMENTED OUT AS IT CHANGES APP DIMENTIONS (TOO BIG)*/}
+            <> {/* Workout History*/}
                 <WorkoutHistory /> 
             </>
         </>
