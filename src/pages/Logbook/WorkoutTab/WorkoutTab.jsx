@@ -183,7 +183,7 @@ const WorkoutTab = () => {
                 />
             </>
             <> {/* Workout History - COMMENTED OUT AS IT CHANGES APP DIMENTIONS (TOO BIG)*/}
-                {/* <WorkoutHistory /> */} 
+                <WorkoutHistory /> 
             </>
         </>
     );
