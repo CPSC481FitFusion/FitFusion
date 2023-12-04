@@ -13,21 +13,13 @@ import CardContent from '@mui/material/CardContent';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 
+import { WorkoutHistory } from "./WorkoutHistory";
+
 const WorkoutTab = () => {
     const [open, setOpen] = useState(false);
     const [detailsModalOpen, setDetailsModalOpen] = useState(false);
     const [tempWorkout, setTempWorkout] = useState(null);
     const [addExerciseMode, setAddExerciseMode] = useState(false);
-    const [isArmDayCardVisible, setIsArmDayCardVisible] = useState(true);
-    const [isLegDayCardVisible, setIsLegDayCardVisible] = useState(true);
-
-    const handleCloseArmDayCard = () => {
-        setIsArmDayCardVisible(false);
-    };
-
-    const handleCloseLegDayCard = () => {
-        setIsLegDayCardVisible(false);
-    };
 
     const startNewWorkout = () => {
         setTempWorkout({
@@ -131,128 +123,72 @@ const WorkoutTab = () => {
 
     return (
         <>
-            <ButtonFilled
-                style={"background-green"}
-                text={"Start a Workout"}
-                onClick={startNewWorkout}
-            />
-            <Modal
-                className={"overflow-auto"}
-                open={open}
-                onClose={handleClose}
-                sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-            >
-                <Sheet variant="outlined" className="full-page-modal-container">
-                    <WorkoutDetails
-                        workout={tempWorkout}
-                        onUpdate={setTempWorkout}
-                        onClose={() => setDetailsModalOpen(false)}
-                        isOpen={detailsModalOpen}
-                    />
-                    <Container
-                        style={"background-purple-light d-flex align-items-start"}
-                        children={
-                            <>
-                                <Typography className="header-20 pb-2">Exercises</Typography>
-                                {showExercises}
-                                <ButtonFilled
-                                    style={"background-purple"}
-                                    text={"Add Exercise"}
-                                    onClick={() => setAddExerciseMode(true)}
-                                />
-                            </>
-                        }
-                    />
-                    <Stack spacing={20} direction="row" className="horizontal-stack">
-                        <BasicConfirmationModal
-                            buttonStyle={"background-orange"}
-                            openModalButtonLabel={"Cancel"}
-                            modalHeader={"Cancel Workout"}
-                            modalBody={
-                                "Are you sure you want to cancel your workout? All current progress will be lost."
+
+            <> {/* Workout Add Exercise */}
+                <ButtonFilled
+                    style={"background-green"}
+                    text={"Start a Workout"}
+                    onClick={startNewWorkout}
+                />
+                <Modal
+                    className={"overflow-auto"}
+                    open={open}
+                    onClose={handleClose}
+                    sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+                >
+                    <Sheet variant="outlined" className="full-page-modal-container">
+                        <WorkoutDetails
+                            workout={tempWorkout}
+                            onUpdate={setTempWorkout}
+                            onClose={() => setDetailsModalOpen(false)}
+                            isOpen={detailsModalOpen}
+                        />
+                        <Container
+                            style={"background-purple-light d-flex align-items-start"}
+                            children={
+                                <>
+                                    <Typography className="header-20 pb-2">Exercises</Typography>
+                                    {showExercises}
+                                    <ButtonFilled
+                                        style={"background-purple"}
+                                        text={"Add Exercise"}
+                                        onClick={() => setAddExerciseMode(true)}
+                                    />
+                                </>
                             }
-                            modalConfirmationButtonLabel={"Cancel Workout"}
-                            actionOnClick={() => setOpen(false)}
                         />
-                        <BasicConfirmationModal
-                            buttonStyle={"background-green"}
-                            openModalButtonLabel={"Finish"}
-                            modalHeader={"Finish Workout"}
-                            modalBody={"Are you sure you want to finish your workout?"}
-                            modalConfirmationButtonLabel={"Finish Workout"}
-                            actionOnClick={finishWorkoutOnClick}
-                        />
-                    </Stack>
-                </Sheet>
-            </Modal>
-            {/* Modal for adding a new exercise */}
-            <AddExerciseModal
-                isOpen={addExerciseMode}
-                onClose={() => setAddExerciseMode(false)}
-                onAddExercise={handleAddExercise}
-            />
-            <div style={{ background: "#ECDEEF", width: 400, height: 700 }}>
-                {isArmDayCardVisible && (<Card sx={{ marginTop: 5, maxWidth: 350, marginLeft: 3 }}>
-                    <CardContent>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <Typography variant='h3' gutterBottom>
-                                <em>Arm Day</em>
-                            </Typography>
-                            <IconButton onClick={handleCloseArmDayCard}> <CloseIcon /> </IconButton>
-                        </div>
-                        <Typography variant="h6" component="div">
-                            Oct 24, 2023
-                        </Typography>
-                        <Typography variant="h6" sx={{ mb: 1.5 }} color="#A05DAB">
-                            <em>Hammer Curls (Dumbbell)</em>
-                        </Typography>
-                        <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                            <Typography variant="body1" component="span">• 3 Sets </Typography>
-                            <Typography variant="body1" component="span" sx={{ ml: 5 }}>• 8-10 reps</Typography>
-                            <Typography variant="body1" component="span" sx={{ ml: 5 }}>•  10 lbs</Typography>
-                        </div>
-                        <Typography variant="h6" sx={{ mb: 1.5 }} color="#A05DAB">
-                            <em>Lateral Pulldown (Cable)</em>
-                        </Typography>
-                        <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                            <Typography variant="body1" component="span">• 2 Sets </Typography>
-                            <Typography variant="body1" component="span" sx={{ ml: 5 }}>• 8 reps</Typography>
-                            <Typography variant="body1" component="span" sx={{ ml: 5 }}>•  55-70 lbs</Typography>
-                        </div>
-                    </CardContent>
-                </Card>)}
-                {isLegDayCardVisible && (
-                    <Card sx={{ marginTop: 5, maxWidth: 350, marginLeft: 3 }}>
-                        <CardContent>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <Typography variant='h3' gutterBottom>
-                                    <em>Leg Day</em>
-                                </Typography>
-                                <IconButton onClick={handleCloseLegDayCard}> <CloseIcon /> </IconButton>
-                            </div>
-                            <Typography variant="h6" component="div">
-                                Oct 25, 2023
-                            </Typography>
-                            <Typography variant="h6" sx={{ mb: 1.5 }} color="#A05DAB">
-                                <em>Leg Curls</em>
-                            </Typography>
-                            <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                <Typography variant="body1" component="span">• 3 Sets </Typography>
-                                <Typography variant="body1" component="span" sx={{ ml: 5 }}>• 8-10 reps</Typography>
-                                <Typography variant="body1" component="span" sx={{ ml: 5 }}>•  100 lbs</Typography>
-                            </div>
-                            <Typography variant="h6" sx={{ mb: 1.5 }} color="#A05DAB">
-                                <em>Leg Press</em>
-                            </Typography>
-                            <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                <Typography variant="body1" component="span">• 2 Sets </Typography>
-                                <Typography variant="body1" component="span" sx={{ ml: 5 }}>• 8 reps</Typography>
-                                <Typography variant="body1" component="span" sx={{ ml: 5 }}>•  200 lbs</Typography>
-                            </div>
-                        </CardContent>
-                    </Card>
-                )}
-            </div>
+                        <Stack spacing={20} direction="row" className="horizontal-stack">
+                            <BasicConfirmationModal
+                                buttonStyle={"background-orange"}
+                                openModalButtonLabel={"Cancel"}
+                                modalHeader={"Cancel Workout"}
+                                modalBody={
+                                    "Are you sure you want to cancel your workout? All current progress will be lost."
+                                }
+                                modalConfirmationButtonLabel={"Cancel Workout"}
+                                actionOnClick={() => setOpen(false)}
+                            />
+                            <BasicConfirmationModal
+                                buttonStyle={"background-green"}
+                                openModalButtonLabel={"Finish"}
+                                modalHeader={"Finish Workout"}
+                                modalBody={"Are you sure you want to finish your workout?"}
+                                modalConfirmationButtonLabel={"Finish Workout"}
+                                actionOnClick={finishWorkoutOnClick}
+                            />
+                        </Stack>
+                    </Sheet>
+                </Modal>
+                {/* Modal for adding a new exercise */}
+                <AddExerciseModal
+                    isOpen={addExerciseMode}
+                    onClose={() => setAddExerciseMode(false)}
+                    onAddExercise={handleAddExercise}
+                />
+            </>
+            <> {/* Workout History*/}
+                <WorkoutHistory /> 
+            </>
         </>
     );
 };

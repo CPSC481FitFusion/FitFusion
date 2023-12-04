@@ -12,7 +12,6 @@ import { WelcomePage } from './pages/WelcomePage';
 import { LogbookPage } from './pages/Logbook/LogbookPage';
 import { UnderConstructionPage } from './pages/UnderConstructionPage';
 import SeededData from './utils/SeedData';
-import { getDefaultLogbookTab } from './utils/userUtils';
 
 function App() {
   // State to track if user is logged in
