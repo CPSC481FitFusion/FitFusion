@@ -7,7 +7,7 @@ import GoalDetails from "./Goalsdetails";
 import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
 import ErrorSnackbar from "../../../components/ErrorSnackbar";
 import DeleteButtonWithConfirmation from "../../../components/DeleteButtonWithConfirmation";
-import GoalsHistoryModal from "./GoalsHistoryModal";
+import GoalsHistoryModal from "./goalshistorymodal";
 
 const GoalsTab = () => {
   const [isStartModalOpen, setStartModalOpen] = useState(false);

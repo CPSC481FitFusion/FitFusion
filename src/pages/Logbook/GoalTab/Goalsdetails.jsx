@@ -15,7 +15,7 @@ const GoalDetails = ({ onGoalNameChange }) => {
   return (
     <>
       <Stack direction="row" className="horizontal-stack">
-        <Typography className="header-20 align-bottom">Add a new</Typography>
+        <Typography className="header-20 align-bottom">Add a new goal</Typography>
       </Stack>
       <Stack className="input-container text-start w-100 m-0">
         <TextInputWithLabel
