@@ -5,7 +5,6 @@ import EditModal from '../components/Modals/EditModal';
 import { Modal, Sheet, Stack } from '@mui/joy';
 import Container from '../components/Container';
 import AlertDetails from '../Pages/Logbook/AlertTab/Alertdetails';
-import { useToasts } from 'react-toast-notifications';
 import BasicConfirmationModal from "../components/modals/basicConfirmationModal";
 
 export const AlertsPage = () => {

@@ -4,22 +4,15 @@ import ControlledCheckbox from "../../../components/ControlledCheckbox";
 import { Modal, Sheet, Stack, Typography } from "@mui/joy";
 import Container from "../../../components/Container";
 import GoalDetails from "./Goalsdetails";
-import DeleteButtonWithConfirmation from "../../../components/DeleteButtonWithConfirmation";
-import GoalsHistoryModal from "./goalshistorymodal";
 import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
+import ErrorSnackbar from "../../../components/ErrorSnackbar";
+import DeleteButtonWithConfirmation from "../../../components/DeleteButtonWithConfirmation";
+import GoalsHistoryModal from "./GoalsHistoryModal";
 
 const GoalsTab = () => {
-  const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isStartModalOpen, setStartModalOpen] = useState(false);
-  const [goalName, setGoalName] = useState(""); // State to store the goal name
-
-  const handleOpenEditModal = () => {
-    setEditModalOpen(true);
-  };
-
-  const handleCloseEditModal = () => {
-    setEditModalOpen(false);
-  };
+  const [goalName, setGoalName] = useState("");
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
   const handleOpenStartModal = () => {
     setStartModalOpen(true);
@@ -33,16 +26,30 @@ const GoalsTab = () => {
     setGoalName(newName);
   };
 
+  const handleConfirmAdd = () => {
+    if (goalName.trim() === "") {
+      // Show error Snackbar if the goal name is empty
+      setIsSnackbarOpen(true);
+    } else {
+      // Save your goal details or perform other actions
+      console.log("Goal Name:", goalName);
+      // Close the modal or perform other actions
+      handleCloseStartModal();
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setIsSnackbarOpen(false);
+  };
+
   return (
     <>
-      {/* Start button */}
       <ButtonFilled
         style="background-green"
         text="Set A Goal"
         onClick={handleOpenStartModal}
       />
 
-      {/* Start Modal */}
       <Modal
         aria-labelledby="modal-title"
         aria-describedby="modal-desc"
@@ -51,7 +58,6 @@ const GoalsTab = () => {
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
         <Sheet variant="outlined" className="full-page-modal-container">
-          {/* Additional content can be added here */}
           <Container
             style={"background-blue-light m-0"}
             children={
@@ -75,11 +81,18 @@ const GoalsTab = () => {
               modalHeader={"Confirm Add"}
               modalBody={"Are you sure you want to add a new goal?"}
               modalConfirmationButtonLabel={"Confirm Add"}
-              actionOnClick={() => handleCloseStartModal()}
+              actionOnClick={handleConfirmAdd}
             />
           </Stack>
         </Sheet>
       </Modal>
+
+      {/* Snackbar for Goal Name Empty */}
+      <ErrorSnackbar
+        isOpen={isSnackbarOpen}
+        snackbarMessage="Goal Name cannot be empty."
+        onClose={handleCloseSnackbar}
+      />
 
       {/* Goal History */}
       <div
@@ -92,10 +105,8 @@ const GoalsTab = () => {
       >
         <p className="general-label">Goal History</p>
 
-        {/* Right side: Square Edit Details button */}
         <div className="see-all">
           <div className="overlap-5">
-            {/* Pass relevant props to the EditModal */}
             <GoalsHistoryModal
               isIcon={true}
               isOpen={false}
@@ -119,18 +130,17 @@ const GoalsTab = () => {
           </div>
         </div>
       </div>
-      {/* Container for Controlled Checkboxes */}
+
       <div
         style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}
       >
-        {/* First Controlled Checkbox */}
         <ControlledCheckbox goalName="Zumba Classes" />
         <Typography
           variant="body2"
           color="textSecondary"
           sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
         >
-          Attend 3 zumba class this month
+          Attend 3 zumba classes this month
         </Typography>
         <Typography
           variant="body2"
@@ -139,13 +149,6 @@ const GoalsTab = () => {
         >
           Deadline 12/06/2023
         </Typography>
-        {/* Second Controlled Checkbox */}
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
-        ></Typography>
-        <ControlledCheckbox goalName={goalName} />
 
         {/* Add more ControlledCheckbox components as needed */}
       </div>
