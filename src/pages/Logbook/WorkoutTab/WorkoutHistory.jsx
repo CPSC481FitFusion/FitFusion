@@ -19,7 +19,7 @@ export const WorkoutHistory = () => {
     };
     return (
         <>
-            <Stack spacing={1} className='mt-2'>
+            <Stack spacing={1} className='my-2'>
                 <Typography className='general-label'>
                     Workout History
                 </Typography>
@@ -30,12 +30,14 @@ export const WorkoutHistory = () => {
                                 <Container
                                     elevation={3}
                                     children={
-                                        <CardContent className='p-2'>
+                                        <CardContent className='p-0'>
                                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                                 <Typography className='header-25' >
                                                     <em>Arm Day</em>
                                                 </Typography>
-                                                <IconButton onClick={handleCloseArmDayCard}> <CloseIcon /> </IconButton>
+                                                <IconButton onClick={handleCloseArmDayCard} className=''>
+                                                    <CloseIcon />
+                                                </IconButton>
                                             </div>
                                             <Typography variant="h6" component="div">
                                                 Oct 24, 2023
@@ -63,13 +65,16 @@ export const WorkoutHistory = () => {
                         {isLegDayCardVisible && (
                             <Container
                                 elevation={3}
+                                style={"mb-0"}
                                 children={
                                     <CardContent className='p-2'>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                             <Typography className='header-25' >
                                                 <em>Leg Day</em>
                                             </Typography>
-                                            <IconButton onClick={handleCloseLegDayCard}> <CloseIcon /> </IconButton>
+                                            <IconButton onClick={handleCloseLegDayCard}>
+                                                <CloseIcon />
+                                            </IconButton>
                                         </div>
                                         <Typography variant="h6" component="div">
                                             Oct 25, 2023
