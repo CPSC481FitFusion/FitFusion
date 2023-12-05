@@ -1,15 +1,13 @@
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import Container from "../../../components/Container";
-import { format } from "date-fns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { MobileTimePicker, DatePicker } from "@mui/x-date-pickers";
 import { ModalClose, Sheet } from "@mui/joy";
-import { RequiredInputLabel } from "../../../components/RequiredInputLabel";
-import { Stack, Typography, Button, Modal, Grid } from "@mui/material";
-import ButtonFilled from "../../../components/ButtonFilled";
-import ErrorSnackbar from "../../../components/ErrorSnackbar";
+import { Button, Grid, Modal, Stack, Typography } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
-import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
+import ButtonFilled from "../../../components/ButtonFilled";
+import Container from "../../../components/Container";
+import { RequiredInputLabel } from "../../../components/RequiredInputLabel";
 import TextInputWithLabel from "../../../components/TextInputWithLabel";
 
 const BodyDetails = ({ body, onUpdate, onClose, isOpen }) => {

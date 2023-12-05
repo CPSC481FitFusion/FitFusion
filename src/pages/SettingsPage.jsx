@@ -1,17 +1,16 @@
+import { Stack, Typography } from "@mui/joy";
 import React, { useState } from "react";
-import { Typography, Stack } from "@mui/joy";
+import { useNavigate } from "react-router";
 import AppBottomNavigation from "../components/AppBottomNavigation";
-import {
-  getCurrentUsername,
-  getLoggedInUserData,
-  updateUserSettings,
-} from "../utils/userUtils";
+import ErrorSnackbar from "../components/ErrorSnackbar";
 import EditModal from "../components/Modals/EditModal";
-import BasicConfirmationModal from "../components/modals/basicConfirmationModal";
 import TextInputWithLabel from "../components/TextInputWithLabel";
 import TextNumberInputWithLabel from "../components/TextNumberInputWithLabel";
-import { useNavigate } from "react-router";
-import ErrorSnackbar from "../components/ErrorSnackbar";
+import BasicConfirmationModal from "../components/modals/basicConfirmationModal";
+import {
+  getCurrentUsername,
+  getLoggedInUserData
+} from "../utils/userUtils";
 
 export const SettingsPage = () => {
   // Fetch current user's username and data

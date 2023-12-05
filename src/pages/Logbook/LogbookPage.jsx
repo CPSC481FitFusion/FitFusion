@@ -1,11 +1,11 @@
-import { Box, Tab, Typography } from "@mui/material";
-import AppBottomNavigation from "../../components/AppBottomNavigation";
-import React from "react";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import WorkoutTab from "./WorkoutTab/WorkoutTab";
+import { Box, Tab, Typography } from "@mui/material";
+import React from "react";
+import { useParams } from "react-router-dom";
+import AppBottomNavigation from "../../components/AppBottomNavigation";
 import BodyTab from "./BodyTab/BodyTab";
 import GoalsTab from "./GoalTab/GoalsTab";
-import { useParams } from "react-router-dom";
+import WorkoutTab from "./WorkoutTab/WorkoutTab";
 
 export const LogbookPage = () => {
   const defaultTabVal = useParams().logbookDefaultTab;

@@ -1,11 +1,10 @@
-import ButtonFilled from "../../../components/ButtonFilled";
-import { Modal, Sheet, Typography } from '@mui/joy';
-import React, { useState } from 'react';
+import { Modal, Sheet } from '@mui/joy';
 import { Stack } from '@mui/material';
-import BasicConfirmationModal from "../../../components/Modals/BasicConfirmationModal";
-import BodyDetails from "./BodyDetails";
+import React, { useState } from 'react';
+import ButtonFilled from "../../../components/ButtonFilled";
+import BasicConfirmationModal from '../../../components/modals/basicConfirmationModal';
 import BodyCompositionCard from "./BodyCompositionCard";
-import Container from "../../../components/Container";
+import BodyDetails from "./BodyDetails";
 
 const BodyTab = () => {    
     const [open, setOpen] = useState(false);

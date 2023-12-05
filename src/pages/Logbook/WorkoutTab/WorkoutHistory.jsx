@@ -1,7 +1,6 @@
-import { Card, Stack, Typography } from '@mui/material';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
+import { Stack, Typography } from '@mui/material';
+import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 import Container from '../../../components/Container';

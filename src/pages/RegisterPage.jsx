@@ -1,8 +1,7 @@
-import { Grid, Typography, Box, Stack } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonFilled from "../components/ButtonFilled";
-import { Link } from "react-router-dom";
 import TextInputWithLabel from "../components/TextInputWithLabel";
-import { useNavigate } from "react-router-dom";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();

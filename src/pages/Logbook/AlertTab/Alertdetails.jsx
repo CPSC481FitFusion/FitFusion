@@ -1,7 +1,6 @@
+import { Checkbox, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { Stack, Typography, Checkbox } from "@mui/material";
 import TextInputWithLabel from "../../../components/TextInputWithLabel";
-import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
 
 const AlertDetails = () => {
   const [selectedDays, setSelectedDays] = useState({

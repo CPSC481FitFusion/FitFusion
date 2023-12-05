@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Modal, Stack, Typography, Grid } from "@mui/material";
-import TextInputWithLabel from "../../../components/TextInputWithLabel";
 import { ModalClose, Sheet } from "@mui/joy";
+import { Grid, Modal, Stack, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import ButtonFilled from "../../../components/ButtonFilled";
 import ErrorSnackbar from "../../../components/ErrorSnackbar";
+import TextInputWithLabel from "../../../components/TextInputWithLabel";
 
 const AddExerciseModal = ({ isOpen, onClose, onAddExercise }) => {
   const [exerciseName, setExerciseName] = useState("");
