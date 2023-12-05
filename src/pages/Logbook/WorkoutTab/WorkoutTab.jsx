@@ -8,7 +8,6 @@ import { getCurrentUsername } from "../../../utils/userUtils";
 import AddExerciseModal from "./AddExerciseModal";
 import WorkoutDetails from "./WorkoutDetails";
 import WorkoutExerciseCard from "./WorkoutExerciseCard";
-
 import { WorkoutHistory } from "./WorkoutHistory";
 
 const WorkoutTab = () => {
