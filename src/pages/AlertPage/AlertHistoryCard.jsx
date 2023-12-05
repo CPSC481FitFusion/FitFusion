@@ -4,7 +4,6 @@ import { green } from "@mui/material/colors";
 import React, { useState } from "react";
 import Container from "../../components/Container";
 import RemoveConfirmationModal from "../../components/Modals/RemoveConfirmationModal";
-import { Checklist } from "@mui/icons-material";
 
 const AlertHistoryCard = ({ time, message, completed }) => {
     const [checked, setChecked] = useState(completed);

@@ -68,10 +68,8 @@ const BodyTab = () => {
             return;
         }
 
-        // Save the data
-        // ... Saving logic (e.g., updating the state or local storage)
-
         setModalOpen(false);
+        handleSnackbarClose();
     };
 
     const user = getCurrentUsername();
@@ -170,7 +168,7 @@ const BodyTab = () => {
                                 buttonStyle={"background-orange"}
                                 openModalButtonLabel={"Cancel"}
                                 modalHeader={"Cancel Body Composition"}
-                                modalBody={"Are you sure you want to cancel tracking a new body composition?"}
+                                modalBody={"Are you sure you want to cancel tracking a new body composition? All current progress will be lost."}
                                 modalConfirmationButtonLabel={"Cancel"}
                                 actionOnClick={handleCancel}
                             />

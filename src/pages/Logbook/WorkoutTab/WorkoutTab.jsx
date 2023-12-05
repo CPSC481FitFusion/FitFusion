@@ -28,7 +28,7 @@ const WorkoutTab = () => {
         setDetailsModalOpen(false); // This will close only the WorkoutDetails modal
         setOpen(true); // Keep base modal open.
     };
-    
+
     const startNewWorkout = () => {
         setTempWorkout({
             id: Date.now(),
@@ -47,15 +47,15 @@ const WorkoutTab = () => {
             setSnackbarMessage("No exercises tracked. Please add exercises before finishing the workout.");
             return;
         }
-
-        const userLoggedIn = getCurrentUsername();
-        const workoutData = JSON.parse(localStorage.getItem("workoutData") || "{}");
-        const userWorkouts = workoutData[userLoggedIn] || [];
-        userWorkouts.push(tempWorkout);
-        workoutData[userLoggedIn] = userWorkouts;
-        localStorage.setItem("workoutData", JSON.stringify(workoutData));
+        // const userLoggedIn = getCurrentUsername();
+        // const workoutData = JSON.parse(localStorage.getItem("workoutData") || "{}");
+        // const userWorkouts = workoutData[userLoggedIn] || [];
+        // userWorkouts.push(tempWorkout);
+        // workoutData[userLoggedIn] = userWorkouts;
+        // localStorage.setItem("workoutData", JSON.stringify(workoutData));
         setTempWorkout(null);
         setOpen(false);
+        handleSnackbarClose();
     };
 
     const handleClose = (event, reason) => {
