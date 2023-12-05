@@ -1,4 +1,4 @@
-import { ModalClose, Sheet } from "@mui/joy";
+import { Sheet } from "@mui/joy";
 import { Button, Grid, Modal, Stack, Typography } from "@mui/material";
 import { DatePicker, MobileTimePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -17,7 +17,7 @@ const WorkoutDetails = ({ workout, onUpdate, onClose, isOpen }) => {
   const [modalOpen, setModalOpen] = useState(isOpen); // State for modal
   const [tempDetails, setTempDetails] = useState({
     // Temporary state for workout details, used while editing
-    name: workout?.name || "New Workout",
+    name: workout?.name || "",
     date: workout?.date || new Date(),
     startTime: workout?.startTime || new Date(),
     endTime:

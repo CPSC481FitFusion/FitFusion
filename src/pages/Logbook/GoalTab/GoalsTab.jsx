@@ -4,14 +4,15 @@ import ButtonFilled from "../../../components/ButtonFilled";
 import Container from "../../../components/Container";
 import ErrorSnackbar from "../../../components/ErrorSnackbar";
 import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
+import { getCurrentUsername } from "../../../utils/userUtils";
 import { GoalHistoryCard } from "./GoalHistoryCard";
 import GoalDetails from "./GoalsDetails";
-import { getCurrentUsername } from "../../../utils/userUtils";
 
 const GoalsTab = () => {
   const [isStartModalOpen, setStartModalOpen] = useState(false);
   const [goalName, setGoalName] = useState("");
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const handleOpenStartModal = () => {
     setStartModalOpen(true);
@@ -29,9 +30,8 @@ const GoalsTab = () => {
     if (goalName.trim() === "") {
       // Show error Snackbar if the goal name is empty
       setIsSnackbarOpen(true);
+      setSnackbarMessage("Goal Name is required.")
     } else {
-      // Save your goal details or perform other actions
-      console.log("Goal Name:", goalName);
       // Close the modal or perform other actions
       handleCloseStartModal();
     }
@@ -44,19 +44,18 @@ const GoalsTab = () => {
   // Hardcoded goals data for demonstration purposes
   const hardcodedGoalsData = {
     "johndoe": [
-      { name: "Zumba Classes", description: "Attend 3 zumba classes this month", deadline: "12/06/2023" },
-      { name: "Running Challenge", description: "Run 5 miles per week", deadline: "12/15/2023" },
-      // ... more goals for johndoe
+      { name: "PR bench press", description: "Hit 2 plates on bench press", deadline: "12/06/2023" },
+      { name: "Running challenge with Jane", description: "Run 5 miles per week", deadline: "12/15/2023" },
     ],
     "janedoe": [
-      // ... goals for janedoe
+      { name: "Zumba classes", description: "Attend 3 zumba classes this month", deadline: "12/06/2023" },
+      { name: "Running challenge with John", description: "Run 5 miles per week", deadline: "12/15/2023" },
+      { name: "Rowwing challenge", description: "Be able to row for an hour - no breaks:)", deadline: "12/15/2023" },
     ],
-    // ... goals for other users
   };
 
   const currentUser = getCurrentUsername();
   const userGoals = hardcodedGoalsData[currentUser] || [];
-  console.log(userGoals)
   return (
     <>
       <ButtonFilled
@@ -64,7 +63,6 @@ const GoalsTab = () => {
         text="Set A Goal"
         onClick={handleOpenStartModal}
       />
-
       <Modal
         aria-labelledby="modal-title"
         aria-describedby="modal-desc"
@@ -104,19 +102,26 @@ const GoalsTab = () => {
       {/* Snackbar for Goal Name Empty */}
       <ErrorSnackbar
         isOpen={isSnackbarOpen}
-        snackbarMessage="Goal Name cannot be empty."
+        snackbarMessage={snackbarMessage}
         onClose={handleCloseSnackbar}
       />
       {/* Goal History */}
-      <Stack spacing={1} className='my-2'>
+      <Stack spacing={1} className='my-2 mt-4'>
         <Typography className='general-label'>Goal History</Typography>
         <Container style={"background-purple-light p-3 pb-0 mb-5"} children={
           userGoals.length > 0 ? (
             userGoals.map((goal, index) => (
-              <GoalHistoryCard key={index} {...goal} /> // Spread the goal object properties
+              <GoalHistoryCard key={index} {...goal} />
             ))
           ) : (
-            <Typography>No goals tracked. Track a goal for it to appear here!</Typography>
+            <>
+              <Typography className='general-label'>
+                No goals tracked in the logbook.
+              </Typography>
+              <Typography>
+                Track a goal for it to appear here!
+              </Typography>
+            </>
           )
         }
         />
