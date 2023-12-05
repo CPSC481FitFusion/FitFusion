@@ -1,17 +1,31 @@
 import Container from "../../../components/Container";
 import { CardContent, Stack, Typography } from "@mui/material";
 import { format } from "date-fns";
+import RemoveConfirmationModal from '../../../components/Modals/RemoveConfirmationModal.jsx';
 
 const BodyCompositionCard = ({ body }) => {
-  // Destructure the body object to extract each metric
   const { date, weight, waistCircumference, hipCircumference, armCircumference, thighCircumference } = body;
 
   return (
     <Container style={"d-flex align-items-start"} elevation={3} >
       <CardContent className='p-0 w-100'>
-        <Typography className='header-20'>
-          {date ? format(date, "PP") : ""}
-        </Typography>
+        <Stack
+          direction={"row"}
+          className="w-100 d-flex justify-content-between"
+        >
+          <Typography className='header-20'>
+            {date ? format(date, "PP") : ""}
+          </Typography>
+          <RemoveConfirmationModal
+            modalHeader={"Removing " + format(date, "PP")}
+            modalBody={(
+              <Typography>
+                Are you sure you want to remove the body composition from your body composition history? All data will be lost forever.
+              </Typography>
+            )}
+            onRemoveClick={() => { }} // No-operation function
+          />
+        </Stack>
         <Stack direction={"row"} className="w-100 d-flex justify-content-between " >
           <Stack direction="column">
             {weight && <Typography className='purple-text'>Body Weight:</Typography>}
