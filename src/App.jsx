@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './assets/styles/globalStyles.scss';
 import 'bootstrap/dist/css/bootstrap.css';
-import { AlertsPage } from './pages/AlertsPage';
 import { LoginPage } from "./pages/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { Route, Routes, Navigate } from 'react-router-dom';
@@ -12,6 +11,7 @@ import { WelcomePage } from './pages/WelcomePage';
 import { LogbookPage } from './pages/Logbook/LogbookPage';
 import { UnderConstructionPage } from './pages/UnderConstructionPage';
 import SeededData from './utils/SeedData';
+import AlertsPage from './pages/AlertPage/AlertsPage';
 
 function App() {
   // State to track if user is logged in

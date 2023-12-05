@@ -186,7 +186,7 @@ const BodyTab = () => {
                     </Stack>
                 </Sheet>
             </Modal>
-            <Stack spacing={1} className='my-2'>
+            <Stack spacing={1} className='my-2 mt-4'>
                 <Typography className='general-label'>Body Composition History</Typography>
                 <Container style={"background-purple-light p-3 pb-0 mb-5"} children={
                     userBodyComposition.length > 0 ? (
@@ -195,7 +195,12 @@ const BodyTab = () => {
                         ))
                     ) : (
                         <Container style={"background-purple-light p-3 mb-5"}>
-                            <Typography>No body composition data tracked.</Typography>
+                            <Typography className='general-label'>
+                                No body compositions tracked in the logbook.
+                            </Typography>
+                            <Typography>
+                                Track a body compositions for it to appear here!
+                            </Typography>
                         </Container>
                     )
                 } />

@@ -35,7 +35,7 @@ export const WorkoutHistory = () => {
     if (user === "johndoe") {
         display =
             <>
-                <Stack spacing={1} className='my-2'>
+                <Stack spacing={1} className='my-2 mt-4'>
                     <Typography className='general-label'>
                         Workout History
                     </Typography>
