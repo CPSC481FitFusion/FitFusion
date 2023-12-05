@@ -199,7 +199,6 @@ const BodyTab = () => {
                         </Container>
                     )
                 } />
-
             </Stack>
         </>
     );

@@ -2,13 +2,11 @@ import { Modal, Sheet, Stack, Typography } from "@mui/joy";
 import React, { useState } from "react";
 import ButtonFilled from "../../../components/ButtonFilled";
 import Container from "../../../components/Container";
-import ControlledCheckbox from "../../../components/ControlledCheckbox";
-import DeleteButtonWithConfirmation from "../../../components/DeleteButtonWithConfirmation";
 import ErrorSnackbar from "../../../components/ErrorSnackbar";
 import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
+import { GoalHistoryCard } from "./GoalHistoryCard";
 import GoalDetails from "./GoalsDetails";
-import GoalsHistoryModal from "./goalsHistoryModal";
-import RemoveConfirmationModal from "../../../components/Modals/RemoveConfirmationModal";
+import { getCurrentUsername } from "../../../utils/userUtils";
 
 const GoalsTab = () => {
   const [isStartModalOpen, setStartModalOpen] = useState(false);
@@ -43,6 +41,22 @@ const GoalsTab = () => {
     setIsSnackbarOpen(false);
   };
 
+  // Hardcoded goals data for demonstration purposes
+  const hardcodedGoalsData = {
+    "johndoe": [
+      { name: "Zumba Classes", description: "Attend 3 zumba classes this month", deadline: "12/06/2023" },
+      { name: "Running Challenge", description: "Run 5 miles per week", deadline: "12/15/2023" },
+      // ... more goals for johndoe
+    ],
+    "janedoe": [
+      // ... goals for janedoe
+    ],
+    // ... goals for other users
+  };
+
+  const currentUser = getCurrentUsername();
+  const userGoals = hardcodedGoalsData[currentUser] || [];
+  console.log(userGoals)
   return (
     <>
       <ButtonFilled
@@ -87,123 +101,26 @@ const GoalsTab = () => {
           </Stack>
         </Sheet>
       </Modal>
-
       {/* Snackbar for Goal Name Empty */}
       <ErrorSnackbar
         isOpen={isSnackbarOpen}
         snackbarMessage="Goal Name cannot be empty."
         onClose={handleCloseSnackbar}
       />
-
       {/* Goal History */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginTop: "20px",
-        }}
-      >
-        <p className="general-label">Goal History</p>
-
-        <div className="see-all">
-          <div className="overlap-5">
-            <GoalsHistoryModal
-              isIcon={true}
-              isOpen={false}
-              editButtonLabel="Edit Details"
-              modalHeader="Edit Goal History"
-              modalBody={
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <DeleteButtonWithConfirmation
-                    style={{ marginRight: "8px" }}
-                  />
-                  Zumba Classes
-                </div>
-              }
-              onClickRemove={() => {
-                /* Implement your remove logic */
-              }}
-              onClickSave={() => {
-                /* Implement your save logic */
-              }}
-            />
-          </div>
-        </div>
-      </div>
-
-      <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
-
-  {/* Container for both goals */}
-  <Container style={"background-purple-light"} children={
-    <>
-      {/* Goal 1: Zumba Classes */}
-      <Container style={"background-green-light d-flex align-items-start"} elevation={3} children={
-        <>
-          <Stack direction="row" className="w-100 d-flex justify-content-between">
-            <ControlledCheckbox goalName="Zumba Classes" />
-            <RemoveConfirmationModal
-              modalHeader={"Removing \"Goal\""}
-              modalBody={(
-                <Typography>
-                  Are you sure you want to remove the goal from your goal history?
-                </Typography>
-              )}
-              onRemoveClick={() => { }}
-            />
-          </Stack>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
-          >
-            Attend 3 zumba classes this month
-          </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
-          >
-            Deadline 12/06/2023
-          </Typography>
-        </>
-      } />
-
-      {/* Goal 2: Running Challenge */}
-      <Container style={"background-green-light d-flex align-items-start"} elevation={3} children={
-        <>
-          <Stack direction="row" className="w-100 d-flex justify-content-between">
-            <ControlledCheckbox goalName="Running Challenge" />
-            <RemoveConfirmationModal
-              modalHeader={"Removing \"Goal\""}
-              modalBody={(
-                <Typography>
-                  Are you sure you want to remove the goal from your goal history?
-                </Typography>
-              )}
-              onRemoveClick={() => { }}
-            />
-          </Stack>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
-          >
-            Run 5 miles per week
-          </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
-          >
-            Deadline 12/15/2023
-          </Typography>
-        </>
-      } />
-    </>
-  } />
-
-</div>
+      <Stack spacing={1} className='my-2'>
+        <Typography className='general-label'>Goal History</Typography>
+        <Container style={"background-purple-light p-3 pb-0 mb-5"} children={
+          userGoals.length > 0 ? (
+            userGoals.map((goal, index) => (
+              <GoalHistoryCard key={index} {...goal} /> // Spread the goal object properties
+            ))
+          ) : (
+            <Typography>No goals tracked. Track a goal for it to appear here!</Typography>
+          )
+        }
+        />
+      </Stack>
     </>
   );
 };
