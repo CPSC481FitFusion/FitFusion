@@ -20,7 +20,7 @@ const ErrorSnackbar = ({ isOpen, snackbarMessage, onClose }) => {
   return (
     <Snackbar
       open={snackbarOpen}
-      autoHideDuration={4000}
+      autoHideDuration={5000}
       anchorOrigin={{ vertical: "top", horizontal: "center" }}
       onClose={handleClose}
     >

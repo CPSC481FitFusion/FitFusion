@@ -64,11 +64,13 @@ const BasicConfirmationModal = ({
             <Stack className="text-center w-100" >
               {modalBody}
             </Stack>
-            <ButtonFilled
-              text={modalConfirmationButtonLabel}
-              style={modalConfirmationButtonStyle ?? buttonStyle}
-              onClick={onConfirmationButtonClick}
-            />
+            <Stack className="mt-4 w-100">
+              <ButtonFilled
+                text={modalConfirmationButtonLabel}
+                style={modalConfirmationButtonStyle ?? buttonStyle}
+                onClick={onConfirmationButtonClick}
+              />
+            </Stack>
           </Stack>
         </Sheet>
       </Modal>
