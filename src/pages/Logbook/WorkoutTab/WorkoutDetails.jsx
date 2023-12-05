@@ -17,7 +17,7 @@ const WorkoutDetails = ({ workout, onUpdate, onClose, isOpen }) => {
   const [modalOpen, setModalOpen] = useState(isOpen); // State for modal
   const [tempDetails, setTempDetails] = useState({
     // Temporary state for workout details, used while editing
-    name: workout?.name || "",
+    name: workout?.name || "New Workout",
     date: workout?.date || new Date(),
     startTime: workout?.startTime || new Date(),
     endTime:
@@ -27,6 +27,7 @@ const WorkoutDetails = ({ workout, onUpdate, onClose, isOpen }) => {
 
   useEffect(() => {
     // Use effect for handing modal state. Allows for modal to open when Starting New Workout.
+    console.log("useEffect: " + modalOpen)
     setModalOpen(isOpen);
   }, [isOpen]);
 
@@ -34,12 +35,12 @@ const WorkoutDetails = ({ workout, onUpdate, onClose, isOpen }) => {
     // Handle Close for inalid login error snackbar
     setSnackbarOpen(false);
   };
-  // Handler for closing modal
+
   const handleModalClose = (event, reason) => {
-    if (reason && reason == "backdropClick") return;
-    onClose();
+    if (reason && reason === "backdropClick") return;
+    onClose(); // Use the passed onClose function to close the modal
     setModalOpen(false);
-  };
+};
 
   const handleModalSave = () => {
     // Handler for saving modal edited details
@@ -56,6 +57,7 @@ const WorkoutDetails = ({ workout, onUpdate, onClose, isOpen }) => {
       setModalOpen(false);
     }
   };
+
   return (
     <>
       <Stack direction="row" className="horizontal-stack pb-1">
@@ -85,11 +87,6 @@ const WorkoutDetails = ({ workout, onUpdate, onClose, isOpen }) => {
             variant="outlined"
             sx={{ width: "90%", borderRadius: "md", p: 3, boxShadow: "lg" }}
           >
-            <ModalClose
-              onClick={handleModalClose}
-              variant="outlined"
-              sx={{ m: 1 }}
-            />
             <Stack className="w-100" direction="column" alignItems="center">
               <Typography
                 component="h2"

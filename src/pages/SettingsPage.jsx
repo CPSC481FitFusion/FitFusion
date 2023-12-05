@@ -114,7 +114,7 @@ export const SettingsPage = () => {
           modalHeader={"Change Password"}
           validation={validatePassword}
           modalBody={
-            <Stack className={"mb-4"}>
+            <Stack>
               <TextInputWithLabel
                 label={"Password"}
                 placeholder={"Click to enter your Password"}
@@ -136,7 +136,7 @@ export const SettingsPage = () => {
           actionOnClick={() => { }}
           modalHeader={"Logbook Default Page"}
           modalBody={
-            <FormControl component="fieldset" className={"mb-4"}>
+            <FormControl component="fieldset">
               <RadioGroup
                 aria-label="logbook-tab"
                 name="logbook-tab"
@@ -162,7 +162,7 @@ export const SettingsPage = () => {
           actionOnClick={() => { }}
           modalHeader={"Default Metrics"}
           modalBody={
-            <Stack className={"mb-4"}>
+            <Stack>
               <Typography className="general-label text-start">Default Weight Metric:</Typography>
               <RadioGroup
                 aria-label="default-weight-metric"
@@ -193,7 +193,7 @@ export const SettingsPage = () => {
           openModalButtonLabel={"Logout"}
           modalHeader={"Logout"}
           modalBody={
-            <Typography className="mb-3">
+            <Typography>
               Are you sure you want to logout?
             </Typography>
           }

@@ -9,13 +9,26 @@ import AddExerciseModal from "./AddExerciseModal";
 import WorkoutDetails from "./WorkoutDetails";
 import WorkoutExerciseCard from "./WorkoutExerciseCard";
 import { WorkoutHistory } from "./WorkoutHistory";
+import ErrorSnackbar from "../../../components/ErrorSnackbar";
 
 const WorkoutTab = () => {
     const [open, setOpen] = useState(false);
     const [detailsModalOpen, setDetailsModalOpen] = useState(false);
     const [tempWorkout, setTempWorkout] = useState(null);
     const [addExerciseMode, setAddExerciseMode] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false); // State for showing the invalid login info snackbar
+    const [snackbarMessage, setSnackbarMessage] = useState(false);
 
+    const handleSnackbarClose = () => {
+        // Handle Close for inalid login error snackbar
+        setSnackbarOpen(false);
+    };
+
+    const handleDetailsModalClose = () => {
+        setDetailsModalOpen(false); // This will close only the WorkoutDetails modal
+        setOpen(true); // Keep base modal open.
+    };
+    
     const startNewWorkout = () => {
         setTempWorkout({
             id: Date.now(),
@@ -27,6 +40,14 @@ const WorkoutTab = () => {
     };
 
     const finishWorkoutOnClick = () => {
+        console.log("Trying to finish.")
+        if (tempWorkout.exercises.length === 0) {
+            // Inform the user that no exercises are tracked
+            setSnackbarOpen(true);
+            setSnackbarMessage("No exercises tracked. Please add exercises before finishing the workout.");
+            return;
+        }
+
         const userLoggedIn = getCurrentUsername();
         const workoutData = JSON.parse(localStorage.getItem("workoutData") || "{}");
         const userWorkouts = workoutData[userLoggedIn] || [];
@@ -118,7 +139,6 @@ const WorkoutTab = () => {
 
     return (
         <>
-
             <> {/* Workout Add Exercise */}
                 <ButtonFilled
                     style={"background-green"}
@@ -135,7 +155,7 @@ const WorkoutTab = () => {
                         <WorkoutDetails
                             workout={tempWorkout}
                             onUpdate={setTempWorkout}
-                            onClose={() => setDetailsModalOpen(false)}
+                            onClose={handleDetailsModalClose} // Passing the function as prop
                             isOpen={detailsModalOpen}
                         />
                         <Container
@@ -180,9 +200,15 @@ const WorkoutTab = () => {
                     onClose={() => setAddExerciseMode(false)}
                     onAddExercise={handleAddExercise}
                 />
+                {/* On invalid empty attempt */}
+                <ErrorSnackbar
+                    isOpen={snackbarOpen}
+                    snackbarMessage={snackbarMessage}
+                    onClose={handleSnackbarClose}
+                />
             </>
             <> {/* Workout History*/}
-                <WorkoutHistory /> 
+                <WorkoutHistory />
             </>
         </>
     );

@@ -95,7 +95,6 @@ const AddSetModal = ({
             boxShadow: "lg",
           }}
         >
-          <ModalClose onClick={handleClose} variant="outlined" sx={{ m: 1 }} />
           <Stack className="w-100" direction="column" alignItems="center">
             <Typography
               component="h2"
