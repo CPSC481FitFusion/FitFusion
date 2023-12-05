@@ -1,17 +1,19 @@
 # FitFusion (Fitness Tracking App)
 
-FitFusion is a versatile fitness tracking application that caters to a wide range of user needs. Whether you're a fitness novice just starting your journey or an experienced lifter looking to make improvements, FitFusion has you covered. This README provides an overview of the core features and functionalities of the FitFusion app.
+FitFusion is a comprehensive fitness tracking application designed for users of all fitness levels. It offers features to track workouts, body composition, set goals, and receive reminders, all within an intuitive user interface. This README provides a detailed walkthrough of the app's functionalities, ensuring users can fully leverage FitFusion's capabilities.
 
 ## Table of Contents
 - [Installation](#installation)
 - [Technologies Used](#technologies-used)
 - [Project Information](#project-information)
-
-- [Task 1: Track Workout](#task-1-track-workout)
-- [Task 2: Track Body Composition](#task-2-track-body-composition)
-- [Task 3: Notifications/Reminders](#task-3-notificationsreminders)
-- [Task 4: View and Manage History](#task-4-view-and-manage-history)
-- [Task 5: User Goal Tracking](#task-5-user-goal-tracking)
+- [User Onboarding and Login/Registration](#user-onboarding-and-loginregistration)
+- [Using FitFusion](#using-fitfusion)
+  - [Task 1: Track Workout](#task-1-track-workout)
+  - [Task 2: Track Body Composition](#task-2-track-body-composition)
+  - [Task 3: Notifications/Reminders](#task-3-notificationsreminders)
+  - [Task 4: View and Manage History](#task-4-view-and-manage-history)
+  - [Task 5: User Goal Tracking](#task-5-user-goal-tracking)
+  - [Settings and Customization](#settings-and-customization)
 
 ## Installation
 
@@ -34,9 +36,6 @@ npm run dev
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in your browser.
 
-The page will reload when you make changes.
-You may also see any lint errors in the console.
-
 ## Technologies Used
 
 FitFusion is a web-based application created using the following technologies:
@@ -52,25 +51,65 @@ FitFusion is a web-based application created using the following technologies:
 
 This application was developed as a class project for **CPSC 481: Human-Computer Interaction Design I**. It is a part of the coursework to demonstrate an understanding of user-centered design principles and we are demonstrating this through the implementation of a user-friendly fitness tracking application.
 
-## Task 1: Track Workout
+## User Onboarding and Login/Registration
+Access FitFusion directly at [FitFusion App](https://cpsc481fitfusion.netlify.app/). Best viewed using iPhone 12 Pro Dimensions.
 
-Effective workout tracking is integral to our fitness application, catering to all of our user groups. Task 1 enables users to meticulously record their workout sessions, including exercise names, repetitions, weight or resistance used, and sets performed, ensuring accuracy and reliability. It empowers users to delve into their workout history, accommodating various exercise styles and facilitating goal tracking through visualizing progress. Users initiate workouts by tracking start times, entering exercise details, and keeping track of rest and workout time. Upon workout completion, they record the end date and total elapsed time, creating a comprehensive fitness journey log.
+FitFusion offers a user registration and login process. To register, navigate to the Register page and create a unique username and password, ensuring the password matches the confirm password input. To log in, use one of the three preexisting users or the credentials created during registration. The preexisting users are:
 
-## Task 2: Track Body Composition
+- username: johndoe | password: johndoepassword
+- username: bodybuilder | password: bodypassword
+- username: janedoe | password: JaneDoePassword
+## Using FitFusion
 
-This feature provides users with the ability to track metrics for their body measurements, which range from weight, chest size, bicep size, hip size, and waist size. It will allow them to visualize their progress over time and give them a better understanding of how to reach their goals. Due to its ease of access and intuitive nature, this feature will keep users more motivated to track their body measurements and overall stay consistent with the gym. Overall, this feature will enhance users' awareness of their body composition changes, allowing them to make informed decisions regarding their fitness routines and diets.
+### Task 1: Track Workout
+- **Starting a New Workout:** 
+  - Login at [FitFusion App](https://cpsc481fitfusion.netlify.app/) and navigate to the Workout Tab in the Logbook.
+  - Click the "Start a Workout" button.
+  - A modal appears for workout details (Workout name, date, start and end time, notes). Fill in and save these details.
+- **Adding Exercises to Your Workout:** 
+  - Inside the workout modal, click "Add Exercise".
+  - Enter the exercise name in the new modal and save.
+  - For each exercise, add sets by clicking "Add Set", then enter reps and weight for each set.
+- **Completing and Saving Your Workout:** 
+  - Click "Finish" after adding all exercises and sets.
+  - Confirm workout completion in the confirmation modal. 
+  - The workout saves only if exercises are added; otherwise, an alert prompts you to add exercises.
 
-## Task 3: Notifications/Reminders
+### Task 2: Track Body Composition
+- **Accessing the Feature:** 
+  - Go to the Body Composition Tab in the Logbook.
+  - Click "Start a Body Composition" to begin.
+- **Logging Measurements:** 
+  - Record the date and at least one body measurement (weight, waist, hip, arm, thigh circumference).
+  - If no measurement is entered, an error alert appears.
 
-Incorporating reminders is a crucial feature of our application, designed with the diverse needs of our user base in mind. This functionality empowers users to effortlessly stay on top of their upcoming commitments, whether they pertain to workout routines or any other aspects of their daily lives. Our intuitive reminder system allows users to personalize their notifications by specifying a reminder's name, the desired time for the notification, and its recurrence pattern, such as weekly on Mondays and more.
+### Task 3: Notifications/Reminders
+- **Setting Up Reminders:** 
+  - Navigate to the Alerts page from the bottom navigation.
+  - Click "Create a Reminder".
+  - Enter the reminder's name and time and save.
 
-## Task 4: View and Manage History
+### Task 4: View and Manage History
+- **Accessing Workout History:** 
+  - Your workout history is visible under the Workout section in the Logbook.
+- **Viewing History Details:** 
+  - Workouts are listed from newest to oldest.
+  - Currently, there is no filter or search functionality.
 
-History is a feature that allows for viewing workout history. The feature is more geared towards lifters with more experience, however, any user should use it as it would help them make improvements faster. View and Manage History serves to allow users to review each week's workouts so that they can make improvements to their next week's workout.
+### Task 5: User Goal Tracking
+- **Setting New Goals:** 
+  - In the Goals tab of the Logbook, click "Set a Goal".
+  - Enter goal details in the modal and save.
+- **Monitoring Goal Progress:** 
+  - View your active goals in the Goal History section under the "Set a Goal" button.
 
-## Task 5: User Goal Tracking
+### Settings and Personalization
+- **Accessing Settings:** 
+  - Select the Settings option in the bottom navigation.
+- **Customization Options:** 
+  - Change your password, default logbook page (Workout, Body Composition, Goals), and default metrics (lbs/kg, inch/cm).
 
-Effective user goal tracking is vital for fitness journeys, especially for beginners. This task aims to help users consolidate their physical activity goals, review past achievements, and set new goals.
+For a complete experience, visit [FitFusion App](https://cpsc481fitfusion.netlify.app/) and explore the various features to manage and track your fitness journey effectively.
 
 ---
 
