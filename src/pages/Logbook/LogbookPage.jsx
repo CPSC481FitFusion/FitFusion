@@ -19,7 +19,7 @@ export const LogbookPage = () => {
     <>
       <Typography className="header-35">Logbook</Typography>
       <Typography className="normal-text-14">
-        Click an option below to start tracking!
+        Select an option below to track an item in your Logbook!
       </Typography>
       <Box className="w-100">
         <TabContext value={value}>

@@ -10,6 +10,8 @@ const BasicConfirmationModal = ({
   modalBody,
   modalConfirmationButtonLabel,
   actionOnClick,
+  modalConfirmationButtonStyle,
+  validation,
 }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -21,7 +23,9 @@ const BasicConfirmationModal = ({
 
   const onConfirmationButtonClick = () => {
     actionOnClick();
-    setOpen(false);
+    if (!validation || validation()) {
+      setOpen(false);
+    }
   };
   return (
     <>
@@ -57,20 +61,14 @@ const BasicConfirmationModal = ({
             >
               {modalHeader}
             </Typography>
-            <Typography
-              id="modal-desc"
-              textColor="text.tertiary"
-              className="text-center"
-            >
+            <Stack className="text-center w-100" >
               {modalBody}
-            </Typography>
-            <Box className="mt-3">
-              <ButtonFilled
-                text={modalConfirmationButtonLabel}
-                style={buttonStyle}
-                onClick={onConfirmationButtonClick}
-              />
-            </Box>
+            </Stack>
+            <ButtonFilled
+              text={modalConfirmationButtonLabel}
+              style={modalConfirmationButtonStyle ?? buttonStyle}
+              onClick={onConfirmationButtonClick}
+            />
           </Stack>
         </Sheet>
       </Modal>

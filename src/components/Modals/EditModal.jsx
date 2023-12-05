@@ -107,7 +107,7 @@ const EditModal = ({
               <ButtonFilled
                 text="Save"
                 style="background-green"
-                onClick={handleSave}
+                onClick={(e) => handleSave(e)}
               />
             </Stack>
           </Stack>

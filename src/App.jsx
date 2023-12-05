@@ -54,7 +54,7 @@ function App() {
             </>
           ) : (
             <>
-              <Route path="/logbook" element={<Navigate replace to="/" />} />
+              <Route path="/logbook/:logbookDefaultTab" element={<Navigate replace to="/" />} />
               <Route path="/alerts" element={<Navigate replace to="/" />} />
               <Route path="/settings" element={<Navigate replace to="/" />} />
               <Route path="/underConstruction/:backTo" element={<Navigate replace to="/" />} />
