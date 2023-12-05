@@ -1,108 +1,114 @@
 import { Modal, Sheet } from '@mui/joy';
-import { Stack } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import ButtonFilled from "../../../components/ButtonFilled";
 import BasicConfirmationModal from '../../../components/modals/basicConfirmationModal';
+import { getCurrentUsername } from '../../../utils/userUtils';
 import BodyCompositionCard from "./BodyCompositionCard";
 import BodyDetails from "./BodyDetails";
+import Container from "../../../components/Container";
 
-const BodyTab = () => {    
+const BodyTab = () => {
     const [open, setOpen] = useState(false);
     const [detailsModalOpen, setDetailsModalOpen] = useState(false);
     const [tempBodyComposition, setTempBodyComposition] = useState(null);
 
-    const codedBodyComposition = {
-        date: new Date(),
-        weight: 170,
-        waistCircumference: 123,
-        hipCircumference: 123,
-        armCircumference: 12,
-        thighCircumference: 32,
-    }
+    // Hardcoded body composition data
+    const [hardcodedData, setHardcodedData] = useState({
+        "johndoe": [
+            { id: 1, date: new Date('2023-01-01'), weight: 180, waistCircumference: 32, hipCircumference: 38, armCircumference: 12, thighCircumference: 20 },
+            // ... more data for johndoe
+        ],
+        "bodybuilder": [
+            { id: 2, date: new Date('2023-02-01'), weight: 200, waistCircumference: 34, hipCircumference: 40, armCircumference: 14, thighCircumference: 22 },
+            // ... more data for bodybuilder
+        ],
+        // ... data for other users
+    });
 
     const startNewBodyComposition = () => {
         setTempBodyComposition({
-          id: Date.now(),
-          date: new Date(),
+            id: Date.now(),
+            date: new Date(),
+            weight: '',
+            waistCircumference: '',
+            hipCircumference: '',
+            armCircumference: '',
+            thighCircumference: '',
         });
-        setDetailsModalOpen(true); // Open the BodyCompositionDetails modal
-        setOpen(true); // Open the BodyCompositionTab modal
+        setDetailsModalOpen(true);
+        setOpen(true);
     };
 
     const finishBodyCompositionOnClick = () => {
+        if (tempBodyComposition && tempBodyComposition.weight) {
+            const username = getCurrentUsername();
+            const updatedData = { ...hardcodedData };
+            updatedData[username] = [...(updatedData[username] || []), tempBodyComposition];
+            setHardcodedData(updatedData);
+        }
         setTempBodyComposition(null);
         setOpen(false);
+        setDetailsModalOpen(false);
     };
 
-    // User body composition
-    let userBodyComposition = []
-    const handleClose = (event, reason) => {
-        if (reason && reason == "backdropClick") return;
+    const handleClose = () => {
         setOpen(false);
+        setDetailsModalOpen(false);
     };
 
-    // Get logged in user's body composition from local storage
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const loggedInUser = localStorage.getItem("userLoggedIn");
-
-    // Check through each user object to find match
-    users.forEach(user => {
-    });
+    const user = getCurrentUsername();
+    const userBodyComposition = hardcodedData[user] || [];
 
     return (
         <>
-            <ButtonFilled 
-            style={"background-green"} 
-            text={"Start a Body Composition"} 
-            onClick={startNewBodyComposition} />
+            <ButtonFilled
+                style={"background-green"}
+                text={"Start a Body Composition"}
+                onClick={startNewBodyComposition} />
             <Modal
-                aria-labelledby="modal-title"
-                aria-describedby="modal-desc"
                 open={open}
                 onClose={handleClose}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
-                <Sheet
-                    variant="outlined"
-                    className="full-page-modal-container"
-                >
+                <Sheet variant="outlined" className="full-page-modal-container">
                     <BodyDetails
                         body={tempBodyComposition}
                         onUpdate={setTempBodyComposition}
-                        onClose={() => setDetailsModalOpen(false)}
+                        onClose={handleClose}
                         isOpen={detailsModalOpen} />
-                    <Stack spacing={20} direction="row" className="horizontal-stack" >
+                    <Stack spacing={2} direction="row" className="horizontal-stack" >
                         <BasicConfirmationModal
                             buttonStyle={"background-orange"}
                             openModalButtonLabel={"Cancel"}
                             modalHeader={"Cancel Body Composition"}
                             modalBody={"Are you sure you want to cancel your body composition log?"}
                             modalConfirmationButtonLabel={"Cancel Body Composition"}
-                            actionOnClick={() =>
-                                setOpen(false)}
+                            actionOnClick={handleClose}
                         />
                         <BasicConfirmationModal
                             buttonStyle={"background-green"}
                             openModalButtonLabel={"Finish"}
                             modalHeader={"Finish Body Composition"}
-                            modalBody={"Are you sure you want to finish your body composiiton log?"}
+                            modalBody={"Are you sure you want to finish your body composition log?"}
                             modalConfirmationButtonLabel={"Finish Body Composition"}
                             actionOnClick={finishBodyCompositionOnClick}
                         />
                     </Stack>
                 </Sheet>
             </Modal>
-            <div
-                style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginTop: "20px",
-                }}
-            >
-                <BodyCompositionCard
-                    body={codedBodyComposition}/>
-            </div>
+            <Stack spacing={1} className='my-2'>
+                <Typography className='general-label'>Body Composition History</Typography>
+                {userBodyComposition.length > 0 ? (
+                    userBodyComposition.map(composition => (
+                        <BodyCompositionCard key={composition.id} body={composition} />
+                    ))
+                ) : (
+                    <Container style={"background-purple-light p-3 mb-5"} children={
+                        <Typography>No body composition data tracked.</Typography>
+                    } />
+                )}
+            </Stack>
         </>
     );
 };
