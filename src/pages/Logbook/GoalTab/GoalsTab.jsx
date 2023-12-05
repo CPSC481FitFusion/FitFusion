@@ -7,7 +7,7 @@ import GoalDetails from "./Goalsdetails";
 import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
 import ErrorSnackbar from "../../../components/ErrorSnackbar";
 import DeleteButtonWithConfirmation from "../../../components/DeleteButtonWithConfirmation";
-import GoalsHistoryModal from "./GoalsHistoryModal";
+import GoalsHistoryModal from "./goalshistorymodal";
 
 const GoalsTab = () => {
   const [isStartModalOpen, setStartModalOpen] = useState(false);
@@ -59,7 +59,7 @@ const GoalsTab = () => {
       >
         <Sheet variant="outlined" className="full-page-modal-container">
           <Container
-            style={"background-blue-light m-0"}
+            style={"background-light-grey"}
             children={
               <>
                 <GoalDetails onGoalNameChange={handleGoalNameChange} />
@@ -70,17 +70,17 @@ const GoalsTab = () => {
             <BasicConfirmationModal
               buttonStyle={"background-orange"}
               openModalButtonLabel={"Cancel"}
-              modalHeader={"Cancel Add"}
-              modalBody={"Are you sure you want to cancel adding a new goal?"}
+              modalHeader={"Cancel Goal"}
+              modalBody={"Are you sure you want to cancel starting a new goal?"}
               modalConfirmationButtonLabel={"Cancel"}
               actionOnClick={() => handleCloseStartModal()}
             />
             <BasicConfirmationModal
               buttonStyle={"background-green"}
-              openModalButtonLabel={"Confirm"}
-              modalHeader={"Confirm Add"}
-              modalBody={"Are you sure you want to add a new goal?"}
-              modalConfirmationButtonLabel={"Confirm Add"}
+              openModalButtonLabel={"Set"}
+              modalHeader={"Set Goal"}
+              modalBody={"Are you sure you want to set a new goal?"}
+              modalConfirmationButtonLabel={"Confirm Set"}
               actionOnClick={handleConfirmAdd}
             />
           </Stack>

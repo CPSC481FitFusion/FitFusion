@@ -40,7 +40,7 @@ export const WorkoutHistory = () => {
                                                 </IconButton>
                                             </div>
                                             <Typography variant="h6" component="div">
-                                                Oct 24, 2023
+                                                Oct 26 2023
                                             </Typography>
                                             <Typography variant="h6" sx={{ mb: 1.5 }} color="#A05DAB">
                                                 <em>Hammer Curls (Dumbbell)</em>
