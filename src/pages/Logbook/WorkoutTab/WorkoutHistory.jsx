@@ -252,17 +252,7 @@ export const WorkoutHistory = () => {
                 </Stack>
             </>
     }
-    else if (user === "janedoe") {
-        display = <>
-            <Stack spacing={1} className='my-2'>
-                <Typography className='general-label'>
-                    Workout History
-                </Typography>
-                {emptyDefault}
-            </Stack>
-        </>
-    }
-    else {
+    else if (user === "bodybuilder") {
         display = <>
             <Stack spacing={1} className='my-2'>
                 <Typography className='general-label'>
@@ -328,6 +318,17 @@ export const WorkoutHistory = () => {
             </Stack>
         </>
     }
+    else {
+        display = <>
+            <Stack spacing={1} className='my-2'>
+                <Typography className='general-label'>
+                    Workout History
+                </Typography>
+                {emptyDefault}
+            </Stack>
+        </>
+    }
+
     return (
         <>
             {display}
