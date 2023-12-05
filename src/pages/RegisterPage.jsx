@@ -1,9 +1,9 @@
+import { Alert, Box, Grid, Snackbar, Stack, Typography } from "@mui/material";
 import { useState } from 'react';
-import { Box, Grid, Stack, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonFilled from "../components/ButtonFilled";
-import TextInputWithLabel from "../components/TextInputWithLabel";
 import ErrorSnackbar from '../components/ErrorSnackbar';
+import TextInputWithLabel from "../components/TextInputWithLabel";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
@@ -15,6 +15,16 @@ export const RegisterPage = () => {
   // State for showing the invalid login info snackbar
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
+  // Used for when user successfully creates an account!
+  const [successOpen, setSuccessOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSuccessOpen(false);
+  };
 
   // Handle Close for inalid login error snackbar
   const handleSnackbarClose = () => {
@@ -50,26 +60,33 @@ export const RegisterPage = () => {
     const newUser = {
       username: username,
       password: password,
-      settings: {
+      settings: [{
+
         defaultLogbookTab: "1", // Set default logbook tab or other default settings
         defaultMeasurementMetric: "inch(es)",
         defaultWeightMetric: "lb(s)",
-      }
+      }]
     };
 
     // Save new user to local storage
     existingUsers.push(newUser);
     localStorage.setItem('userData', JSON.stringify(existingUsers));
 
-    // Set user as logged in
-    localStorage.setItem('userLoggedIn', username);
-
-    // Navigate to logbook or dashboard
-    navigate("/logbook/1");
+    // Open success alert
+    setSuccessOpen(true);
   };
 
   return (
     <>
+      {/* On successful register */}
+      <Snackbar open={successOpen} autoHideDuration={6000} anchorOrigin={{ vertical: "top", horizontal: "center" }} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Successfully registered!
+          <Link className="px-1 link-label" to="/login">
+            Please go to login!
+          </Link>
+        </Alert>
+      </Snackbar>
       {/* On invalid attempt */}
       <ErrorSnackbar
         isOpen={snackbarOpen}

@@ -1,7 +1,5 @@
-import CloseIcon from '@mui/icons-material/Close';
 import { Stack, Typography } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
-import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 import Container from '../../../components/Container';
 import RemoveConfirmationModal from '../../../components/Modals/RemoveConfirmationModal.jsx';
@@ -12,7 +10,6 @@ export const WorkoutHistory = () => {
     const [isLegDayCardVisible, setIsLegDayCardVisible] = useState(true);
     const [isPushDayCardVisible, setIsPushDayCardVisible] = useState(true);
     const [isPullDayCardVisible, setIsPullDayCardVisible] = useState(true);
-
     const handleCloseArmDayCard = () => {
         setIsArmDayCardVisible(false);
     };
@@ -261,7 +258,6 @@ export const WorkoutHistory = () => {
                 {isLegDayCardVisible && (
                     <Container style={"background-purple-light p-3 mb-5"} children={
                         <>
-
                             <Container elevation={3} style={"mb-0"} children={
                                 <CardContent className='p-0 w-100'>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

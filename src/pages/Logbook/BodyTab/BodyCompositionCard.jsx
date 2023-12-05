@@ -23,41 +23,40 @@ const BodyCompositionCard = (body) => {
               {bodyComp.date ? format(bodyComp.date, "PP") : ""}
             </Typography>
             <Stack spacing={2} direction="row" className="pb-2">
-                <Stack direction="column">
-                    <Typography fontStyle="italic">
-                        Body Weight:
-                    </Typography>
-                    <Typography fontStyle="italic">
-                        Waist Circumference:
-                    </Typography>
-                    <Typography fontStyle="italic">
-                        Hip Circumference:
-                    </Typography>
-                    <Typography fontStyle="italic">
-                        Arm Circumference:
-                    </Typography>
-                    <Typography fontStyle="italic">
-                        Thigh Circumference:
-                    </Typography>
-                    
-                </Stack>
-                <Stack direction="column">
-                    <Typography>
-                        {bodyComp.weight} lbs
-                    </Typography>
-                    <Typography>
-                        {bodyComp.waistCircumference} cm
-                    </Typography>
-                    <Typography>
-                        {bodyComp.hipCircumference} cm
-                    </Typography>
-                    <Typography>
-                        {bodyComp.armCircumference} cm
-                    </Typography>
-                    <Typography>
-                        {bodyComp.thighCircumference} cm
-                    </Typography>
-                </Stack>
+              <Stack direction="column">
+                <Typography fontStyle="italic">
+                  Body Weight:
+                </Typography>
+                <Typography fontStyle="italic">
+                  Waist Circumference:
+                </Typography>
+                <Typography fontStyle="italic">
+                  Hip Circumference:
+                </Typography>
+                <Typography fontStyle="italic">
+                  Arm Circumference:
+                </Typography>
+                <Typography fontStyle="italic">
+                  Thigh Circumference:
+                </Typography>
+              </Stack>
+              <Stack direction="column">
+                <Typography>
+                  {bodyComp.weight} lbs
+                </Typography>
+                <Typography>
+                  {bodyComp.waistCircumference} cm
+                </Typography>
+                <Typography>
+                  {bodyComp.hipCircumference} cm
+                </Typography>
+                <Typography>
+                  {bodyComp.armCircumference} cm
+                </Typography>
+                <Typography>
+                  {bodyComp.thighCircumference} cm
+                </Typography>
+              </Stack>
             </Stack>
           </>
         }
