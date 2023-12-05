@@ -1,16 +1,30 @@
 import { Modal, Sheet, Stack } from '@mui/joy';
 import React, { useState } from 'react';
-import AppBottomNavigation from "../../components/AppBottomNavigation";
-import ButtonFilled from '../../components/ButtonFilled';
-import Container from '../../components/Container';
-import BasicConfirmationModal from "../../components/modals/basicConfirmationModal";
 import AlertDetails from './Alertdetails';
-import { getCurrentUsername } from '../../utils/userUtils';
 import { Typography } from '@mui/material';
 import AlertHistoryCard from './AlertHistoryCard';
+import AppBottomNavigation from '../../components/AppBottomNavigation';
+import ButtonFilled from '../../components/ButtonFilled';
+import BasicConfirmationModal from '../../components/modals/basicConfirmationModal';
+import { getCurrentUsername } from '../../utils/userUtils';
+import ErrorSnackbar from '../../components/ErrorSnackbar';
+import Container from '../../components/Container';
 
 const AlertsPage = () => {
   const [isStartModalOpen, setStartModalOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false); // State for showing the invalid login info snackbar
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [reminderName, setReminderName] = useState("");
+
+  const handleSnackbarClose = () => {
+    // Handle Close for inalid login error snackbar
+    setSnackbarOpen(false);
+  };
+
+  const handleReminderNameChange = (newName) => {
+    console.log("something changed, updating in tab: " + newName);
+    setReminderName(newName);
+  };
 
   // Hardcoded goals data for demonstration purposes
   const hardcodedAlertsData = {
@@ -38,6 +52,18 @@ const AlertsPage = () => {
     setStartModalOpen(false);
   };
 
+  const handleModalSave = () => {
+    console.log(reminderName)
+    if (!reminderName || reminderName.trim() === "") {
+      setSnackbarOpen(true);
+      setSnackbarMessage("Alert Name is required.")
+      return;
+    }
+    setStartModalOpen(false);
+    setReminderName(""); // clear reminder name
+    handleSnackbarClose();
+  };
+
   return (
     <>
       {/* Heading and Date */}
@@ -50,7 +76,7 @@ const AlertsPage = () => {
       {/* Start button */}
       <ButtonFilled
         style="background-green"
-        text="Set a Reminder"
+        text="Set an Alert"
         onClick={handleOpenStartModal}
       />
 
@@ -71,26 +97,30 @@ const AlertsPage = () => {
             style={"background-blue-light m-0 p-0"}
             children={
               <>
-                <AlertDetails />
-              </>
+                {/* On invalid empty attempt */}
+                <ErrorSnackbar
+                  isOpen={snackbarOpen}
+                  snackbarMessage={snackbarMessage}
+                  onClose={handleSnackbarClose} />
+                <AlertDetails name={reminderName} onReminderNameChanged={handleReminderNameChange} />              </>
             }
           />
           <Stack spacing={20} direction="row" className="horizontal-stack">
             <BasicConfirmationModal
               buttonStyle={"background-orange"}
-              openModalButtonLabel={"Remove "}
-              modalHeader={" Go back"}
-              modalBody={"Are you sure you want to not proceed with setting up a new reminder?"}
-              modalConfirmationButtonLabel={" Remove"}
+              openModalButtonLabel={"Cancel "}
+              modalHeader={"Cancelling Alert"}
+              modalBody={"Are you sure you want to cancel setting a new alert? All current progress will be lost."}
+              modalConfirmationButtonLabel={"Cancel"}
               actionOnClick={() => handleCloseStartModal()}
             />
             <BasicConfirmationModal
               buttonStyle={"background-green"}
               openModalButtonLabel={"Save"}
               modalHeader={" Setting up"}
-              modalBody={"Are you sure you want to set up a new reminder?"}
+              modalBody={"Are you sure you want to set up a new alert?"}
               modalConfirmationButtonLabel={" Save"}
-              actionOnClick={() => handleCloseStartModal()}
+              actionOnClick={() => handleModalSave()}
             />
           </Stack>
         </Sheet>
@@ -98,7 +128,7 @@ const AlertsPage = () => {
 
       {/* Goal History */}
       <Stack spacing={1} className='my-2 mt-4'>
-        <Typography className='general-label'>Daily Reminders</Typography>
+        <Typography className='general-label'>Daily Alerts</Typography>
         <Typography className='purple-text-small'>Activate an alert to receive notifications.</Typography>
         <Container style={"background-purple-light p-3 pb-0 mb-5"} children={
           <>

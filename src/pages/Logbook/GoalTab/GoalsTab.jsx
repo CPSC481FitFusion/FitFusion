@@ -34,6 +34,7 @@ const GoalsTab = () => {
     } else {
       // Close the modal or perform other actions
       handleCloseStartModal();
+      setIsSnackbarOpen(false);
     }
   };
 

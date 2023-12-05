@@ -1,6 +1,6 @@
 # FitFusion (Fitness Tracking App)
 
-FitFusion is a comprehensive fitness tracking application designed for users of all fitness levels. It offers features to track workouts, body composition, set goals, and receive reminders, all within an intuitive user interface. This README provides a detailed walkthrough of the app's functionalities, ensuring users can fully leverage FitFusion's capabilities.
+FitFusion is a comprehensive fitness tracking application designed for users of all fitness levels. It offers features to track workouts, body composition, set goals, and receive alerts/notifications, all within an intuitive user interface. This README provides a detailed walkthrough of the app's functionalities, ensuring users can fully leverage FitFusion's capabilities.
 
 # Members:
 - Nicole Papuc, nicole.papuc@ucalgary.ca
@@ -17,7 +17,7 @@ FitFusion is a comprehensive fitness tracking application designed for users of 
 - [Using FitFusion](#using-fitfusion)
   - [Task 1: Track Workout](#task-1-track-workout)
   - [Task 2: Track Body Composition](#task-2-track-body-composition)
-  - [Task 3: Notifications/Reminders](#task-3-notificationsreminders)
+  - [Task 3: Notifications/Alerts](#task-3-notificationsalerts)
   - [Task 4: View and Manage History](#task-4-view-and-manage-history)
   - [Task 5: User Goal Tracking](#task-5-user-goal-tracking)
   - [Settings and Customization](#settings-and-customization)
@@ -90,11 +90,11 @@ FitFusion offers a user registration and login process. To register, navigate to
   - Record the date and at least one body measurement (weight, waist, hip, arm, thigh circumference).
   - If no measurement is entered, an error alert appears.
 
-### Task 3: Notifications/Reminders
-- **Setting Up Reminders:** 
+### Task 3: Notifications/Alerts
+- **Setting Up Alerts:** 
   - Navigate to the Alerts page from the bottom navigation.
-  - Click "Create a Reminder".
-  - Enter the reminder's name and time and save.
+  - Click "Set an Alert".
+  - Enter the Alert's name and time and save.
 
 ### Task 4: View and Manage History
 - **Accessing Workout History:** 
