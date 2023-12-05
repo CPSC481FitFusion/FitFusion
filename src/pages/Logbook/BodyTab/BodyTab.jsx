@@ -107,7 +107,7 @@ const BodyTab = () => {
                             level="h4"
                             className="header-25"
                             mb={1} >
-                            Add Body Composition
+                            New Body Composition
                         </Typography>
                         <Grid id="modal-desc" className="text-center w-100">
                             <Stack spacing={2} className="input-container my-2 text-start w-100 mb-4">
