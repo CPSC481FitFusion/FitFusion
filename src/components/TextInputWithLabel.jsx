@@ -15,7 +15,6 @@ const TextInputWithLabel = ({
   bindValue,
   onInputChange,
   isRequired,
-  onChange
 }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
