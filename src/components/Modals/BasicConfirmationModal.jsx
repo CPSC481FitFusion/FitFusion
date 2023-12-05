@@ -57,6 +57,7 @@ const BasicConfirmationModal = ({
               id="modal-title"
               level="h4"
               className="header-25"
+              mt={1}
               mb={1}
             >
               {modalHeader}
