@@ -1,11 +1,11 @@
 import { Stack, Typography } from "@mui/joy";
+import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import AppBottomNavigation from "../components/AppBottomNavigation";
 import ErrorSnackbar from "../components/ErrorSnackbar";
 import EditModal from "../components/Modals/EditModal";
 import TextInputWithLabel from "../components/TextInputWithLabel";
-import TextNumberInputWithLabel from "../components/TextNumberInputWithLabel";
 import BasicConfirmationModal from "../components/modals/basicConfirmationModal";
 import {
   getCurrentUsername,
@@ -15,12 +15,20 @@ import {
 export const SettingsPage = () => {
   // Fetch current user's username and data
   const currentUser = getCurrentUsername();
+  const currentUserData = getLoggedInUserData();
   const navigate = useNavigate(); // React Router's navigate function
   const [tempDetails, setTempDetails] = useState({
     username: "",
     password: "",
     settings: {},
   });
+  // New state for managing Logbook Default Tab radio group
+  const [logbookDefaultTab, setLogbookDefaultTab] = useState(currentUserData.settings[0].defaultLogbookTab || "1");
+  // New state for managing Default Weight and Measurement Metrics
+  const [defaultWeightMetric, setDefaultWeightMetric] = useState(currentUserData.settings[0].defaultWeightMetric || "lb(s)");
+  const [defaultMeasurementMetric, setDefaultMeasurementMetric] = useState(currentUserData.settings[0].defaultMeasurementMetric || "inch(es)");
+
+
   // State for showing the invalid login info snackbar
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState(false);
@@ -49,7 +57,6 @@ export const SettingsPage = () => {
 
   // Function to update user data in local storage
   const validatePassword = () => {
-    const currentUserData = getLoggedInUserData();
     // Check if the password is empty
     if (!tempDetails.password || tempDetails.password.trim() === "") {
       setSnackbarOpen(true);
@@ -115,67 +122,81 @@ export const SettingsPage = () => {
                 onInputChange={(e) =>
                   handleDetailsChange("password", e.target.value)
                 }
+                isRequired={true}
               />
             </Stack>
           }
         />
         {/* Edit Logbook Default Tab */}
-        <EditModal
-          editButtonClass={"purple-border-button w-100"}
-          editButtonLabel={"Change Logbook Default Tab"}
-          modalHeader={"Logbook Default Tab"}
+        <BasicConfirmationModal
+          buttonStyle={"background-grey"}
+          openModalButtonLabel={"Change Logbook Default Page"}
+          modalConfirmationButtonLabel={"Save"}
+          modalConfirmationButtonStyle={"background-green w-100"}
+          actionOnClick={() => { }}
+          modalHeader={"Logbook Default Page"}
           modalBody={
-            // Make this into a select option for 1, 2, 3
-            <Stack className={"mb-4"}>
-              <TextNumberInputWithLabel
-                label={"Default Logbook Tab"}
-                placeholder={"Enter Default Logbook Tab"}
-                bindValue={tempDetails.settings.defaultLogbookTab}
-                onInputChange={(e) =>
-                  handleDetailsChange("defaultLogbookTab", e.target.value)
-                }
-              />
-            </Stack>
+            <FormControl component="fieldset" className={"mb-4"}>
+              <RadioGroup
+                aria-label="logbook-tab"
+                name="logbook-tab"
+                value={logbookDefaultTab}
+                onChange={(e) => setLogbookDefaultTab(e.target.value)}
+              >
+                <Typography className="general-label text-start">
+                  Default Logbook Page:
+                </Typography>
+                <FormControlLabel value="1" control={<Radio />} label="Workout Page" />
+                <FormControlLabel value="2" control={<Radio />} label="Body Composition Page" />
+                <FormControlLabel value="3" control={<Radio />} label="Goal Page" />
+              </RadioGroup>
+            </FormControl>
           }
-          onSave={validatePassword}
         />
         {/* Edit Default Metrics */}
-        <EditModal
-          editButtonClass={"purple-border-button w-100"}
-          editButtonLabel={"Change Default Metrics"}
+        <BasicConfirmationModal
+          buttonStyle={"background-grey"}
+          openModalButtonLabel={"Change Default Metrics"}
+          modalConfirmationButtonLabel={"Save"}
+          modalConfirmationButtonStyle={"background-green w-100"}
+          actionOnClick={() => { }}
           modalHeader={"Default Metrics"}
           modalBody={
-            // Make this into a select option for 1, 2, 3
             <Stack className={"mb-4"}>
-              <TextInputWithLabel
-                label={"Default Weight Metric"}
-                placeholder={"Enter Default Weight Metric"}
-                bindValue={tempDetails.settings.defaultWeightMetric}
-                onInputChange={(e) =>
-                  handleDetailsChange("defaultWeightMetric", e.target.value)
-                }
-              />
-              <TextInputWithLabel
-                label={"Default Measurement Metric"}
-                placeholder={"Enter Default Measurement Metric"}
-                bindValue={tempDetails.settings.defaultMeasurementMetric}
-                onInputChange={(e) =>
-                  handleDetailsChange(
-                    "defaultMeasurementMetric",
-                    e.target.value
-                  )
-                }
-              />
+              <Typography className="general-label text-start">Default Weight Metric:</Typography>
+              <RadioGroup
+                aria-label="default-weight-metric"
+                name="default-weight-metric"
+                value={defaultWeightMetric}
+                onChange={(e) => setDefaultWeightMetric(e.target.value)}
+              >
+                <FormControlLabel value="lb(s)" control={<Radio />} label="Pounds (lb)" />
+                <FormControlLabel value="kg(s)" control={<Radio />} label="Kilograms (kg)" />
+              </RadioGroup>
+
+              <Typography className="mt-3 general-label text-start">Default Measurement Metric:</Typography>
+              <RadioGroup
+                aria-label="default-measurement-metric"
+                name="default-measurement-metric"
+                value={defaultMeasurementMetric}
+                onChange={(e) => setDefaultMeasurementMetric(e.target.value)}
+              >
+                <FormControlLabel value="inch(es)" control={<Radio />} label="Inches" />
+                <FormControlLabel value="cm(es)" control={<Radio />} label="Centimeters" />
+              </RadioGroup>
             </Stack>
           }
-          onSave={validatePassword}
         />
         {/* Logout Confirmation */}
         <BasicConfirmationModal
           buttonStyle={"background-green"}
           openModalButtonLabel={"Logout"}
           modalHeader={"Logout"}
-          modalBody={"Are you sure you want to logout?"}
+          modalBody={
+            <Typography className="mb-3">
+              Are you sure you want to logout?
+            </Typography>
+          }
           modalConfirmationButtonLabel={"Logout"}
           actionOnClick={handleLogout}
         />
