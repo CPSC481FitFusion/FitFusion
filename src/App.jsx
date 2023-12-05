@@ -47,14 +47,14 @@ function App() {
           {/* Protected Routes */}
           {isLoggedIn ? (
             <>
-              <Route path="/logbook" element={<LogbookPage />} />
+              <Route path="/logbook/:logbookDefaultTab" element={<LogbookPage />} />
               <Route path="/alerts" element={<AlertsPage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/underConstruction/:backTo" element={<UnderConstructionPage />} />
             </>
           ) : (
             <>
-              <Route path="/logbook" element={<Navigate replace to="/" />} />
+              <Route path="/logbook/:logbookDefaultTab" element={<Navigate replace to="/" />} />
               <Route path="/alerts" element={<Navigate replace to="/" />} />
               <Route path="/settings" element={<Navigate replace to="/" />} />
               <Route path="/underConstruction/:backTo" element={<Navigate replace to="/" />} />

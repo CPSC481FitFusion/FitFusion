@@ -1,46 +1,159 @@
-import React, { useState } from 'react';
-import { Modal, TextField, Button, Box, Stack, Snackbar, Alert } from '@mui/material';
+import {
+    Button,
+    Grid,
+    Modal,
+    Stack,
+    Typography
+} from "@mui/material";
+import React, { useState } from "react";
 
-const AddSetModal = ({ isOpen, onClose, onAddSet }) => {
-    const [reps, setReps] = useState('');
-    const [weight, setWeight] = useState('');
+import { ModalClose, Sheet } from "@mui/joy";
+import { useEffect } from "react";
+import ButtonFilled from "../../../components/ButtonFilled";
+import ErrorSnackbar from "../../../components/ErrorSnackbar";
+import TextNumberInputWithLabel from "../../../components/TextNumberInputWithLabel";
 
-    const handleSaveSet = () => {
-        if (!reps || !weight) {
-            alert("Please enter all set details.");
-            return;
-        }
+const AddSetModal = ({
+  isOpen,
+  onClose,
+  onAddSet,
+  set,
+  showRemove,
+  onRemove,
+}) => {
+  const [reps, setReps] = useState(set?.reps || "");
+  const [weight, setWeight] = useState(set?.weight || "");
+  const [snackbarOpen, setSnackbarOpen] = useState(false); // State for showing the invalid login info snackbar
+  const [snackbarMessage, setSnackbarMessage] = useState(false);
 
-        const newSet = {
-            id: Date.now(), // Unique identifier for the set
-            reps,
-            weight
-        };
+  useEffect(() => {
+    if (set && showRemove) {
+      setReps(set.reps);
+      setWeight(set.weight);
+    } else {
+      setReps("");
+      setWeight("");
+    }
+  }, [set, showRemove]);
 
-        onAddSet(newSet);
-        setReps('');
-        setWeight('');
-        onClose();
-    };
-
+  const handleSnackbarClose = () => {
     // Handle Close for inalid login error snackbar
-    const handleClose = (reason) => {
-        setOpenInvalidInputPopup(false);
+    setSnackbarOpen(false);
+  };
+
+  const handleSaveSet = () => {
+    // Validation Check
+    if (!reps && !weight) {
+      setSnackbarOpen(true);
+      setSnackbarMessage("Rep and Weight is required.");
+      return;
+    } else if (!reps) {
+      setSnackbarOpen(true);
+      setSnackbarMessage("Rep is required.");
+      return;
+    } else if (!weight) {
+      setSnackbarOpen(true);
+      setSnackbarMessage("Weight is required.");
+      return;
+    }
+
+    const setDetails = {
+      id: set?.id || Date.now(), // Use existing id for edits, or create new for adds
+      reps,
+      weight,
     };
-    return (
-        <>
-            <Modal open={isOpen} onClose={onClose}>
-                <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', boxShadow: 24, p: 4, minWidth: 300 }}>
-                    <Stack spacing={2}>
-                        <TextField label="Reps" variant="outlined" fullWidth value={reps} onChange={(e) => setReps(e.target.value)} />
-                        <TextField label="Weight" variant="outlined" fullWidth value={weight} onChange={(e) => setWeight(e.target.value)} />
-                        <Button variant="contained" onClick={handleSaveSet}>Save Set</Button>
-                        <Button variant="outlined" onClick={onClose}>Cancel</Button>
-                    </Stack>
-                </Box>
-            </Modal>
-        </>
-    );
+
+    onAddSet(setDetails);
+    setReps("");
+    setWeight("");
+    onClose();
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason && reason == "backdropClick") return;
+    onClose();
+  };
+
+  return (
+    <>
+      <Modal
+        open={isOpen}
+        onClose={handleClose}
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Sheet
+          variant="outlined"
+          sx={{
+            width: "90%",
+            borderRadius: "md",
+            p: 3,
+            boxShadow: "lg",
+          }}
+        >
+          <Stack className="w-100" direction="column" alignItems="center">
+            <Typography
+              component="h2"
+              id="modal-title"
+              level="h4"
+              className="header-25"
+              mb={1}
+            >
+              {showRemove ? "Edit Set" : "New Set"}
+            </Typography>
+            <Grid id="modal-desc" className="text-center w-100">
+              {/* On invalid empty attempt */}
+              <ErrorSnackbar
+                isOpen={snackbarOpen}
+                snackbarMessage={snackbarMessage}
+                onClose={handleSnackbarClose}
+              />
+              <Stack
+                spacing={3}
+                className="input-container my-1 text-start w-100 mb-4"
+              >
+                <TextNumberInputWithLabel
+                  bindValue={reps}
+                  label={"Reps"}
+                  placeholder={"Enter numeric value for repetitions"}
+                  onInputChange={(e) => setReps(e.target.value)}
+                />
+                <TextNumberInputWithLabel
+                  bindValue={weight}
+                  label={"Weight"}
+                  placeholder={"Enter numeric value for weight in lb(s)"}
+                  onInputChange={(e) => setWeight(e.target.value)}
+                />
+              </Stack>
+            </Grid>
+            <Stack direction="row" spacing={3} className="w-100">
+              {showRemove && (
+                <Button
+                  variant="outlined"
+                  className="red-border-button"
+                  onClick={() => {
+                    onRemove();
+                    onClose();
+                  }}
+                >
+                  Delete
+                </Button>
+              )}
+              <ButtonFilled
+                text="Save Set"
+                style="background-green"
+                onClick={handleSaveSet}
+              />
+            </Stack>
+          </Stack>
+        </Sheet>
+      </Modal>
+    </>
+  );
 };
 
 export default AddSetModal;

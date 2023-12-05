@@ -1,8 +1,13 @@
 import React from "react";
-import { OutlinedInput, Stack } from "@mui/material";
+import {
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+  Stack,
+} from "@mui/material";
 import { RequiredPopper } from "./RequiredPopper";
 
-const TextareaInputWithLabel = ({
+const TextNumberInputWithLabel = ({
   label,
   placeholder,
   bindValue,
@@ -10,7 +15,6 @@ const TextareaInputWithLabel = ({
   isRequired,
 }) => {
   let renderIfRequired = <></>;
-
   if (isRequired) {
     renderIfRequired = (
       <>
@@ -26,15 +30,14 @@ const TextareaInputWithLabel = ({
       </Stack>
       <OutlinedInput
         size="small"
-        multiline
-        maxRows={4}
-        className="w-100 m-0"
+        type="number"
         placeholder={placeholder}
         value={bindValue}
         onChange={onInputChange}
+        className="w-100 m-0"
       />
     </>
   );
 };
 
-export default TextareaInputWithLabel;
+export default TextNumberInputWithLabel;

@@ -1,11 +1,10 @@
-import { Grid, Typography, Box, Stack, Alert } from "@mui/material";
-import ButtonFilled from "../components/ButtonFilled";
-import { Link } from "react-router-dom";
-import TextInputWithLabel from "../components/TextInputWithLabel";
-import { useNavigate } from "react-router-dom";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { getUserData, isRealUser } from "../utils/userUtils";
+import { Link, useNavigate } from "react-router-dom";
+import ButtonFilled from "../components/ButtonFilled";
 import ErrorSnackbar from "../components/ErrorSnackbar";
+import TextInputWithLabel from "../components/TextInputWithLabel";
+import { getDefaultLogbookTab, isRealUser } from "../utils/userUtils";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -36,8 +35,10 @@ export const LoginPage = () => {
       localStorage.setItem("userLoggedIn", username);
       // Dispatch an event to notify the app of the login status change
       window.dispatchEvent(new Event("loginChange"));
-      // Directs user to logbook page
-      navigate("/logbook");
+
+      const currentUserLogbookTabData = getDefaultLogbookTab();
+      // Directs user to logbook page with user setting default value
+      navigate("/logbook/" + currentUserLogbookTabData);
     } else {
       // Open the invalid snackbar (no match found).
       setSnackbarOpen(true);
@@ -55,26 +56,31 @@ export const LoginPage = () => {
         <Grid className="mt-5">
           <Typography className="header-35">Log In</Typography>
           <Typography>Please proceed to log in to access FitFusion!</Typography>
-          <Box className="input-container">
-            <TextInputWithLabel
-              bindValue={username}
-              label={"Username"}
-              placeholder={"Click to enter your Username"}
-              onInputChange={(event) => setUsername(event.target.value)}
-            />
-            <TextInputWithLabel
-              bindValue={password}
-              label={"Password"}
-              placeholder={"Click to enter your Password"}
-              isPassword={true}
-              onInputChange={(event) => setPassword(event.target.value)}
-            />
-            <Link
-              className="d-flex flex-row-reverse link-label"
-              to="/underConstruction/login"
-            >
-              Forgot Password!
-            </Link>
+          <Box className="input-container mb-4">
+            <Stack spacing={3}>
+              <TextInputWithLabel
+                isRequired={true}
+                bindValue={username}
+                label={"Username"}
+                placeholder={"Click to enter your Username"}
+                onInputChange={(event) => setUsername(event.target.value)}
+              />
+              <Stack spacing={1}>
+                <TextInputWithLabel
+                  isRequired={true}
+                  bindValue={password}
+                  label={"Password"}
+                  placeholder={"Click to enter your Password"}
+                  isPassword={true}
+                  onInputChange={(event) => setPassword(event.target.value)}
+                />
+                <Link
+                  className="d-flex flex-row-reverse link-label"
+                  to="/underConstruction/login">
+                  Forgot Password!
+                </Link>
+              </Stack>
+            </Stack>
           </Box>
           <ButtonFilled
             text={"Log In"}
