@@ -1,55 +1,42 @@
-import { Checkbox, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { Stack, Typography } from "@mui/material";
 import TextInputWithLabel from "../../../components/TextInputWithLabel";
+import { MobileTimePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 const AlertDetails = () => {
-  const [selectedDays, setSelectedDays] = useState({
-    Monday: false,
-    Tuesday: false,
-    Wednesday: false,
-    Thursday: false,
-    Friday: false,
-    Saturday: false,
-    Sunday: false,
-  });
-
-  const handleDayToggle = (day) => {
-    setSelectedDays((prevDays) => ({
-      ...prevDays,
-      [day]: !prevDays[day],
-    }));
-  };
+  const [reminderName, setReminderName] = useState("");
+  const [reminderTime, setReminderTime] = useState(new Date());
 
   return (
     <>
-      <Stack direction="row" className="horizontal-stack">
-        <Typography className="header-20 align-bottom"> Reminder Name</Typography>
-      </Stack>
-      <Stack className="input-container text-start w-100 m-0">
+      {/* 1. Make "Add Reminder" smaller and bold */}
+      <Typography variant="h5" align="center" gutterBottom>
+        <strong>Add Reminder</strong>
+      </Typography>
+      
+      <Stack className="input-container text-start w-100 m-0" spacing={2}>
         <TextInputWithLabel
-          label={" Reminder Details"}
-          placeholder={"Click to enter Reminder Name"}
+          label={"Enter a New Reminder Name"}
+          placeholder={"Click to enter new Reminder Name"}
+          value={reminderName}
+          onChange={(e) => setReminderName(e.target.value)}
         />
-        <TextInputWithLabel
-          label={"Reminder Time"}
-          placeholder={"Click to enter Reminder Time"}
-        />
-        <Stack direction="row">
-          {Object.keys(selectedDays).map((day) => (
-            <Stack
-              key={day}
-              direction="row"
-              alignItems="center"
-              spacing={1}
-            >
-              <Checkbox
-                checked={selectedDays[day]}
-                onChange={() => handleDayToggle(day)}
-              />
-              <Typography>{day}</Typography>
-            </Stack>
-          ))}
-        </Stack>
+        
+        {/* 2. Style "Enter New Reminder Time" to be the same size as "Enter a New Reminder Name" */}
+        <Typography variant="subtitle1">
+          <strong>Enter New Reminder Time</strong>
+        </Typography>
+        
+        {/* Use the same style as "Enter a New Reminder Name" */}
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <MobileTimePicker
+            value={reminderTime}
+            onChange={(newTime) => setReminderTime(newTime)}
+            placeholder="Click to select new Reminder Time"
+          />
+        </LocalizationProvider>
       </Stack>
     </>
   );
