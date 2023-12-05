@@ -15,11 +15,6 @@ const GoalsHistoryModal = ({
 }) => {
   const [open, setOpen] = React.useState(isOpen);
 
-  const onClickRedBorderButton = () => {
-    setOpen(false);
-    onRemove(false);
-  };
-
   let button = <></>;
   if (isIcon) {
     button = (

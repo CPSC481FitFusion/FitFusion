@@ -1,15 +1,15 @@
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { format } from "date-fns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { MobileTimePicker, DatePicker } from "@mui/x-date-pickers";
 import { ModalClose, Sheet } from "@mui/joy";
-import { RequiredInputLabel } from "../../../components/RequiredInputLabel";
-import { Stack, Typography, Button, Modal, Grid } from "@mui/material";
+import { Button, Grid, Modal, Stack, Typography } from "@mui/material";
+import { DatePicker, MobileTimePicker } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { format } from "date-fns";
+import React, { useEffect, useState } from "react";
 import ButtonFilled from "../../../components/ButtonFilled";
 import ErrorSnackbar from "../../../components/ErrorSnackbar";
-import React, { useEffect, useState } from "react";
-import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
+import { RequiredInputLabel } from "../../../components/RequiredInputLabel";
 import TextInputWithLabel from "../../../components/TextInputWithLabel";
+import TextareaInputWithLabel from "../../../components/TextareaInputWithLabel";
 
 const WorkoutDetails = ({ workout, onUpdate, onClose, isOpen }) => {
   const [snackbarOpen, setSnackbarOpen] = useState(false); // State for showing the invalid login info snackbar

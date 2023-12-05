@@ -1,13 +1,13 @@
+import { Modal, Sheet, Stack, Typography } from "@mui/joy";
 import React, { useState } from "react";
 import ButtonFilled from "../../../components/ButtonFilled";
-import ControlledCheckbox from "../../../components/ControlledCheckbox";
-import { Modal, Sheet, Stack, Typography } from "@mui/joy";
 import Container from "../../../components/Container";
-import GoalDetails from "./Goalsdetails";
-import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
-import ErrorSnackbar from "../../../components/ErrorSnackbar";
+import ControlledCheckbox from "../../../components/ControlledCheckbox";
 import DeleteButtonWithConfirmation from "../../../components/DeleteButtonWithConfirmation";
-import GoalsHistoryModal from "./goalshistorymodal";
+import ErrorSnackbar from "../../../components/ErrorSnackbar";
+import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
+import GoalDetails from "./GoalsDetails";
+import GoalsHistoryModal from "./GoalsHistoryModal";
 
 const GoalsTab = () => {
   const [isStartModalOpen, setStartModalOpen] = useState(false);

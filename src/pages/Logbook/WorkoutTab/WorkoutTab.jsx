@@ -1,17 +1,13 @@
+import { Modal, Sheet } from "@mui/joy";
+import { Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ButtonFilled from "../../../components/ButtonFilled";
-import { Modal, Sheet } from "@mui/joy";
-import WorkoutDetails from "./WorkoutDetails";
-import WorkoutExerciseCard from "./WorkoutExerciseCard";
 import Container from "../../../components/Container";
-import { Stack, Typography } from "@mui/material";
-import AddExerciseModal from "./AddExerciseModal";
 import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
 import { getCurrentUsername } from "../../../utils/userUtils";
-import { Card } from '@mui/material';
-import CardContent from '@mui/material/CardContent';
-import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton';
+import AddExerciseModal from "./AddExerciseModal";
+import WorkoutDetails from "./WorkoutDetails";
+import WorkoutExerciseCard from "./WorkoutExerciseCard";
 
 import { WorkoutHistory } from "./WorkoutHistory";
 

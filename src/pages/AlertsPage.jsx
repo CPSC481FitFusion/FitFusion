@@ -1,11 +1,36 @@
-import React, { useState } from 'react';
-import ButtonFilled from '../components/ButtonFilled';
-import EditModal from '../components/Modals/EditModal';
 import { Modal, Sheet, Stack } from '@mui/joy';
-import Container from '../components/Container';
+import React, { useState } from 'react';
 import AlertDetails from '../Pages/Logbook/AlertTab/Alertdetails';
+import AppBottomNavigation from "../components/AppBottomNavigation";
+import ButtonFilled from '../components/ButtonFilled';
+import Container from '../components/Container';
 import BasicConfirmationModal from "../components/modals/basicConfirmationModal";
 import AppBottomNavigation from "../components/AppBottomNavigation";
+
+const ReminderForm = ({ onAddReminder }) => {
+  const [time, setTime] = useState('');
+  const [frequency, setFrequency] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleAddReminder = () => {
+    if (time && frequency && message) {
+      onAddReminder({ time, frequency, message, completed: false });
+      // Clear form fields
+      setTime('');
+      setFrequency('');
+      setMessage('');
+    }
+  };
+
+  return (
+    <div>
+      <label>Time: <input type="text" value={time} onChange={(e) => setTime(e.target.value)} /></label>
+      <label>Frequency: <input type="text" value={frequency} onChange={(e) => setFrequency(e.target.value)} /></label>
+      <label>Message: <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} /></label>
+      <button onClick={handleAddReminder}>Add Reminder</button>
+    </div>
+  );
+};
 
 const ReminderForm = ({ onAddReminder }) => {
   const [time, setTime] = useState('');

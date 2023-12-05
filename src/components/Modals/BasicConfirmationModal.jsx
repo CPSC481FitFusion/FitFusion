@@ -1,7 +1,7 @@
-import { Modal, ModalClose, Typography, Sheet } from "@mui/joy";
+import { Modal, ModalClose, Sheet, Typography } from "@mui/joy";
+import { Stack } from "@mui/material";
 import React from "react";
 import ButtonFilled from "../ButtonFilled";
-import { Box, Stack } from "@mui/material";
 
 const BasicConfirmationModal = ({
   buttonStyle,

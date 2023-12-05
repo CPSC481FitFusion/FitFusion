@@ -1,12 +1,12 @@
-import EditModal from "../../../components/Modals/EditModal";
-import TextInputWithLabel from "../../../components/TextInputWithLabel";
-import Container from "../../../components/Container";
+import EditIcon from "@mui/icons-material/Edit";
 import { IconButton, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import ButtonFilled from "../../../components/ButtonFilled";
-import AddSetModal from "./AddSetModal";
+import Container from "../../../components/Container";
 import ErrorSnackbar from "../../../components/ErrorSnackbar";
-import EditIcon from "@mui/icons-material/Edit";
+import EditModal from "../../../components/Modals/EditModal";
+import TextInputWithLabel from "../../../components/TextInputWithLabel";
+import AddSetModal from "./AddSetModal";
 
 const WorkoutExerciseCard = ({
   exercise,
