@@ -8,6 +8,7 @@ import ErrorSnackbar from "../../../components/ErrorSnackbar";
 import BasicConfirmationModal from "../../../components/modals/basicConfirmationModal";
 import GoalDetails from "./GoalsDetails";
 import GoalsHistoryModal from "./goalsHistoryModal";
+import RemoveConfirmationModal from "../../../components/Modals/RemoveConfirmationModal";
 
 const GoalsTab = () => {
   const [isStartModalOpen, setStartModalOpen] = useState(false);
@@ -131,27 +132,78 @@ const GoalsTab = () => {
         </div>
       </div>
 
-      <div
-        style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}
-      >
-        <ControlledCheckbox goalName="Zumba Classes" />
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
-        >
-          Attend 3 zumba classes this month
-        </Typography>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
-        >
-          Deadline 12/06/2023
-        </Typography>
+      <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
 
-        {/* Add more ControlledCheckbox components as needed */}
-      </div>
+  {/* Container for both goals */}
+  <Container style={"background-purple-light"} children={
+    <>
+      {/* Goal 1: Zumba Classes */}
+      <Container style={"background-green-light d-flex align-items-start"} elevation={3} children={
+        <>
+          <Stack direction="row" className="w-100 d-flex justify-content-between">
+            <ControlledCheckbox goalName="Zumba Classes" />
+            <RemoveConfirmationModal
+              modalHeader={"Removing \"Goal\""}
+              modalBody={(
+                <Typography>
+                  Are you sure you want to remove the goal from your goal history?
+                </Typography>
+              )}
+              onRemoveClick={() => { }}
+            />
+          </Stack>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
+          >
+            Attend 3 zumba classes this month
+          </Typography>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
+          >
+            Deadline 12/06/2023
+          </Typography>
+        </>
+      } />
+
+      {/* Goal 2: Running Challenge */}
+      <Container style={"background-green-light d-flex align-items-start"} elevation={3} children={
+        <>
+          <Stack direction="row" className="w-100 d-flex justify-content-between">
+            <ControlledCheckbox goalName="Running Challenge" />
+            <RemoveConfirmationModal
+              modalHeader={"Removing \"Goal\""}
+              modalBody={(
+                <Typography>
+                  Are you sure you want to remove the goal from your goal history?
+                </Typography>
+              )}
+              onRemoveClick={() => { }}
+            />
+          </Stack>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
+          >
+            Run 5 miles per week
+          </Typography>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            sx={{ marginLeft: 2, fontSize: "0.8rem", fontStyle: "italic" }}
+          >
+            Deadline 12/15/2023
+          </Typography>
+        </>
+      } />
+    </>
+  } />
+
+</div>
     </>
   );
 };
