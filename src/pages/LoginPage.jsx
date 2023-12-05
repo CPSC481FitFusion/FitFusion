@@ -59,6 +59,7 @@ export const LoginPage = () => {
           <Box className="input-container mb-4">
             <Stack spacing={3}>
               <TextInputWithLabel
+                isRequired={true}
                 bindValue={username}
                 label={"Username"}
                 placeholder={"Click to enter your Username"}
@@ -66,6 +67,7 @@ export const LoginPage = () => {
               />
               <Stack spacing={1}>
                 <TextInputWithLabel
+                  isRequired={true}
                   bindValue={password}
                   label={"Password"}
                   placeholder={"Click to enter your Password"}
@@ -74,8 +76,7 @@ export const LoginPage = () => {
                 />
                 <Link
                   className="d-flex flex-row-reverse link-label"
-                  to="/underConstruction/login"
-                >
+                  to="/underConstruction/login">
                   Forgot Password!
                 </Link>
               </Stack>
