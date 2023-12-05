@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ButtonFilled from "../components/ButtonFilled";
 import ErrorSnackbar from '../components/ErrorSnackbar';
 import TextInputWithLabel from "../components/TextInputWithLabel";
+import ErrorSnackbar from '../components/ErrorSnackbar';
 
 export const RegisterPage = () => {
   const navigate = useNavigate();

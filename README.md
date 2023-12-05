@@ -2,6 +2,13 @@
 
 FitFusion is a comprehensive fitness tracking application designed for users of all fitness levels. It offers features to track workouts, body composition, set goals, and receive reminders, all within an intuitive user interface. This README provides a detailed walkthrough of the app's functionalities, ensuring users can fully leverage FitFusion's capabilities.
 
+# Members:
+- Nicole Papuc, nicole.papuc@ucalgary.ca
+- Rachel Renegado, rachel.renegado@ucalgary.ca
+- Gurpartap Sohi, gurpartap.sohi@ucalgary.ca
+- Jitaksha Batish, jitaksha.batish@ucalgary.ca
+- Ali Siddiqi, ali.siddiqi@ucaglary.ca
+
 ## Table of Contents
 - [Installation](#installation)
 - [Technologies Used](#technologies-used)
