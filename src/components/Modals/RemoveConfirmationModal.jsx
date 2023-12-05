@@ -17,7 +17,6 @@ const RemoveConfirmationModal = ({
     };
 
     const onConfirmationButtonClick = () => {
-        console.log("handling button")
         onRemoveClick();
         setOpen(false);
     };
