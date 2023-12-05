@@ -65,11 +65,6 @@ const AddExerciseModal = ({ isOpen, onClose, onAddExercise }) => {
           className="wid"
           sx={{ width: "90%", borderRadius: "md", p: 3, boxShadow: "lg" }}
         >
-          <ModalClose
-            onClick={handleModalClose}
-            variant="outlined"
-            sx={{ m: 1 }}
-          />
           <Stack className="w-100" direction="column" alignItems="center">
             <Typography
               component="h2"

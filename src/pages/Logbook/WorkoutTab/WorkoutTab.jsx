@@ -24,6 +24,11 @@ const WorkoutTab = () => {
         setSnackbarOpen(false);
     };
 
+    const handleDetailsModalClose = () => {
+        setDetailsModalOpen(false); // This will close only the WorkoutDetails modal
+        setOpen(true); // Keep base modal open.
+    };
+    
     const startNewWorkout = () => {
         setTempWorkout({
             id: Date.now(),
@@ -150,7 +155,7 @@ const WorkoutTab = () => {
                         <WorkoutDetails
                             workout={tempWorkout}
                             onUpdate={setTempWorkout}
-                            onClose={() => setDetailsModalOpen(false)}
+                            onClose={handleDetailsModalClose} // Passing the function as prop
                             isOpen={detailsModalOpen}
                         />
                         <Container

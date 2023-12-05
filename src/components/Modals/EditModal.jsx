@@ -14,6 +14,7 @@ const EditModal = ({
   showRemove,
   onRemove,
   onSave,
+  showModalClose
 }) => {
   const [open, setOpen] = React.useState(isOpen || false);
   let buttonType = <></>;
@@ -88,7 +89,9 @@ const EditModal = ({
             boxShadow: "lg",
           }}
         >
-          <ModalClose onClick={handleClose} variant="outlined" sx={{ m: 1 }} />
+          {showModalClose &&
+            (<ModalClose onClick={handleClose} variant="outlined" sx={{ m: 1 }} />)
+          }
           <Stack className="w-100" direction="column" alignItems="center">
             <Typography
               component="h2"
