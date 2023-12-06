@@ -72,7 +72,6 @@ const AlertsPage = () => {
       return;
     setShowAlertSnackbar(false);
   }
-
   return (
     <>
       {/* Snackbar for showing the latest added alert */}
