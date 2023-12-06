@@ -1,7 +1,6 @@
-import { Modal, Sheet, Stack } from '@mui/joy';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Modal, Stack, Typography, Snackbar, Alert, IconButton } from '@mui/material';
 import AlertDetails from './Alertdetails';
-import { Typography } from '@mui/material';
 import AlertHistoryCard from './AlertHistoryCard';
 import AppBottomNavigation from '../../components/AppBottomNavigation';
 import ButtonFilled from '../../components/ButtonFilled';
@@ -9,20 +8,25 @@ import BasicConfirmationModal from '../../components/modals/basicConfirmationMod
 import { getCurrentUsername } from '../../utils/userUtils';
 import ErrorSnackbar from '../../components/ErrorSnackbar';
 import Container from '../../components/Container';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'; // Import the icon
+import { Sheet } from '@mui/joy';
+import CloseIcon from '@mui/icons-material/Close';
 
 const AlertsPage = () => {
   const [isStartModalOpen, setStartModalOpen] = useState(false);
-  const [snackbarOpen, setSnackbarOpen] = useState(false); // State for showing the invalid login info snackbar
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [reminderName, setReminderName] = useState("");
+  const [lastAddedAlert, setLastAddedAlert] = useState(null);
+  const [showAlertSnackbar, setShowAlertSnackbar] = useState(false);
 
+  // Handle the closing of the snackbar
   const handleSnackbarClose = () => {
-    // Handle Close for inalid login error snackbar
     setSnackbarOpen(false);
   };
 
+  // This function will be called from AlertDetails when the reminder name changes
   const handleReminderNameChange = (newName) => {
-    console.log("something changed, updating in tab: " + newName);
     setReminderName(newName);
   };
 
@@ -40,7 +44,6 @@ const AlertsPage = () => {
       { time: '8:00 PM', message: 'Drink Water', completed: true },
     ],
   };
-
   const currentUser = getCurrentUsername();
   const userAlerts = hardcodedAlertsData[currentUser] || [];
 
@@ -53,21 +56,57 @@ const AlertsPage = () => {
   };
 
   const handleModalSave = () => {
-    console.log(reminderName)
     if (!reminderName || reminderName.trim() === "") {
       setSnackbarOpen(true);
-      setSnackbarMessage("Alert Name is required.")
+      setSnackbarMessage("Alert Name is required.");
       return;
     }
+    setLastAddedAlert(reminderName); // Update the last added alert
+    setReminderName(""); // Clear the reminder name
     setStartModalOpen(false);
-    setReminderName(""); // clear reminder name
-    handleSnackbarClose();
+    setTimeout(() => setShowAlertSnackbar(true), 3000); // Delay showing the snackbar
   };
+
+  const handleAlertClose = (event, reason) => {
+    if (reason === "clickaway" || reason === 'escapeKeyDown')
+      return;
+    setShowAlertSnackbar(false);
+  }
 
   return (
     <>
+      {/* Snackbar for showing the latest added alert */}
+      <Snackbar
+        open={showAlertSnackbar}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        onClose={handleAlertClose}
+        ClickAwayListenerProps={{ mouseEvent: false }}
+      >
+        <Alert
+          icon={<NotificationsActiveIcon className='text-white' />}
+          severity="success"
+          className='w-100 background-purple-dark'
+        >
+          <Stack direction={"row"}>
+            <Stack>
+              <Typography className='text-white'>
+                {lastAddedAlert}
+              </Typography>
+            </Stack>
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleAlertClose}
+              sx={{ color: 'white', position: 'absolute', right: 8, top: 8 }}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </Stack>
+        </Alert>
+      </Snackbar >
+
       {/* Heading and Date */}
-      <Typography className="header-35">Alerts</Typography>
+      < Typography className="header-35" > Alerts</Typography >
       <Typography className="purple-text ">
         {new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
       </Typography>
