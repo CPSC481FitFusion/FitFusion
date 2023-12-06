@@ -155,9 +155,9 @@ const AlertsPage = () => {
             <BasicConfirmationModal
               buttonStyle={"background-green"}
               openModalButtonLabel={"Save"}
-              modalHeader={" Setting up"}
+              modalHeader={"Set Alert"}
               modalBody={"Are you sure you want to set up a new alert?"}
-              modalConfirmationButtonLabel={" Save"}
+              modalConfirmationButtonLabel={"Confirm Set"}
               actionOnClick={() => handleModalSave()}
             />
           </Stack>
